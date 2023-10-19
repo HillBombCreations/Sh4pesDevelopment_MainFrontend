@@ -6,8 +6,9 @@ function LandingPage() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
+        style={{ height: '90vh' }}
       >
-        <div style={{ display: 'flex'}} className='background-red'>
+        <div>
           <h1>This is the Landing Page</h1>
         </div>
       </motion.div>

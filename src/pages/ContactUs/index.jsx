@@ -6,8 +6,9 @@ function ContactPage() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
+        style={{ height: '90vh' }}
       >
-        <div style={{ display: 'flex', width: '1280px', height: '80vh' }} className='background-red'>
+        <div>
           <h1>This is the Contact Page</h1>
         </div>
       </motion.div>

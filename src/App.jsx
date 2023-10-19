@@ -17,10 +17,10 @@ function App() {
     }, [pathname]);
     return (
         <div className="App">
-            <div style={{ display: 'flex', flexDirection: 'column'}}>
-                <div style={{ display: 'flex', flexDirection: 'row' }}>
+            <div style={{ display: 'flex', flexDirection: 'column', width: '99vw'}}>
+                <div style={{ display: 'flex', flexDirection: 'row', marginTop: '5px', marginLeft: '5px' }}>
                     <div>
-                        <img alt='HILL' style={{ height: '5vh', width: '7vw' }} src={'/assets/HBCreations.png'} />
+                        <img alt='HILL' style={{ height: '5vh', width: '7vw', alignItems: 'center' }} src={'/assets/HBCreations.png'} />
                     </div>
                     <div>
                         <Tabs pathname={pathname} />
