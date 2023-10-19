@@ -3,24 +3,24 @@ import PropTypes from 'prop-types'
 import { Link } from "react-router-dom";
 function SiteTabs({ pathname }) {
     return (
-        <div>
-            <Box sx={{ borderBottom: 1, borderColor: 'transparent', margin: '0 10px 0 10px' }}>
+        <div style={{ marginLeft: 'auto' }}>
+            <Box sx={{ borderBottom: 1, borderColor: 'transparent' }}>
                 <Tabs
                     aria-label="Tab navigation"
                     value={pathname}
                     variant='fullWidth'
                 >
                     <Tab
-                        label="Home"
+                        label="Services"
                         component={Link}
-                        to="/"
-                        value="/"
+                        to="/#services"
+                        value="/#services"
                     />
                     <Tab
                         label="Contact"
                         component={Link}
-                        to="/contact"
-                        value="/contact"
+                        to="/#contact"
+                        value="/#contact"
                     />
                 </Tabs>
             </Box>

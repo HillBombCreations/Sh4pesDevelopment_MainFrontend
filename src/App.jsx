@@ -1,40 +1,32 @@
 // import { useState } from 'react'
-import { Routes, Route, useLocation  } from "react-router-dom"
-import { AnimatePresence } from "framer-motion";
-import { useEffect, useState } from "react";
+import { Routes, Route, useLocation } from "react-router-dom"
+import { useEffect } from "react";
 import LandingPage from './pages/LandingPage/index';
-import ContactPage from './pages/ContactUs/index';
-import Tabs from './universalComponents/Tabs/index';
 import './App.css'
 
 function App() {
-    const { pathname } = useLocation();
-    const [bgColor, setColor] = useState('red')
-    useEffect(()=>{
-        if (pathname === '/') setColor('red');
-        if (pathname === '/contact') setColor('blue');
-        //call your increment function here
-    }, [pathname]);
+    const { pathname, hash, key } = useLocation();
+    useEffect(() => {
+        // if not a hash link, scroll to top
+        if (hash === '') {
+          window.scrollTo(0, 0);
+        }
+        // else scroll to id
+        else {
+          setTimeout(() => {
+            const id = hash.replace('#', '');
+            const element = document.getElementById(id);
+            if (element) {
+              element.scrollIntoView();
+            }
+          }, 0);
+        }
+      }, [pathname, hash, key]);
     return (
         <div className="App">
-            <div style={{ display: 'flex', flexDirection: 'column', width: '99vw'}}>
-                <div style={{ display: 'flex', flexDirection: 'row', marginTop: '5px', marginLeft: '5px' }}>
-                    <div>
-                        <img alt='HILL' style={{ height: '5vh', width: '7vw', alignItems: 'center' }} src={'/assets/HBCreations.png'} />
-                    </div>
-                    <div>
-                        <Tabs pathname={pathname} />
-                    </div>
-                </div>
-                <div style={{ background: bgColor }}>
-                    <AnimatePresence mode='wait'>
-                        <Routes location={pathname} key={pathname}>
-                            <Route path="/" element={ <LandingPage /> } />
-                            <Route path="contact" element={ <ContactPage  /> } />
-                        </Routes>
-                    </AnimatePresence>
-                </div>
-            </div>
+            <Routes>
+                <Route path="/" element={ <LandingPage pathname={ pathname } /> } />
+            </Routes>
         </div>
     )
 }
