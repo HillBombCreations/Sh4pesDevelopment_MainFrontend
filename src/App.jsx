@@ -1,27 +1,42 @@
-import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import LandingPage from './components/LandingPage';
+// import { useState } from 'react'
+import { Routes, Route, useLocation  } from "react-router-dom"
+import { AnimatePresence } from "framer-motion";
+import { useEffect, useState } from "react";
+import LandingPage from './pages/LandingPage/index';
+import ContactPage from './pages/ContactUs/index';
+import Tabs from './universalComponents/Tabs/index';
 import './App.css'
 
-export default class App extends Component {
-    constructor(props) {
-        super(props);
-        this.props = props;
-        this.state = {};
-    }
-
-    render() {
-        return (
-            <div className='App'>
-                {/* Routes */}
-                <Router>
-                    <Routes>
-                        <Route exact path='/' element={
-                            <LandingPage />
-                        } />
-                    </Routes>
-                </Router>
+function App() {
+    const { pathname } = useLocation();
+    const [bgColor, setColor] = useState('red')
+    useEffect(()=>{
+        if (pathname === '/') setColor('red');
+        if (pathname === '/contact') setColor('blue');
+        //call your increment function here
+    }, [pathname]);
+    return (
+        <div className="App">
+            <div style={{ display: 'flex', flexDirection: 'column', width: '99vw'}}>
+                <div style={{ display: 'flex', flexDirection: 'row', marginTop: '5px', marginLeft: '5px' }}>
+                    <div>
+                        <img alt='HILL' style={{ height: '5vh', width: '7vw', alignItems: 'center' }} src={'/assets/HBCreations.png'} />
+                    </div>
+                    <div>
+                        <Tabs pathname={pathname} />
+                    </div>
+                </div>
+                <div style={{ background: bgColor }}>
+                    <AnimatePresence mode='wait'>
+                        <Routes location={pathname} key={pathname}>
+                            <Route path="/" element={ <LandingPage /> } />
+                            <Route path="contact" element={ <ContactPage  /> } />
+                        </Routes>
+                    </AnimatePresence>
+                </div>
             </div>
-        );
-    }
+        </div>
+    )
 }
+
+export default App
