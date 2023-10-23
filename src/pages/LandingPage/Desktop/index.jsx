@@ -1,4 +1,4 @@
-import Tabs from '../../../universalComponents/Tabs'
+import Tabs from '../../../universalComponents/Tabs/Desktop'
 import ContactForm from '../../../universalComponents/ContactForm/Desktop'
 import PropTypes from 'prop-types'
 

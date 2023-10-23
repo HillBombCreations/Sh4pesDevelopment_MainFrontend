@@ -51,7 +51,7 @@ function SiteTabs() {
                         onChange={(e) => setMessage(e.target.value)}
                         sx={{ marginBottom: '2vh' }}
                     />
-                    <Button variant="outlined" >
+                    <Button variant="contained" >
                         Submit Request
                     </Button>
                 </div>

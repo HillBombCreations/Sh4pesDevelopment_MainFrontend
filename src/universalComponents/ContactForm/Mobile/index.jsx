@@ -50,7 +50,7 @@ function SiteTabs() {
                         onChange={(e) => setMessage(e.target.value)}
                         sx={{ marginBottom: '10px' }}
                     />
-                    <Button fullWidth variant="outlined" >
+                    <Button fullWidth variant="contained" >
                         Submit Request
                     </Button>
                 </div>
