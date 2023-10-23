@@ -1,8 +1,8 @@
 import Tabs from '../../../universalComponents/Tabs'
+import ContactForm from '../../../universalComponents/ContactForm/Desktop'
 import PropTypes from 'prop-types'
 
-function LandingPage({ pathname }) {
-    
+function DesktopLanding({ pathname }) {
     return (
       <div id="page-container">
           <div id="content-wrap" style={{ padding: '10px 20vw 10px 20vw' }}>
@@ -23,6 +23,30 @@ function LandingPage({ pathname }) {
               <p>
                 Our mission is simple: to help businesses accelerate down the digital hill, leaving their competition in the dust.
                 We specialize in creating cutting-edge websites that embody the spirit of a downhill rush – sleek, fast, and exciting.
+              </p>
+              <br />
+              <hr />
+              <br />
+              <h2 id='services'>Our Services</h2>
+              <h3> Website Design</h3>
+              <p>
+                We specialize in creating visually stunning and highly functional websites tailored to your brand and objectives.
+                Our custom web solutions ensure you stand out in the digital landscape.
+              </p>
+              <h3>E-commerce Development</h3>
+              <p>
+                Take your business to new heights with our e-commerce solutions.
+                We design and develop online stores that are secure, user-friendly, and optimized for conversions.
+              </p>
+              <h3>Maintenance and Support</h3>
+              <p>
+                Ensure your website remains in top shape with our ongoing maintenance packages.
+                We handle updates, security, content management, and more, so you can focus on your business.
+              </p>
+              <h3>Reliable Hosting Solutions</h3>
+              <p>
+                Our hosting services provide a reliable and secure home for your website.
+                We handle all the technical intricacies, ensuring your site runs smoothly and stays online, so you can focus on your core business.
               </p>
               <br />
               <hr />
@@ -59,27 +83,8 @@ function LandingPage({ pathname }) {
               <br />
               <hr />
               <br />
-              <h2 id='services'>Our Services</h2>
-              <h3> Website Design</h3>
-              <p>
-                We specialize in creating visually stunning and highly functional websites tailored to your brand and objectives.
-                Our custom web solutions ensure you stand out in the digital landscape.
-              </p>
-              <h3>E-commerce Development</h3>
-              <p>
-                Take your business to new heights with our e-commerce solutions.
-                We design and develop online stores that are secure, user-friendly, and optimized for conversions.
-              </p>
-              <h3>Maintenance and Support</h3>
-              <p>
-                Ensure your website remains in top shape with our ongoing maintenance packages.
-                We handle updates, security, content management, and more, so you can focus on your business.
-              </p>
-              <h3>Reliable Hosting Solutions</h3>
-              <p>
-                Our hosting services provide a reliable and secure home for your website.
-                We handle all the technical intricacies, ensuring your site runs smoothly and stays online, so you can focus on your core business.
-              </p>
+              <h2 id="contact">Contact Us</h2>
+              <ContactForm />
               <br />
               <hr />
               <br />
@@ -97,14 +102,14 @@ function LandingPage({ pathname }) {
         <footer id="footer">
           <div id="footer-content">
             <span style={{ marginRight: '10px' }}>© 2023 Hill Bomb Creations</span>
-            <span id="contact"><a style={{ color: 'inherit' }} href="mailto:hello@hbcreations.io">hello@hbcreations.io</a></span>
+            <span><a style={{ color: 'inherit' }} href="mailto:hello@hbcreations.io">hello@hbcreations.io</a></span>
           </div>
         </footer>
       </div>
     );
 }
 
-LandingPage.propTypes = {
+DesktopLanding.propTypes = {
   pathname: PropTypes.string.isRequired,
 }
-export default LandingPage;
+export default DesktopLanding;

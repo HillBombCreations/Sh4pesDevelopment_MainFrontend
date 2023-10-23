@@ -1,7 +1,8 @@
 import Tabs from '../../../universalComponents/Tabs'
+import ContactForm from '../../../universalComponents/ContactForm/Mobile'
 import PropTypes from 'prop-types'
 
-function LandingPage({ pathname }) {
+function MobileLanding({ pathname }) {
     
     return (
       <div id="page-container">
@@ -13,7 +14,7 @@ function LandingPage({ pathname }) {
             <div style={{ textAlign: 'left', paddingBottom: '50px' }}>
               <div style={{ overflow: 'auto', maxHeight: '75vh' }}>
                 <h2 style={{ fontSize: '18px' }}>Raise Your Online Presence</h2>
-                <h3 style={{ fontSize: '16px' }}>Where Innovation Meets Talent</h3>
+                <h3 style={{ fontSize: '16px' }}>Innovation Meets Talent</h3>
                     <h3 style={{ fontSize: '16px' }}>Your Vision, Our Expertise</h3>
                     <p style={{ fontSize: '14px' }}>
                     At Hill Bomb Creations, we're not just a web development company – we're your fast track to online success.
@@ -84,6 +85,11 @@ function LandingPage({ pathname }) {
                 <br />
                 <hr />
                 <br />
+                <h2 id="contact">Contact Us</h2>
+                    <ContactForm />
+                <br />
+                <hr />
+                <br />
                 <h3 style={{ fontSize: '16px' }}>Join Us on the Fast Track</h3>
                 <p style={{ fontSize: '14px' }}>
                     Let Hill Bomb Creations be your digital downhill specialist. Partner with us, and let's race toward success together. 
@@ -106,7 +112,7 @@ function LandingPage({ pathname }) {
     );
 }
 
-LandingPage.propTypes = {
+MobileLanding.propTypes = {
   pathname: PropTypes.string.isRequired,
 }
-export default LandingPage;
+export default MobileLanding;
