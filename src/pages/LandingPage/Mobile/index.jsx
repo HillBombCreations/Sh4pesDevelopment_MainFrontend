@@ -14,7 +14,7 @@ function MobileLanding({ pathname }) {
             <div style={{ textAlign: 'left', paddingBottom: '50px' }}>
               <div style={{ overflow: 'auto', maxHeight: '75vh' }}>
                 <h2>Raise Your Online Presence</h2>
-                <h3>Innovation Meets Talent</h3>
+                <h3>Innovation Meets Talent</h3>``
                     <h3>Your Vision, Our Expertise</h3>
                     <p>
                     At Hill Bomb Creations, we're not just a web development company – we're your fast track to online success.
@@ -99,15 +99,15 @@ function MobileLanding({ pathname }) {
                 <p>
                     Contact us today, and let's start your exhilarating descent into the digital world
                 </p>
+                <footer id="footer">
+                    <div id="footer-content">
+                        <span style={{ marginRight: '10px', fontSize: '14px', color: '#333333' }}>© 2023 Hill Bomb Creations</span>
+                        <span id="contact"><a style={{ color: '#333333' }} href="mailto:hello@hbcreations.io">hello@hbcreations.io</a></span>
+                    </div>
+                </footer>
             </div>
           </div>
         </div>
-        <footer id="footer">
-        <div id="footer-content">
-            <span style={{ marginRight: '10px', fontSize: '14px', color: '#333333' }}>© 2023 Hill Bomb Creations</span>
-            <span id="contact"><a style={{ color: '#333333' }} href="mailto:hello@hbcreations.io">hello@hbcreations.io</a></span>
-        </div>
-        </footer>
       </div>
     );
 }
