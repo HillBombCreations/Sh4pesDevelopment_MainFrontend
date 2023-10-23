@@ -7,7 +7,7 @@ function MobileLanding({ pathname }) {
     return (
       <div id="page-container">
           <div id="content-wrap" style={{ padding: '10px 20vw 10px 20vw' }}>
-            <header style={{ display: 'flex', flexDirection: 'column'}}>
+            <header style={{ display: 'flex', flexDirection: 'column', marginBottom: '10px' }}>
               <img src="/assets/HBCreations.png" alt="HB Creations Banner" style={{ width: '150px', alignItems: 'center', marginLeft: 'auto', marginRight: '8vw' }} />
               <Tabs pathname={pathname} />
             </header>
