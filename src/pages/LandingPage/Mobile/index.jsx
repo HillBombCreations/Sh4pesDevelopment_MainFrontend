@@ -104,8 +104,8 @@ function MobileLanding({ pathname }) {
         </div>
         <footer id="footer">
         <div id="footer-content">
-            <span style={{ marginRight: '10px', fontSize: '14px' }}>© 2023 Hill Bomb Creations</span>
-            <span id="contact"><a style={{ color: 'inherit' }} href="mailto:hello@hbcreations.io">hello@hbcreations.io</a></span>
+            <span style={{ marginRight: '10px', fontSize: '14px', color: '#333333' }}>© 2023 Hill Bomb Creations</span>
+            <span id="contact"><a style={{ color: '#333333' }} href="mailto:hello@hbcreations.io">hello@hbcreations.io</a></span>
         </div>
         </footer>
       </div>

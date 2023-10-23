@@ -13,11 +13,14 @@ hr {
   background-color: #5688e0; 
   border: none;
 }
-p {
+h2 {
   color: #333333;
 }
 h3 {
   color: #5688e0;
+}
+p {
+  color: #333333;
 }
 #page-container {
   position: relative;
