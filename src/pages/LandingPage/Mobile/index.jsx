@@ -99,12 +99,10 @@ function MobileLanding({ pathname }) {
                 <p>
                     Contact us today, and let's start your exhilarating descent into the digital world
                 </p>
-                <footer id="footer">
-                    <div id="footer-content">
-                        <span style={{ marginRight: '10px', fontSize: '14px', color: '#333333' }}>© 2023 Hill Bomb Creations</span>
-                        <span id="contact"><a style={{ color: '#333333' }} href="mailto:hello@hbcreations.io">hello@hbcreations.io</a></span>
-                    </div>
-                </footer>
+                <div id="footer-content">
+                    <span style={{ marginRight: '10px', fontSize: '14px', color: '#333333' }}>© 2023 Hill Bomb Creations</span>
+                    <span id="contact"><a style={{ color: '#333333' }} href="mailto:hello@hbcreations.io">hello@hbcreations.io</a></span>
+                </div>
             </div>
           </div>
         </div>
