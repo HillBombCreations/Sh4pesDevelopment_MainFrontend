@@ -100,7 +100,7 @@ function DesktopLanding({ pathname }) {
             </div>
           </div>
         <footer id="footer">
-          <div style={{ color: 'black' }} id="footer-content">
+          <div style={{ color: '#333333' }} id="footer-content">
             <span style={{ marginRight: '10px' }}>© 2023 Hill Bomb Creations</span>
             <span><a style={{ color: 'inherit' }} href="mailto:hello@hbcreations.io">hello@hbcreations.io</a></span>
           </div>
