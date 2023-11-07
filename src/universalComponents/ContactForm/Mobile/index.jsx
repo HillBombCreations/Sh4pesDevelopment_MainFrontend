@@ -7,7 +7,7 @@ import {
         DialogContentText,
         DialogActions,
         DialogTitle,
-        CircularProgress,
+        LinearProgress,
     } from "@mui/material";
 import { useState } from 'react';
 
@@ -91,10 +91,10 @@ function SiteTabs() {
                         </>
                         :
                         <>
-                            <CircularProgress
-                                size={24}
+                            <LinearProgress
                                 sx={{
-                                color: '#5688e0',
+                                    color: '#5688e0',
+                                    width: '100%',
                                 }}
                             />
                         </>
