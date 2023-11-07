@@ -12,8 +12,7 @@ import {
 import { useState } from 'react';
 import axios from 'axios';
 function ContactForm() {
-    // const HBC_API = 'https://api.sh4pesdevelopment.com/api';
-    const HBC_API = 'http://localhost:5000/api';
+    const HBC_API = 'https://api.sh4pesdevelopment.com/api';
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
     const [email, setEmail] = useState('');
