@@ -24,14 +24,13 @@ function SiteTabs() {
         setLoading(true);
         const res = await axios.post(`${HBC_API}/sendInquiryEmail`, { firstName, lastName, email, message });
         if (res.status === 201) {
-            await axios.post(`${HBC_API}/sendOutreachEmail`, { to: email });
-            setLoading(false);
             setMessage('');
             setEmail('');
             setLastName('');
             setFirstName('');
             setOpen(true);
         }
+        setLoading(false);
     };
     const handleClose = () => {
         setOpen(false);

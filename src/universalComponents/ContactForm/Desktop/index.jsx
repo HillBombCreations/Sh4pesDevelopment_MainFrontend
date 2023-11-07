@@ -12,7 +12,8 @@ import {
 import { useState } from 'react';
 import axios from 'axios';
 function ContactForm() {
-    const HBC_API = 'https://api.sh4pesdevelopment.com/api';
+    // const HBC_API = 'https://api.sh4pesdevelopment.com/api';
+    const HBC_API = 'http://localhost:5000/api';
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
     const [email, setEmail] = useState('');
@@ -23,14 +24,13 @@ function ContactForm() {
         setLoading(true);
         const res = await axios.post(`${HBC_API}/sendInquiryEmail`, { firstName, lastName, email, message });
         if (res.status === 201) {
-            await axios.post(`${HBC_API}/sendOutreachEmail`, { to: email });
-            setLoading(false);
             setMessage('');
             setEmail('');
             setLastName('');
             setFirstName('');
             setOpen(true);
         }
+        setLoading(false);
     };
     const handleClose = () => {
         setOpen(false);
