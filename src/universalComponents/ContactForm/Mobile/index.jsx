@@ -48,7 +48,6 @@ function SiteTabs() {
             >
                 <div style={{ flexDirection: 'columm', width: '100%'}}>
                     <TextField
-                        required
                         fullWidth
                         label="First Name"
                         sx={{ marginBottom: '10px' }}
@@ -56,7 +55,6 @@ function SiteTabs() {
                         onChange={(e) => setFirstName(e.target.value)}
                     />
                     <TextField
-                        required
                         fullWidth
                         label="Last Name"
                         sx={{ marginBottom: '10px' }}
