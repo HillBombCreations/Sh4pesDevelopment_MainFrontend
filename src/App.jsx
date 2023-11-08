@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import LandingPage from './pages/LandingPage/index';
 import './App.css'
 
-ReactGA.initialize('G-PDC9TXR6Q2');
+ReactGA.initialize('UA-292243424-1');
 
 function App() {
     const { pathname, hash, key } = useLocation();
