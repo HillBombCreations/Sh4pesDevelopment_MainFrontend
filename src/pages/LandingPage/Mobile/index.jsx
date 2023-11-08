@@ -14,7 +14,7 @@ function MobileLanding({ pathname }) {
             <div style={{ textAlign: 'left', paddingBottom: '50px' }}>
               <div style={{ overflow: 'auto', maxHeight: '75vh' }}>
                 <h2>Raise Your Online Presence</h2>
-                <h3>Innovation Meets Talent</h3>``
+                <h3>Innovation Meets Talent</h3>
                     <h3>Your Vision, Our Expertise</h3>
                     <p>
                     At Hill Bomb Creations, we're not just a web development company – we're your fast track to online success.
