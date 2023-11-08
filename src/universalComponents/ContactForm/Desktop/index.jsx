@@ -1,5 +1,6 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import ReactGA from "react-ga4";
+import { useSearchParams } from 'react-router-dom';
 import axios from 'axios';
 import {
     Box,
@@ -15,6 +16,9 @@ import {
 
 function ContactForm() {
     const HBC_API = 'https://api.sh4pesdevelopment.com/api';
+
+    const [searchParams] = useSearchParams();
+    const [ref, setRef] = useState('');
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
     const [email, setEmail] = useState('');
@@ -22,17 +26,21 @@ function ContactForm() {
     const [open, setOpen] = useState(false);
     const [loading, setLoading] = useState(false);
 
+    useEffect(() => {
+        const refCode = searchParams.get("ref");
+        if (refCode) setRef(refCode)
+    }, [searchParams]);
+
     const sendEmail = async () => {
-        setLoading(true);
-        const res = await axios.post(`${HBC_API}/sendInquiryEmail`, { firstName, lastName, email, message });
+        const res = await axios.post(`${HBC_API}/sendInquiryEmail`, { firstName, lastName, email, message, ref });
         if (res.status === 201) {
+            setRef('');
             setMessage('');
             setEmail('');
             setLastName('');
             setFirstName('');
             setOpen(true);
         }
-        setLoading(false);
     };
     const handleClose = () => {
         setOpen(false);
@@ -46,15 +54,14 @@ function ContactForm() {
 
     return (
         <div style={{ marginLeft: 'auto' }}>
-            <Box
-                component="form"
-                sx={{
-                    display: 'flex', flexDirection: 'row'
-                }}
-                noValidate
-                autoComplete="off"
-            >
+            <Box component="form" sx={{ display: 'flex', flexDirection: 'row' }} noValidate autoComplete="off">
                     <div style={{ flexDirection: 'columm', width: '100%'}}>
+                        <TextField
+                            label="Referral Code/Referrer"
+                            sx={{ paddingRight: '10px', marginBottom: '2vh' }}
+                            value={ ref }
+                            onChange={(e) => setRef(e.target.value)}
+                        />
                         <div style={{ display: 'flex', flexDirection: 'row', marginBottom: '2vh', justifyContent: 'space-evenly' }}>
                             <TextField
                                 fullWidth
@@ -107,10 +114,7 @@ function ContactForm() {
                         </>
                         }
                     </div>
-                <Dialog
-                    open={open}
-                    onClose={handleClose}
-                >
+                <Dialog open={open} onClose={handleClose}>
                     <DialogTitle>Success!</DialogTitle>
                     <DialogContent>
                         <DialogContentText>

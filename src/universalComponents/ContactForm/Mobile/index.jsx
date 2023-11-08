@@ -1,5 +1,6 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import ReactGA from "react-ga4";
+import { useSearchParams } from 'react-router-dom';
 import axios from 'axios';
 import {
     Box,
@@ -15,12 +16,20 @@ import {
 
 function SiteTabs() {
     const HBC_API = 'https://api.sh4pesdevelopment.com/api';
+    
+    const [searchParams] = useSearchParams();
+    const [ref, setRef] = useState('');
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
     const [email, setEmail] = useState('');
     const [message, setMessage] = useState('');
     const [open, setOpen] = useState(false);
     const [loading, setLoading] = useState(false);
+
+    useEffect(() => {
+        const refCode = searchParams.get("ref");
+        if (refCode) setRef(refCode)
+    }, [searchParams]);
 
     const sendEmail = async () => {
         const res = await axios.post(`${HBC_API}/sendInquiryEmail`, { firstName, lastName, email, message });
@@ -44,15 +53,15 @@ function SiteTabs() {
 
     return (
         <div style={{ marginLeft: 'auto' }}>
-            <Box
-                component="form"
-                sx={{
-                    display: 'flex', flexDirection: 'row'
-                }}
-                noValidate
-                autoComplete="off"
-            >
+            <Box component="form" sx={{ display: 'flex', flexDirection: 'row' }} noValidate autoComplete="off">
                 <div style={{ flexDirection: 'columm', width: '100%'}}>
+                    <TextField
+                        fullWidth
+                        label="Referral Code/Referrer"
+                        sx={{ marginBottom: '10px' }}
+                        value={ ref }
+                        onChange={(e) => setRef(e.target.value)}
+                    />
                     <TextField
                         fullWidth
                         label="First Name"
@@ -104,10 +113,7 @@ function SiteTabs() {
                         </>
                         }
                 </div>
-                <Dialog
-                    open={open}
-                    onClose={handleClose}
-                >
+                <Dialog open={open} onClose={handleClose}>
                     <DialogTitle>Success!</DialogTitle>
                     <DialogContent>
                         <DialogContentText>

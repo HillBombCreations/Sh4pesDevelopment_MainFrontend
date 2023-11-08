@@ -9,8 +9,14 @@ function SiteTabs({ pathname }) {
                     aria-label="Tab navigation"
                     value={pathname}
                     variant='fullWidth'
+                    indicatorColor={pathname === '/' ? 'transparent' : 'primary'}
                 >
-                    
+                    <Tab
+                        disabled
+                        component={Link}
+                        to="/"
+                        value="/"
+                    />
                     <Tab
                         label="Services"
                         component={Link}
