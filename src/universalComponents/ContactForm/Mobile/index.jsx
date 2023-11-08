@@ -32,8 +32,9 @@ function SiteTabs() {
     }, [searchParams]);
 
     const sendEmail = async () => {
-        const res = await axios.post(`${HBC_API}/sendInquiryEmail`, { firstName, lastName, email, message });
+        const res = await axios.post(`${HBC_API}/sendInquiryEmail`, { firstName, lastName, email, message, ref });
         if (res.status === 201) {
+            setRef('');
             setMessage('');
             setEmail('');
             setLastName('');
