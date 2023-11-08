@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import ReactGA from "react-ga";
+import ReactGA from "react-ga4";
 import axios from 'axios';
 import {
     Box,

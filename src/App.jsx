@@ -1,5 +1,5 @@
 // import { useState } from 'react'
-import ReactGA from 'react-ga';
+import ReactGA from 'react-ga4';
 import { Routes, Route, useLocation } from "react-router-dom"
 import { useEffect, useState } from "react";
 import LandingPage from './pages/LandingPage/index';
