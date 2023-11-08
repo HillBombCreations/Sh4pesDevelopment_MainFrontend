@@ -1,16 +1,18 @@
-import {
-        Box,
-        TextField,
-        Button,
-        Dialog,
-        DialogTitle,
-        DialogContent,
-        DialogContentText,
-        DialogActions,
-        CircularProgress,
-    } from "@mui/material";
 import { useState } from 'react';
+import ReactGA from "react-ga";
 import axios from 'axios';
+import {
+    Box,
+    TextField,
+    Button,
+    Dialog,
+    DialogTitle,
+    DialogContent,
+    DialogContentText,
+    DialogActions,
+    CircularProgress,
+} from "@mui/material";
+
 function ContactForm() {
     const HBC_API = 'https://api.sh4pesdevelopment.com/api';
     const [firstName, setFirstName] = useState('');
@@ -19,6 +21,7 @@ function ContactForm() {
     const [message, setMessage] = useState('');
     const [open, setOpen] = useState(false);
     const [loading, setLoading] = useState(false);
+
     const sendEmail = async () => {
         setLoading(true);
         const res = await axios.post(`${HBC_API}/sendInquiryEmail`, { firstName, lastName, email, message });
@@ -34,6 +37,12 @@ function ContactForm() {
     const handleClose = () => {
         setOpen(false);
     }
+    const useAnalyticsEventTracker = async () => {
+        setLoading(true);
+        await sendEmail();
+        ReactGA.event({ category: 'Contact Us', action: 'emailInquiry', label: email });
+        setLoading(false);
+    };
 
     return (
         <div style={{ marginLeft: 'auto' }}>
@@ -83,7 +92,7 @@ function ContactForm() {
                         />
                         {!loading ?
                         <>
-                            <Button variant="contained" disabled={ !email || !message } onClick={sendEmail} >
+                            <Button variant="contained" disabled={ !email || !message } onClick={useAnalyticsEventTracker} >
                                 Submit Request
                             </Button>
                         </>
