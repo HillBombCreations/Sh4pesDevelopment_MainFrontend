@@ -38,7 +38,7 @@ function SiteTabs() {
     const useAnalyticsEventTracker = async () => {
         setLoading(true);
         await sendEmail();
-        ReactGA.event({ category: 'Contact Us', action: 'emailInquiry', label: email });
+        ReactGA.event({ category: 'Contact Us', action: 'emailInquiry' });
         setLoading(false);
     };
 
