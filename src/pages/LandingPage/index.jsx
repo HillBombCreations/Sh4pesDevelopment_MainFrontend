@@ -1,22 +1,41 @@
-import PropTypes from 'prop-types'
+import { Component } from 'react';
+import PropTypes from 'prop-types';
 import DesktopView from './Desktop'
 import MobileView from './Mobile'
-function LandingPage({ pathname, isMobile }) {
+
+export default class LandingPage extends Component {
+  static propTypes = {
+    pathname: PropTypes.any,
+  };
+  constructor(props) {
+    super(props)
+    this.state = {
+      email : '',
+      password: ''
+    };
+  }
+
+  handleWindowSizeChange() {
+    this.setState({ width: window.innerWidth });
+  }
+
+  componentDidMount() {
+    window.addEventListener('resize', this.handleWindowSizeChange);
+    return () => {
+      window.removeEventListener('resize', this.handleWindowSizeChange);
+    }
+  }
+  render() {
+    const { pathname } = this.props;
     return (
       <div id="page-container">
         {
-          isMobile ? 
+          this.state.width <= 768 ? 
           <MobileView pathname={pathname} />
           :
           <DesktopView pathname={pathname} />
         }
       </div>
     );
+  }
 }
-
-LandingPage.propTypes = {
-  pathname: PropTypes.string.isRequired,
-  isMobile: PropTypes.bool.isRequired,
-}
-
-export default LandingPage;

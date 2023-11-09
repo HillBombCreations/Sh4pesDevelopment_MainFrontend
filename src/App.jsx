@@ -1,23 +1,15 @@
 // import { useState } from 'react'
 import { Routes, Route, useLocation } from "react-router-dom"
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import LandingPage from './pages/LandingPage/index';
+import Login from './pages/Login/index';
+import Register from './pages/Register/index';
 import './App.css';
+import withAuth from "./universalComponents/wrappers/withAuth";
 
 function App() {
     const { pathname, hash, key } = useLocation();
-    const [width, setWidth] = useState(window.innerWidth);
 
-    const handleWindowSizeChange = () => {
-        setWidth(window.innerWidth);
-    }
-    useEffect(() => {
-        window.addEventListener('resize', handleWindowSizeChange);
-        return () => {
-            window.removeEventListener('resize', handleWindowSizeChange);
-        }
-    }, []);
-    const isMobile = width <= 768;
     useEffect(() => {
         // if not a hash link, scroll to top
         if (hash === '') {
@@ -37,7 +29,9 @@ function App() {
     return (
         <div className="App">
             <Routes>
-                <Route path="/" element={ <LandingPage pathname={ pathname } isMobile = { isMobile } /> } />
+                <Route path="/" Component={withAuth(LandingPage, pathname)} />
+                <Route path="/login" element={<Login />} />
+                <Route path="/register" element={<Register />} />
             </Routes>
         </div>
     )
