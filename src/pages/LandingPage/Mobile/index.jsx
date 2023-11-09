@@ -1,7 +1,7 @@
 import Tabs from '../../../universalComponents/Tabs/Mobile';
 import PropTypes from 'prop-types';
 
-const MobileLanding = ({ pathname }) => {
+function MobileLanding({ pathname }) {
     return (
       <div id="page-container">
           <div id="content-wrap" style={{ padding: '10px 5vw 10px 5vw' }}>

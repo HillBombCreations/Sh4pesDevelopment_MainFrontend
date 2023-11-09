@@ -1,7 +1,7 @@
 import Tabs from '../../../universalComponents/Tabs/Desktop';
 import PropTypes from 'prop-types';
 
-const DesktopLanding = ({ pathname }) => {
+function DesktopLanding({ pathname }) {
   return (
     <div id="page-container">
       <div id="content-wrap" style={{ padding: '10px 20vw 10px 20vw' }}>
