@@ -1,11 +1,8 @@
 // import { useState } from 'react'
-import ReactGA from 'react-ga4';
 import { Routes, Route, useLocation } from "react-router-dom"
 import { useEffect, useState } from "react";
 import LandingPage from './pages/LandingPage/index';
-import './App.css'
-
-ReactGA.initialize('G-PDC9TXR6Q2');
+import './App.css';
 
 function App() {
     const { pathname, hash, key } = useLocation();
