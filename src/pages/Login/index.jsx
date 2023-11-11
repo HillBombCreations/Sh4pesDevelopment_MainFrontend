@@ -1,6 +1,12 @@
 import { Component } from 'react';
+import PropTypes from 'prop-types';
+import DesktopView from './Desktop'
+import MobileView from './Mobile'
 
 export default class Login extends Component {
+  static propTypes = {
+    pathname: PropTypes.any,
+  };
   constructor(props) {
     super(props)
     this.state = {
@@ -9,59 +15,27 @@ export default class Login extends Component {
     };
   }
 
-  handleInputChange = (event) => {
-    const { value, name } = event.target;
-    this.setState({
-      [name]: value
-    });
+  handleWindowSizeChange() {
+    this.setState({ width: window.innerWidth });
   }
 
-  onSubmit = (event) => {
-    event.preventDefault();
-    fetch('https://api.sh4pesdevelopment.com/api/user/login', {
-      method: 'POST',
-      body: JSON.stringify(this.state),
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      credentials: 'same-origin'
-    })
-    .then(res => {
-      if (res.status === 200) {
-        window.location.replace('/');
-      } else {
-        const error = new Error(res.error);
-        throw error;
-      }
-    })
-    .catch(err => {
-      console.error(err);
-      alert('Error logging in please try again');
-    });
+  componentDidMount() {
+    window.addEventListener('resize', this.handleWindowSizeChange);
+    return () => {
+      window.removeEventListener('resize', this.handleWindowSizeChange);
+    }
   }
-
   render() {
+    const { pathname } = this.props;
     return (
-      <form onSubmit={this.onSubmit}>
-        <h1>Login Below!</h1>
-        <input
-          type="email"
-          name="email"
-          placeholder="Enter email"
-          value={this.state.email}
-          onChange={this.handleInputChange}
-          required
-        />
-        <input
-          type="password"
-          name="password"
-          placeholder="Enter password"
-          value={this.state.password}
-          onChange={this.handleInputChange}
-          required
-        />
-        <input type="submit" value="Submit"/>
-      </form>
+      <div id="page-container">
+        {
+          this.state.width <= 768 ? 
+          <MobileView pathname={pathname} />
+          :
+          <DesktopView pathname={pathname} />
+        }
+      </div>
     );
   }
 }
