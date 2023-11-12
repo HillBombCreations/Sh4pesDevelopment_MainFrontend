@@ -25,7 +25,7 @@ export default class Login extends Component {
     });
   }
   openInNewTab = () => {
-    window.open('https://www.sh4pesdevelopment.com/createUser', '_blank', 'noreferrer');
+    window.open('https://www.sh4pesdevelopment.com/register', '_blank', 'noreferrer');
   };
   onSubmit = (event) => {
     event.preventDefault();
@@ -57,7 +57,7 @@ export default class Login extends Component {
   render() {
     return (
       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '2vh 2vw 2vh 2vw' }}>
-        <img src="/assets/fullLogo.png" alt="Sh4pes" style={{ width: '150px', marginTop: '10vh' }} />
+        <img src="/assets/sh4pes_blue-bg_with-logo.png" alt="Sh4pes" style={{ width: '150px', marginTop: '10vh' }} />
         <Box component="form" sx={{  display: 'flex', flexDirection: 'row', marginTop: '2vh' }} noValidate autoComplete="off">
         <div style={{ flexDirection: 'columm', width: '100%', paddingRight: '2vw', paddingLeft: '2vw' }}>
           <Card raised sx={{ bgcolor: '#fffff', paddingTop: '4vh', paddingBottom: '4vh'}}>
@@ -89,7 +89,7 @@ export default class Login extends Component {
               <>
                   <LinearProgress
                       sx={{
-                          color: '#5688e0',
+                          color: '#3780FF',
                           width: '100%',
                       }}
                   />

@@ -3,7 +3,7 @@ import {
   Box,
   TextField,
   Button,
-  CircularProgress,
+  LinearProgress,
   Card,
   Divider,
 } from "@mui/material";
@@ -25,7 +25,7 @@ export default class Login extends Component {
     });
   }
   openInNewTab = () => {
-    window.open('https://www.sh4pesdevelopment.com/createUser', '_blank', 'noreferrer');
+    window.open('https://www.sh4pesdevelopment.com/register', '_blank', 'noreferrer');
   };
   onSubmit = (event) => {
     event.preventDefault();
@@ -56,10 +56,10 @@ export default class Login extends Component {
 
   render() {
     return (
-      <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'center' }}>
-        <div style={{ display: 'flex', flexDirection: 'column', marginTop: '40vh', paddingRight: '15vw'}}>
-          <img src="/assets/fullLogo.png" alt="Sh4pes" style={{ width: '320px' }} />
-          <p style={{ width: '480px', fontSize: '24px'}}>Empower your online presence and streamline finances effortlessly with HB creations</p>
+      <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', paddingRight: '15vw', paddingLeft: '15vw' }}>
+        <div style={{ display: 'flex', flexDirection: 'column', marginTop: '40vh', alignItems: 'center'}}>
+          <img src="/assets/sh4pes_blue-bg_with-logo.png" alt="Sh4pes" style={{ width: '480px' }} />
+          <p style={{ width: '480px', fontSize: '24px'}}>Empower your online presence and streamline finances effortlessly on Sh4pes Development</p>
         </div>
         <Box component="form" sx={{  display: 'flex', flexDirection: 'row', marginTop: '35vh' }} noValidate autoComplete="off">
           <Card raised sx={{ bgcolor: '#fffff', paddingTop: '4vh', paddingBottom: '4vh'}}>
@@ -89,10 +89,10 @@ export default class Login extends Component {
               </>
               :
               <>
-                  <CircularProgress
-                      size={24}
+                  <LinearProgress
                       sx={{
-                      color: '#5688e0',
+                          color: '#3780FF',
+                          width: '80%'
                       }}
                   />
               </>
@@ -110,27 +110,11 @@ export default class Login extends Component {
               </Button>
           </Card>
         </Box>
+        <div style={{ position: 'absolute', bottom: '0', left: '40vw' }}>
+            <span style={{ marginRight: '10px', fontSize: '14px', color: '#333333' }}>© 2023 Hill Bomb Creations</span>
+            <span id="contact"><a style={{ color: '#333333' }} href="mailto:hello@hbcreations.io">hello@hbcreations.io</a></span>
+        </div>
       </div>
-      //   <form onSubmit={this.onSubmit}>
-      //     <input
-      //       type="email"
-      //       name="email"
-      //       placeholder="Enter email"
-      //       value={this.state.email}
-      //       onChange={this.handleInputChange}
-      //       required
-      //     />
-      //     <input
-      //       type="password"
-      //       name="password"
-      //       placeholder="Enter password"
-      //       value={this.state.password}
-      //       onChange={this.handleInputChange}
-      //       required
-      //     />
-      //     <input type="submit" value="Submit"/>
-      //   </form>
-      // </div>
     );
   }
 }

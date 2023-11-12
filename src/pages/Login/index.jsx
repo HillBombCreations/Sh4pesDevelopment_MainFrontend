@@ -12,7 +12,7 @@ export default class Login extends Component {
     this.state = {
       email : '',
       password: '',
-      width: 0,
+      width: window.innerWidth,
     };
   }
 
