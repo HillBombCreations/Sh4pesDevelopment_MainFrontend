@@ -6,8 +6,16 @@ import {
   LinearProgress,
   Card,
   Divider,
+  FormControl,
+  InputLabel,
+  OutlinedInput,
+  InputAdornment,
+  IconButton,
 } from "@mui/material";
-
+import {
+  VisibilityOff,
+  Visibility,
+} from '@mui/icons-material';
 export default class Login extends Component {
   constructor(props) {
     super(props)
@@ -66,21 +74,34 @@ export default class Login extends Component {
                   label="Email"
                   sx={{ marginBottom: '2vh', width: '80%' }}
                   value={ this.state.email }
-                  onChange={this.handleInputChange}
+                  onChange={(e) =>  this.setState({ email: e.target.value })}
               />
-              <TextField
-                  required
-                  label="Password"
-                  sx={{ marginBottom: '2vh', width: '80%' }}
-                  value={ this.state.password }
-                  onChange={this.handleInputChange}
-              />
+              <FormControl sx={{ m: 1, width: '80%' }} variant="outlined">
+                <InputLabel htmlFor="outlined-adornment-password">Password *</InputLabel>
+                <OutlinedInput
+                  id="outlined-adornment-password"
+                  type={this.state.showPassword ? 'text' : 'password'}
+                  endAdornment={
+                    <InputAdornment position="end">
+                      <IconButton
+                        aria-label="toggle password visibility"
+                        onClick={() => this.setState({ showPassword: !this.state.showPassword })}
+                        edge="end"
+                      >
+                        {this.state.showPassword ? <VisibilityOff /> : <Visibility />}
+                      </IconButton>
+                    </InputAdornment>
+                  }
+                  onChange={(e) =>  this.setState({ password: e.target.value })}
+                  label="Password *"
+                />
+              </FormControl>
               {!this.state.loading ?
               <>
                   <Button
                     variant="contained"
                     onClick={this.onSubmit}
-                    sx={{ marginBottom: '2vh', width: '80%' }}
+                    sx={{ marginBottom: '2vh', width: '80%', marginTop: '20px', }}
                   >
                       Login
                   </Button>
@@ -90,7 +111,8 @@ export default class Login extends Component {
                   <LinearProgress
                       sx={{
                           color: '#3780FF',
-                          width: '100%',
+                          marginX: '10vw',
+                          marginTop: '20px',
                       }}
                   />
               </>

@@ -6,8 +6,16 @@ import {
   LinearProgress,
   Card,
   Divider,
+  InputAdornment,
+  IconButton,
+  FormControl,
+  InputLabel,
+  OutlinedInput,
 } from "@mui/material";
-
+import {
+  VisibilityOff,
+  Visibility,
+} from '@mui/icons-material';
 export default class Login extends Component {
   constructor(props) {
     super(props)
@@ -15,14 +23,8 @@ export default class Login extends Component {
       email : '',
       password: '',
       loading: false,
+      showPassword: false,
     };
-  }
-
-  handleInputChange = (event) => {
-    const { value, name } = event.target;
-    this.setState({
-      [name]: value
-    });
   }
   openInNewTab = () => {
     window.open('https://www.sh4pesdevelopment.com/register', '_blank', 'noreferrer');
@@ -32,7 +34,7 @@ export default class Login extends Component {
     this.setState({ loading: true });
     fetch('https://api.sh4pesdevelopment.com/api/user/login', {
       method: 'POST',
-      body: JSON.stringify(this.state),
+      body: JSON.stringify({ email: this.state.email, password: this.state.password}),
       headers: {
         'Content-Type': 'application/json'
       },
@@ -68,34 +70,48 @@ export default class Login extends Component {
                   label="Email"
                   sx={{ marginBottom: '2vh', width: '80%' }}
                   value={ this.state.email }
-                  onChange={this.handleInputChange}
+                  onChange={(e) =>  this.setState({ email: e.target.value })}
               />
-              <TextField
-                  required
-                  label="Password"
-                  sx={{ marginBottom: '2vh', width: '80%' }}
-                  value={ this.state.password }
-                  onChange={this.handleInputChange}
-              />
-              {!this.state.loading ?
-              <>
-                  <Button
-                    variant="contained"
-                    onClick={this.onSubmit}
-                    sx={{ marginBottom: '2vh', width: '80%' }}
-                  >
-                      Login
-                  </Button>
-              </>
-              :
-              <>
-                  <LinearProgress
-                      sx={{
-                          color: '#3780FF',
-                          width: '80%'
-                      }}
-                  />
-              </>
+              <FormControl sx={{ m: 1, width: '80%' }} variant="outlined">
+                <InputLabel htmlFor="outlined-adornment-password">Password *</InputLabel>
+                <OutlinedInput
+                  id="outlined-adornment-password"
+                  type={this.state.showPassword ? 'text' : 'password'}
+                  endAdornment={
+                    <InputAdornment position="end">
+                      <IconButton
+                        aria-label="toggle password visibility"
+                        onClick={() => this.setState({ showPassword: !this.state.showPassword })}
+                        edge="end"
+                      >
+                        {this.state.showPassword ? <VisibilityOff /> : <Visibility />}
+                      </IconButton>
+                    </InputAdornment>
+                  }
+                  onChange={(e) =>  this.setState({ password: e.target.value })}
+                  label="Password *"
+                />
+              </FormControl>
+              {
+              !this.state.loading ?
+                <>
+                    <Button
+                      variant="contained"
+                      onClick={this.onSubmit}
+                      sx={{ marginBottom: '2vh', width: '80%' }}
+                    >
+                        Login
+                    </Button>
+                </>
+                :
+                <>
+                    <LinearProgress
+                        sx={{
+                            color: '#3780FF',
+                            marginX: '2.5vw',
+                        }}
+                    />
+                </>
               }
               <div style={{ display: 'flex', flexDirection: 'row', marginBottom: '2vh', justifyContent: 'center' }}>
                 <a href="http://localhost:5173/forgotPassword">Forgot Password?</a>
