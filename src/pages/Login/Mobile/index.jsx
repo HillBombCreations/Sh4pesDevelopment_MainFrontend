@@ -1,4 +1,5 @@
 import { Component } from 'react';
+import axios from 'axios';
 import {
   Box,
   TextField,
@@ -38,15 +39,16 @@ export default class Login extends Component {
   onSubmit = (event) => {
     event.preventDefault();
     this.setState({ loading: true });
-    fetch('https://api.sh4pesdevelopment.com/api/user/login', {
-      method: 'POST',
-      body: JSON.stringify(this.state),
-      headers: {
+    axios.post(
+      'https://api.sh4pesdevelopment.com/api/user/login',
+      JSON.stringify({ email: this.state.email, password: this.state.password}),
+      {
+        headers: {
         'Content-Type': 'application/json'
-      },
-      credentials: 'same-origin'
-    })
-    .then(res => {
+        },
+        withCredentials: true,
+      }
+    ).then(res => {
       if (res.status === 200) {
         window.location.replace('/');
       } else {

@@ -16,6 +16,8 @@ import {
   VisibilityOff,
   Visibility,
 } from '@mui/icons-material';
+import axios from 'axios';
+
 export default class Login extends Component {
   constructor(props) {
     super(props)
@@ -32,15 +34,16 @@ export default class Login extends Component {
   onSubmit = (event) => {
     event.preventDefault();
     this.setState({ loading: true });
-    fetch('https://api.sh4pesdevelopment.com/api/user/login', {
-      method: 'POST',
-      body: JSON.stringify({ email: this.state.email, password: this.state.password}),
-      headers: {
+    axios.post(
+      'https://api.sh4pesdevelopment.com/api/user/login',
+      JSON.stringify({ email: this.state.email, password: this.state.password}),
+      {
+        headers: {
         'Content-Type': 'application/json'
-      },
-      credentials: 'same-origin'
-    })
-    .then(res => {
+        },
+        withCredentials: true,
+      }
+    ).then(res => {
       if (res.status === 200) {
         window.location.replace('/');
       } else {
@@ -59,7 +62,7 @@ export default class Login extends Component {
   render() {
     return (
       <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', paddingRight: '15vw', paddingLeft: '15vw' }}>
-        <div style={{ display: 'flex', flexDirection: 'column', marginTop: '40vh', alignItems: 'center'}}>
+        <div style={{ display: 'flex', flexDirection: 'column', marginTop: '40vh', alignItems: 'center', paddingRight: '5vw'}}>
           <img src="/assets/sh4pes_blue-bg_with-logo.png" alt="Sh4pes" style={{ width: '480px' }} />
           <p style={{ width: '480px', fontSize: '24px'}}>Empower your online presence and streamline finances effortlessly on Sh4pes Development</p>
         </div>

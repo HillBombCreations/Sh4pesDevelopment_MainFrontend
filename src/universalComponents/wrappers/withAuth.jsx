@@ -1,6 +1,6 @@
 import { Component } from 'react';
 import { CircularProgress } from '@mui/material';
-
+import axios from 'axios';
 export default function withAuth(ComponentToProtect, pathname) {
   return class WithAuth extends Component {
     constructor() {
@@ -11,8 +11,12 @@ export default function withAuth(ComponentToProtect, pathname) {
       };
     }
     componentDidMount() {
-      fetch('https://api.sh4pesdevelopment.com/api/user/checkToken', { credentials: 'same-origin' })
-        .then(res => {
+      axios.get(
+        'https://api.sh4pesdevelopment.com/api/user/checkToken',
+        {
+          withCredentials: true,
+        }
+      ).then(res => {
           if (res.status === 200) {
             this.setState({ loading: false });
           } else {
