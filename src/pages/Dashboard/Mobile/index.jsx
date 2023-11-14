@@ -6,7 +6,7 @@ function MobileLanding({ pathname }) {
       <div id="page-container">
           <div id="content-wrap" style={{ padding: '10px 5vw 10px 5vw' }}>
             <header style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', marginBottom: '10px', backgroundColor: '#3780FF' }}>
-              <img src="/assets/Sh4pes.png" alt="Sh4pes Banner" style={{ width: '150px', marginLeft: 'auto', marginRight: 'auto' }} />
+              <img src="/assets/sh4pes.png" alt="Sh4pes Banner" style={{ width: '150px', marginLeft: 'auto', marginRight: 'auto' }} />
               <Tabs pathname={pathname} />
             </header>
             <div>Welcome</div>
