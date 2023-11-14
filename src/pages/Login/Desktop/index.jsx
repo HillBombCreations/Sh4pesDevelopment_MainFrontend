@@ -117,7 +117,7 @@ export default class Login extends Component {
                 </>
               }
               <div style={{ display: 'flex', flexDirection: 'row', marginBottom: '2vh', justifyContent: 'center' }}>
-                <a href="http://localhost:5173/forgotPassword">Forgot Password?</a>
+                <a href="/forgotpassword">Forgot Password?</a>
               </div>
               <Divider style={{ background: "#e8f0ff", marginRight: '1vw', marginLeft: '1vw', marginBottom: '2vh'}} />
               <Button
