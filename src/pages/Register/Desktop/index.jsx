@@ -88,112 +88,112 @@ export default class Register extends Component {
               <img src="/assets/sh4pes_blue-bg_with-logo.png" alt="Sh4pes" style={{ width: '480px' }} />
               <h2 style={{ width: '480px', fontSize: '24px'}}>Create Account</h2>
             </div>
-          <Divider style={{ background: "#e8f0ff", marginBottom: '2vh'}} />
-          <Box component="form" sx={{  display: 'flex', flexDirection: 'column', paddingX: '4vw', paddingY:'4vh' }} noValidate autoComplete="off">
-            <TextField
+            <Divider style={{ background: "#e8f0ff", marginBottom: '2vh'}} />
+            <Box component="form" sx={{  display: 'flex', flexDirection: 'column', paddingX: '4vw', paddingY:'4vh' }} noValidate autoComplete="off">
+              <TextField
+                    required
+                    label="Name"
+                    error={!this.state.name}
+                    sx={{ marginBottom: '2vh', width: '100%' }}
+                    value={ this.state.name }
+                    onChange={(e) =>  this.setState({ name: e.target.value })}
+              />
+              <TextField
                   required
-                  label="Name"
-                  error={!this.state.name}
+                  label="Email"
+                  error={!this.state.email}
                   sx={{ marginBottom: '2vh', width: '100%' }}
-                  value={ this.state.name }
-                  onChange={(e) =>  this.setState({ name: e.target.value })}
-            />
-            <TextField
-                required
-                label="Email"
-                error={!this.state.email}
-                sx={{ marginBottom: '2vh', width: '100%' }}
-                value={ this.state.email }
-                onChange={(e) =>  this.setState({ email: e.target.value })}
-            />
-            <FormControl sx={{ width: '100%', marginBottom: '2vh' }} variant="outlined">
-                <InputLabel htmlFor="outlined-adornment-password" sx={{ color: this.state.passwordColor }}>Password *</InputLabel>
-                <OutlinedInput
-                  id="outlined-adornment-password"
-                  sx={{ width: '100%'}}
-                  error={!this.state.validPassword}
-                  endAdornment={
-                    <InputAdornment position="end">
-                      <Tooltip title={
-                        <div>
-                          <span style={{ fontSize: '16px'}}>Password Must Contain: </span>
-                          <br />
-                          <span style={{ fontSize: '16px'}}>• 8 characters long</span>
-                          <br />
-                          <span style={{ fontSize: '16px'}}>• a lowercase letter</span>
-                          <br />
-                          <span style={{ fontSize: '16px'}}>• an uppercase letter</span>
-                          <br />
-                          <span style={{ fontSize: '16px'}}>• a special character</span>
-                        </div>
-                      }>
-                        {
-                          !this.state.validPassword ?
-                            <Info />
-                          :
-                            <CheckCircle style={{color: '#38B137'}} />
+                  value={ this.state.email }
+                  onChange={(e) =>  this.setState({ email: e.target.value })}
+              />
+              <FormControl sx={{ width: '100%', marginBottom: '2vh' }} variant="outlined">
+                  <InputLabel htmlFor="outlined-adornment-password" sx={{ color: this.state.passwordColor }}>Password *</InputLabel>
+                  <OutlinedInput
+                    id="outlined-adornment-password"
+                    sx={{ width: '100%'}}
+                    error={!this.state.validPassword}
+                    endAdornment={
+                      <InputAdornment position="end">
+                        <Tooltip title={
+                          <div>
+                            <span style={{ fontSize: '16px'}}>Password Must Contain: </span>
+                            <br />
+                            <span style={{ fontSize: '16px'}}>• 8 characters long</span>
+                            <br />
+                            <span style={{ fontSize: '16px'}}>• a lowercase letter</span>
+                            <br />
+                            <span style={{ fontSize: '16px'}}>• an uppercase letter</span>
+                            <br />
+                            <span style={{ fontSize: '16px'}}>• a special character</span>
+                          </div>
+                        }>
+                          {
+                            !this.state.validPassword ?
+                              <Info />
+                            :
+                              <CheckCircle style={{color: '#38B137'}} />
 
-                        }
-                      </Tooltip>
-                    </InputAdornment>
-                  }
-                  onChange={(e) =>  this.validatePassword(e)}
-                  label="Password *"
-                />
-            </FormControl>
-            <FormControl sx={{ width: '100%', marginBottom: '2vh' }} variant="outlined">
-                <InputLabel htmlFor="outlined-adornment-password" sx={{ color: this.state.passwordColor }}>Verify Password *</InputLabel>
-                <OutlinedInput
-                  id="outlined-adornment-password"
-                  sx={{ width: '100%'}}
-                  error={ (this.state.copyPassword !== this.state.password) && this.state.validPassword || !this.state.copyPassword }
-                  endAdornment={
-                    <InputAdornment position="end">
-                      <Tooltip title={
-                        <div>
-                          <span style={{ fontSize: '16px'}}>Passwords must match</span>
-                        </div>
-                      }>
-                        {
-                          (this.state.copyPassword !== this.state.password) || !this.state.validPassword  ?
-                            <Info />
-                          :
-                            <CheckCircle style={{color: '#38B137'}} />
+                          }
+                        </Tooltip>
+                      </InputAdornment>
+                    }
+                    onChange={(e) =>  this.validatePassword(e)}
+                    label="Password *"
+                  />
+              </FormControl>
+              <FormControl sx={{ width: '100%', marginBottom: '2vh' }} variant="outlined">
+                  <InputLabel htmlFor="outlined-adornment-password" sx={{ color: this.state.passwordColor }}>Verify Password *</InputLabel>
+                  <OutlinedInput
+                    id="outlined-adornment-password"
+                    sx={{ width: '100%'}}
+                    error={ (this.state.copyPassword !== this.state.password) && this.state.validPassword || !this.state.copyPassword }
+                    endAdornment={
+                      <InputAdornment position="end">
+                        <Tooltip title={
+                          <div>
+                            <span style={{ fontSize: '16px'}}>Passwords must match</span>
+                          </div>
+                        }>
+                          {
+                            (this.state.copyPassword !== this.state.password) || !this.state.validPassword  ?
+                              <Info />
+                            :
+                              <CheckCircle style={{color: '#38B137'}} />
 
-                        }
-                      </Tooltip>
-                    </InputAdornment>
-                  }
-                  onChange={(e) =>  this.setState({ copyPassword: e.target.value })}
-                  label="Verify Password *"
-                />
-            </FormControl>
-              {
-                !this.state.loading ?
-                <>
-                    <Button
-                      variant="contained"
-                      onClick={this.onSubmit}
-                      disabled={!(this.state.validPassword && (this.state.copyPassword === this.state.password)) || !this.state.name || !this.state.email}
-                      sx={{ width: '100%', bgcolor: '#3780FF' }}
-                    >
-                        Create Account
-                    </Button>
-                </>
-                :
-                <>
-                    <LinearProgress
-                        sx={{
-                          color: '#3780FF',
-                          marginX: '2.5vw',
-                        }}
-                        />
-                </>
-              }
-              <div style={{ display: 'flex', flexDirection: 'row', marginBottom: '2vh', marginTop: '2vh', justifyContent: 'center' }}>
-                <a href="/login">Already have an account?</a>
-              </div>
-          </Box>
+                          }
+                        </Tooltip>
+                      </InputAdornment>
+                    }
+                    onChange={(e) =>  this.setState({ copyPassword: e.target.value })}
+                    label="Verify Password *"
+                  />
+              </FormControl>
+                {
+                  !this.state.loading ?
+                  <>
+                      <Button
+                        variant="contained"
+                        onClick={this.onSubmit}
+                        disabled={!(this.state.validPassword && (this.state.copyPassword === this.state.password)) || !this.state.name || !this.state.email}
+                        sx={{ width: '100%', bgcolor: '#3780FF' }}
+                      >
+                          Create Account
+                      </Button>
+                  </>
+                  :
+                  <>
+                      <LinearProgress
+                          sx={{
+                            color: '#3780FF',
+                            marginX: '2.5vw',
+                          }}
+                          />
+                  </>
+                }
+                <div style={{ display: 'flex', flexDirection: 'row', marginBottom: '2vh', marginTop: '2vh', justifyContent: 'center' }}>
+                  <a href="/login">Already have an account?</a>
+                </div>
+            </Box>
         </Card>
         </div>
         <div style={{ position: 'absolute', bottom: '0', left: '40vw' }}>

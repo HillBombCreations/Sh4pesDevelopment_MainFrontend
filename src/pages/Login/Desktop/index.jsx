@@ -46,7 +46,7 @@ export default class Login extends Component {
       }
     ).then(res => {
       if (res.status === 200) {
-        // window.location.replace('/');
+        window.location.replace('/');
       } else {
         this.setState({ loading: false });
         const error = new Error(res.error);
