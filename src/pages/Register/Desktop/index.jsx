@@ -52,17 +52,18 @@ export default class Register extends Component {
     console.log(event);
     event.preventDefault();
     this.setState({ loading: true });
+    // 'https://api.sh4pesdevelopment.com/api/user'
     axios.post(
-      'http://localhost:5000/api/user/login',
-      JSON.stringify({ email: this.state.email, password: this.state.password}),
+      'https://api.sh4pesdevelopment.com/api/user',
+      JSON.stringify({ name: this.state.name, email: this.state.email, password: this.state.password}),
       {
         headers: {
         'Content-Type': 'application/json'
-        },
-        withCredentials: true,
+        }
       }
     ).then(res => {
-      if (res.status === 200) {
+      if (res.status === 201) {
+        console.log('SUCCESSFULLY CReATED USER');
         // window.location.replace('/');
       } else {
         this.setState({ loading: false });
@@ -89,6 +90,7 @@ export default class Register extends Component {
             <TextField
                     required
                     label="Name"
+                    error={!this.state.name}
                     sx={{ marginBottom: '2vh', width: '80%' }}
                     value={ this.state.name }
                     onChange={(e) =>  this.setState({ name: e.target.value })}
@@ -96,7 +98,8 @@ export default class Register extends Component {
             <TextField
                 required
                 label="Email"
-                sx={{ marginBottom: '2vh', width: '80%' }}
+                error={!this.state.email}
+                sx={{ marginBottom: '1vh', width: '80%' }}
                 value={ this.state.email }
                 onChange={(e) =>  this.setState({ email: e.target.value })}
             />
@@ -136,11 +139,11 @@ export default class Register extends Component {
                 />
             </FormControl>
             <FormControl sx={{ m: 1, width: '80%', marginBottom: '2vh' }} variant="outlined">
-                <InputLabel htmlFor="outlined-adornment-password">Verify Password *</InputLabel>
+                <InputLabel htmlFor="outlined-adornment-password" sx={{ color: this.state.passwordColor }}>Verify Password *</InputLabel>
                 <OutlinedInput
                   id="outlined-adornment-password"
                   sx={{ width: '100%'}}
-                  error={ (this.state.copyPassword !== this.state.password) && this.state.validPassword }
+                  error={ (this.state.copyPassword !== this.state.password) && this.state.validPassword || !this.state.copyPassword }
                   endAdornment={
                     <InputAdornment position="end">
                       <Tooltip title={
@@ -167,7 +170,7 @@ export default class Register extends Component {
                 <>
                     <Button
                       variant="contained"
-                      onClick={this.openInNewTab}
+                      onClick={this.onSubmit}
                       disabled={!(this.state.validPassword && (this.state.copyPassword === this.state.password)) || !this.state.name || !this.state.email}
                       sx={{ width: '80%', bgcolor: '#3780FF' }}
                     >
@@ -184,6 +187,9 @@ export default class Register extends Component {
                         />
                 </>
               }
+              <div style={{ display: 'flex', flexDirection: 'row', marginBottom: '2vh', marginTop: '2vh', justifyContent: 'center' }}>
+                <a href="/login">Already have an account?</a>
+              </div>
           </Card>
         </Box>
         <div style={{ position: 'absolute', bottom: '0', left: '40vw' }}>

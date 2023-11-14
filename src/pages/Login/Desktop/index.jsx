@@ -29,15 +29,14 @@ export default class Login extends Component {
     };
   }
   openInNewTab = () => {
-    window.open('http://localhost:5173/register', '_blank', 'noreferrer');
+    window.open('https://api.sh4pesdevelopment.com/register', '_blank', 'noreferrer');
   };
-  // 'https://api.sh4pesdevelopment.com/api/user/login',
   onSubmit = (event) => {
     console.log(event);
     event.preventDefault();
     this.setState({ loading: true });
     axios.post(
-      'http://localhost:5000/api/user/login',
+      'https://api.sh4pesdevelopment.com/api/user/login',
       JSON.stringify({ email: this.state.email, password: this.state.password}),
       {
         headers: {
@@ -77,7 +76,7 @@ export default class Login extends Component {
                     value={ this.state.email }
                     onChange={(e) =>  this.setState({ email: e.target.value })}
                 />
-              <FormControl sx={{ m: 1, width: '80%' }} variant="outlined">
+              <FormControl sx={{ m: 1, width: '80%', marginBottom: '2vh' }} variant="outlined">
                   <InputLabel htmlFor="outlined-adornment-password">Password *</InputLabel>
                   <OutlinedInput
                     id="outlined-adornment-password"
@@ -115,23 +114,23 @@ export default class Login extends Component {
                           sx={{
                             color: '#3780FF',
                             marginX: '2.5vw',
-                          }}
-                          />
-                  </>
-                }
-                <div style={{ display: 'flex', flexDirection: 'row', marginBottom: '2vh', justifyContent: 'center' }}>
-                  <a href="http://localhost:5173/forgotPassword">Forgot Password?</a>
-                </div>
-                <Divider style={{ background: "#e8f0ff", marginRight: '1vw', marginLeft: '1vw', marginBottom: '2vh'}} />
-                <Button
-                  variant="contained"
-                  onClick={this.openInNewTab}
-                  sx={{ width: '50%', bgcolor: '#38B137' }}
-                >
-                    Create Account
-                </Button>
-            </Card>
-          </Box>
+                        }}
+                    />
+                </>
+              }
+              <div style={{ display: 'flex', flexDirection: 'row', marginBottom: '2vh', justifyContent: 'center' }}>
+                <a href="/forgotpassword">Forgot Password?</a>
+              </div>
+              <Divider style={{ background: "#e8f0ff", marginRight: '1vw', marginLeft: '1vw', marginBottom: '2vh'}} />
+              <Button
+                variant="contained"
+                onClick={this.openInNewTab}
+                sx={{ width: '50%', bgcolor: '#38B137' }}
+              >
+                  Create Account
+              </Button>
+          </Card>
+        </Box>
         <div style={{ position: 'absolute', bottom: '0', left: '40vw' }}>
             <span style={{ marginRight: '10px', fontSize: '14px', color: '#333333' }}>© 2023 Hill Bomb Creations</span>
             <span id="contact"><a style={{ color: '#333333' }} href="mailto:hello@hbcreations.io">hello@hbcreations.io</a></span>

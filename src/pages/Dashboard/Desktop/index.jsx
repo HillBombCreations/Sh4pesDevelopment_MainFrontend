@@ -6,7 +6,7 @@ function DesktopLanding({ pathname }) {
     <div id="page-container">
       <div id="content-wrap" style={{ padding: '10px 20vw 10px 20vw' }}>
         <header style={{ display: 'flex', alignItems: 'center', marginBottom: 'auto', minHeight: '60px', backgroundColor: '#3780FF' }}>
-          <img src="/assets/Sh4pes.png" alt="Sh4pes Banner" style={{ position: 'absolute', width: '150px', marginRight: 'auto', top: '10px', left: '20%' }} />
+          <img src="/assets/sh4pes.png" alt="Sh4pes Banner" style={{ position: 'absolute', width: '150px', marginRight: 'auto', top: '10px', left: '20%' }} />
           <Tabs pathname={pathname} />
         </header>
         <div>Welcome</div>

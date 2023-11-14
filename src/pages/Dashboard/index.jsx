@@ -9,10 +9,7 @@ export default class LandingPage extends Component {
   };
   constructor(props) {
     super(props)
-    this.state = {
-      email : '',
-      password: ''
-    };
+    this.state = {};
   }
 
   handleWindowSizeChange() {
