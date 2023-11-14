@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import LandingPage from './pages/LandingPage/index';
 import Login from './pages/Login/index';
 import Register from './pages/Register/index';
+// import PageNotFound from './pages/PageNotFound/index';
 import './App.css';
 import withAuth from "./universalComponents/wrappers/withAuth";
 
@@ -32,6 +33,7 @@ function App() {
                 <Route path="/" Component={withAuth(LandingPage, pathname)} />
                 <Route path="/login" element={<Login />} />
                 <Route path="/register" element={<Register />} />
+                {/* <Route path='*' element={<PageNotFound />} /> */}
             </Routes>
         </div>
     )
