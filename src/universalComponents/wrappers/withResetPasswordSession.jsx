@@ -2,8 +2,8 @@ import { Component } from 'react';
 import { CircularProgress } from '@mui/material';
 import axios from 'axios';
 
-export default function withAuth(ComponentToProtect, pathname) {
-  return class WithAuth extends Component {
+export default function withPasswordResetSession(ComponentToProtect, queryParameters) {
+  return class WithPasswordResetSession extends Component {
     constructor() {
       super();
       this.state = {
@@ -12,8 +12,10 @@ export default function withAuth(ComponentToProtect, pathname) {
       };
     }
     componentDidMount() {
-      axios.get(
-        'https://api.sh4pesdevelopment.com/api/user/checkToken',
+      const id = queryParameters.get('id');
+      const email = queryParameters.get('email');
+      axios.post(
+        `https://api.sh4pesdevelopment.com/api/user/checkResetPasswordSession?id=${id}&email=${email}`,
         {
           withCredentials: true,
         }
@@ -36,10 +38,10 @@ export default function withAuth(ComponentToProtect, pathname) {
         return null;
       }
       if (redirectBool) {
-        window.location.replace('/login');
+        window.location.replace('/404');
         return <CircularProgress />;
       }
-      return <ComponentToProtect pathname={pathname} />;
+      return <ComponentToProtect />;
     }
   }
 }
