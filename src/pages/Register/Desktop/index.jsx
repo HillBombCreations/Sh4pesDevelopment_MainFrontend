@@ -10,6 +10,7 @@ import {
   InputLabel,
   OutlinedInput,
   Tooltip,
+  Divider,
 } from "@mui/material";
 import {
   Info,
@@ -80,30 +81,32 @@ export default class Register extends Component {
 
   render() {
     return (
-      <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', paddingRight: '15vw', paddingLeft: '15vw' }}>
-        <div style={{ display: 'flex', flexDirection: 'column', marginTop: '30vh', alignItems: 'center', paddingRight: '5vw'}}>
-          <img src="/assets/sh4pes_blue-bg_with-logo.png" alt="Sh4pes" style={{ width: '480px' }} />
-          <p style={{ width: '480px', fontSize: '24px'}}>Empower your online presence and streamline finances effortlessly on Sh4pes Development</p>
-        </div>
-          <Box component="form" sx={{  display: 'flex', flexDirection: 'row', marginTop: '25vh' }} noValidate autoComplete="off">
-            <Card raised sx={{ bgcolor: '#fffff', paddingTop: '4vh', paddingBottom: '4vh'}}>
+      <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'center', paddingRight: '15vw', paddingLeft: '15vw' }}>
+        <div style={{ display: 'flex', flexDirection: 'column', marginTop: '8vh', alignItems: 'center'}}>
+          <Card raised sx={{ bgcolor: '#fffff'}}>
+            <div style={{ paddingLeft: '2vw', paddingRight: '2vw', paddingTop: '2vh' }}>
+              <img src="/assets/sh4pes_blue-bg_with-logo.png" alt="Sh4pes" style={{ width: '480px' }} />
+              <h2 style={{ width: '480px', fontSize: '24px'}}>Create Account</h2>
+            </div>
+          <Divider style={{ background: "#e8f0ff", marginBottom: '2vh'}} />
+          <Box component="form" sx={{  display: 'flex', flexDirection: 'column', paddingX: '4vw', paddingY:'4vh' }} noValidate autoComplete="off">
             <TextField
-                    required
-                    label="Name"
-                    error={!this.state.name}
-                    sx={{ marginBottom: '2vh', width: '80%' }}
-                    value={ this.state.name }
-                    onChange={(e) =>  this.setState({ name: e.target.value })}
+                  required
+                  label="Name"
+                  error={!this.state.name}
+                  sx={{ marginBottom: '2vh', width: '100%' }}
+                  value={ this.state.name }
+                  onChange={(e) =>  this.setState({ name: e.target.value })}
             />
             <TextField
                 required
                 label="Email"
                 error={!this.state.email}
-                sx={{ marginBottom: '1vh', width: '80%' }}
+                sx={{ marginBottom: '2vh', width: '100%' }}
                 value={ this.state.email }
                 onChange={(e) =>  this.setState({ email: e.target.value })}
             />
-            <FormControl sx={{ m: 1, width: '80%' }} variant="outlined">
+            <FormControl sx={{ width: '100%', marginBottom: '2vh' }} variant="outlined">
                 <InputLabel htmlFor="outlined-adornment-password" sx={{ color: this.state.passwordColor }}>Password *</InputLabel>
                 <OutlinedInput
                   id="outlined-adornment-password"
@@ -138,7 +141,7 @@ export default class Register extends Component {
                   label="Password *"
                 />
             </FormControl>
-            <FormControl sx={{ m: 1, width: '80%', marginBottom: '2vh' }} variant="outlined">
+            <FormControl sx={{ width: '100%', marginBottom: '2vh' }} variant="outlined">
                 <InputLabel htmlFor="outlined-adornment-password" sx={{ color: this.state.passwordColor }}>Verify Password *</InputLabel>
                 <OutlinedInput
                   id="outlined-adornment-password"
@@ -172,7 +175,7 @@ export default class Register extends Component {
                       variant="contained"
                       onClick={this.onSubmit}
                       disabled={!(this.state.validPassword && (this.state.copyPassword === this.state.password)) || !this.state.name || !this.state.email}
-                      sx={{ width: '80%', bgcolor: '#3780FF' }}
+                      sx={{ width: '100%', bgcolor: '#3780FF' }}
                     >
                         Create Account
                     </Button>
@@ -190,8 +193,9 @@ export default class Register extends Component {
               <div style={{ display: 'flex', flexDirection: 'row', marginBottom: '2vh', marginTop: '2vh', justifyContent: 'center' }}>
                 <a href="/login">Already have an account?</a>
               </div>
-          </Card>
-        </Box>
+          </Box>
+        </Card>
+        </div>
         <div style={{ position: 'absolute', bottom: '0', left: '40vw' }}>
             <span style={{ marginRight: '10px', fontSize: '14px', color: '#333333' }}>© 2023 Hill Bomb Creations</span>
             <span id="contact"><a style={{ color: '#333333' }} href="mailto:hello@hbcreations.io">hello@hbcreations.io</a></span>

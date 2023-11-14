@@ -1,56 +1,66 @@
 import { Component } from 'react';
-import axios from 'axios';
 import {
   Box,
   TextField,
   Button,
   LinearProgress,
-  Card,
-  Divider,
+  InputAdornment,
   FormControl,
   InputLabel,
   OutlinedInput,
-  InputAdornment,
-  IconButton,
+  Tooltip,
 } from "@mui/material";
 import {
-  VisibilityOff,
-  Visibility,
+  Info,
+  CheckCircle
 } from '@mui/icons-material';
-export default class Login extends Component {
+import axios from 'axios';
+
+export default class Register extends Component {
   constructor(props) {
     super(props)
     this.state = {
+      name: '',
       email : '',
       password: '',
+      copyPassword: '',
       loading: false,
+      passwordRegex: /^(?=.*[a-z])(?=.*[A-Z])[a-zA-Z\d@$!%*#?&]{8,}$/,
+      validPassword: false,
+      passwordColor: '#FA3913'
     };
-  }
-
-  handleInputChange = (event) => {
-    const { value, name } = event.target;
-    this.setState({
-      [name]: value
-    });
   }
   openInNewTab = () => {
     window.open('https://www.sh4pesdevelopment.com/register', '_blank', 'noreferrer');
   };
+  validatePassword = (event) => {
+    const pass = event.target.value;
+    this.setState({ password: pass });
+    if (this.state.passwordRegex.test(pass)) {
+      this.setState({ validPassword: true});
+      this.setState({ passwordColor: ''});
+    } 
+    else if (this.state.passwordRegex) {
+      this.setState({ validPassword: false});
+      this.setState({ passwordColor: '#FA3913'});
+    }
+  };
   onSubmit = (event) => {
+    console.log(event);
     event.preventDefault();
     this.setState({ loading: true });
     axios.post(
-      'https://api.sh4pesdevelopment.com/api/user/login',
-      JSON.stringify({ email: this.state.email, password: this.state.password}),
+      'https://api.sh4pesdevelopment.com/api/user',
+      JSON.stringify({ name: this.state.name, email: this.state.email, password: this.state.password}),
       {
         headers: {
         'Content-Type': 'application/json'
-        },
-        withCredentials: true,
+        }
       }
     ).then(res => {
-      if (res.status === 200) {
-        window.location.replace('/');
+      if (res.status === 201) {
+        console.log('SUCCESSFULLY CReATED USER');
+        // window.location.replace('/');
       } else {
         this.setState({ loading: false });
         const error = new Error(res.error);
@@ -66,77 +76,122 @@ export default class Login extends Component {
 
   render() {
     return (
-      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '2vh 2vw 2vh 2vw' }}>
-        <img src="/assets/sh4pes_blue-bg_with-logo.png" alt="Sh4pes" style={{ width: '150px', marginTop: '10vh' }} />
-        <Box component="form" sx={{  display: 'flex', flexDirection: 'row', marginTop: '2vh' }} noValidate autoComplete="off">
-        <div style={{ flexDirection: 'columm', width: '100%', paddingRight: '2vw', paddingLeft: '2vw' }}>
-          <Card raised sx={{ bgcolor: '#fffff', paddingTop: '4vh', paddingBottom: '4vh'}}>
+      <div style={{ display: 'flex', flexDirection: 'row', marginTop: '5vh', justifyContent: 'center' }}>
+        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
+            <div style={{ paddingLeft: '2vw', paddingRight: '2vw', paddingTop: '2vh' }}>
+              <img src="/assets/sh4pes_blue-bg_with-logo.png" alt="Sh4pes" style={{ width: '300px' }} />
+              <h2 style={{ width: '300px', fontSize: '24px'}}>Create Account</h2>
+            </div>
+            <Box component="form" sx={{  display: 'flex', flexDirection: 'column', width: '100%' }} noValidate autoComplete="off">
+              <TextField
+                    required
+                    label="Name"
+                    error={!this.state.name}
+                    sx={{ marginBottom: '2vh', width: '100%' }}
+                    value={ this.state.name }
+                    onChange={(e) =>  this.setState({ name: e.target.value })}
+              />
               <TextField
                   required
                   label="Email"
-                  sx={{ marginBottom: '2vh', width: '80%' }}
+                  error={!this.state.email}
+                  sx={{ marginBottom: '2vh', width: '100%' }}
                   value={ this.state.email }
                   onChange={(e) =>  this.setState({ email: e.target.value })}
               />
-              <FormControl sx={{ m: 1, width: '80%' }} variant="outlined">
-                <InputLabel htmlFor="outlined-adornment-password">Password *</InputLabel>
-                <OutlinedInput
-                  id="outlined-adornment-password"
-                  type={this.state.showPassword ? 'text' : 'password'}
-                  endAdornment={
-                    <InputAdornment position="end">
-                      <IconButton
-                        aria-label="toggle password visibility"
-                        onClick={() => this.setState({ showPassword: !this.state.showPassword })}
-                        edge="end"
-                      >
-                        {this.state.showPassword ? <VisibilityOff /> : <Visibility />}
-                      </IconButton>
-                    </InputAdornment>
-                  }
-                  onChange={(e) =>  this.setState({ password: e.target.value })}
-                  label="Password *"
-                />
-              </FormControl>
-              {!this.state.loading ?
-              <>
-                  <Button
-                    variant="contained"
-                    onClick={this.onSubmit}
-                    sx={{ marginBottom: '2vh', width: '80%', marginTop: '20px', }}
-                  >
-                      Login
-                  </Button>
-              </>
-              :
-              <>
-                  <LinearProgress
-                      sx={{
-                          color: '#3780FF',
-                          marginX: '10vw',
-                          marginTop: '20px',
-                      }}
+              <FormControl sx={{ width: '100%', marginBottom: '2vh' }} variant="outlined">
+                  <InputLabel htmlFor="outlined-adornment-password" sx={{ color: this.state.passwordColor }}>Password *</InputLabel>
+                  <OutlinedInput
+                    id="outlined-adornment-password"
+                    sx={{ width: '100%'}}
+                    error={!this.state.validPassword}
+                    endAdornment={
+                      <InputAdornment position="end">
+                        <Tooltip title={
+                          <div>
+                            <span style={{ fontSize: '16px'}}>Password Must Contain: </span>
+                            <br />
+                            <span style={{ fontSize: '16px'}}>• 8 characters long</span>
+                            <br />
+                            <span style={{ fontSize: '16px'}}>• a lowercase letter</span>
+                            <br />
+                            <span style={{ fontSize: '16px'}}>• an uppercase letter</span>
+                            <br />
+                            <span style={{ fontSize: '16px'}}>• a special character</span>
+                          </div>
+                        }>
+                          {
+                            !this.state.validPassword ?
+                              <Info />
+                            :
+                              <CheckCircle style={{color: '#38B137'}} />
+
+                          }
+                        </Tooltip>
+                      </InputAdornment>
+                    }
+                    onChange={(e) =>  this.validatePassword(e)}
+                    label="Password *"
                   />
-              </>
-              }
-              <div style={{ display: 'flex', flexDirection: 'row', marginBottom: '2vh', justifyContent: 'center' }}>
-                <a href="https://api.sh4pesdevelopment.com/forgotPassword">Forgot Password?</a>
-              </div>
-              <Divider style={{ marginRight: '2vw', marginLeft: '2vw', marginBottom: '2vh'}} >or</Divider>
-              <Button
-                variant="contained"
-                onClick={this.openInNewTab}
-                sx={{ width: '60%', bgcolor: '#38B137' }}
-              >
-                  Create Account
-              </Button>
-            </Card>
-          </div>
-        </Box>
-          <div style={{ position: 'absolute', bottom: '0' }}>
-              <span style={{ marginRight: '10px', fontSize: '14px', color: '#333333' }}>© 2023 Hill Bomb Creations</span>
-              <span id="contact"><a style={{ color: '#333333' }} href="mailto:hello@hbcreations.io">hello@hbcreations.io</a></span>
-          </div>
+              </FormControl>
+              <FormControl sx={{ width: '100%', marginBottom: '2vh' }} variant="outlined">
+                  <InputLabel htmlFor="outlined-adornment-password" sx={{ color: this.state.passwordColor }}>Verify Password *</InputLabel>
+                  <OutlinedInput
+                    id="outlined-adornment-password"
+                    sx={{ width: '100%'}}
+                    error={ (this.state.copyPassword !== this.state.password) && this.state.validPassword || !this.state.copyPassword }
+                    endAdornment={
+                      <InputAdornment position="end">
+                        <Tooltip title={
+                          <div>
+                            <span style={{ fontSize: '16px'}}>Passwords must match</span>
+                          </div>
+                        }>
+                          {
+                            (this.state.copyPassword !== this.state.password) || !this.state.validPassword  ?
+                              <Info />
+                            :
+                              <CheckCircle style={{color: '#38B137'}} />
+
+                          }
+                        </Tooltip>
+                      </InputAdornment>
+                    }
+                    onChange={(e) =>  this.setState({ copyPassword: e.target.value })}
+                    label="Verify Password *"
+                  />
+              </FormControl>
+                {
+                  !this.state.loading ?
+                  <>
+                      <Button
+                        variant="contained"
+                        onClick={this.onSubmit}
+                        disabled={!(this.state.validPassword && (this.state.copyPassword === this.state.password)) || !this.state.name || !this.state.email}
+                        sx={{ width: '100%', bgcolor: '#3780FF' }}
+                      >
+                          Create Account
+                      </Button>
+                  </>
+                  :
+                  <>
+                      <LinearProgress
+                          sx={{
+                            color: '#3780FF',
+                            marginX: '2.5vw',
+                          }}
+                          />
+                  </>
+                }
+                <div style={{ display: 'flex', flexDirection: 'row', marginBottom: '2vh', marginTop: '2vh', justifyContent: 'center' }}>
+                  <a href="/login">Already have an account?</a>
+                </div>
+            </Box>
+        </div>
+        <div style={{ position: 'absolute', bottom: '0', left: '40vw' }}>
+            <span style={{ marginRight: '10px', fontSize: '14px', color: '#333333' }}>© 2023 Hill Bomb Creations</span>
+            <span id="contact"><a style={{ color: '#333333' }} href="mailto:hello@hbcreations.io">hello@hbcreations.io</a></span>
+        </div>
       </div>
     );
   }
