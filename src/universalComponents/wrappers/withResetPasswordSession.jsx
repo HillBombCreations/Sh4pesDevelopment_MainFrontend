@@ -1,9 +1,13 @@
 import { Component } from 'react';
+import PropTypes from 'prop-types';
 import { CircularProgress } from '@mui/material';
 import axios from 'axios';
 
-export default function withPasswordResetSession(ComponentToProtect, queryParameters) {
+export default function withPasswordResetSession(ComponentToProtect, path) {
   return class WithPasswordResetSession extends Component {
+    static propTypes = {
+      match: PropTypes.any,
+    };
     constructor() {
       super();
       this.state = {
@@ -12,8 +16,10 @@ export default function withPasswordResetSession(ComponentToProtect, queryParame
       };
     }
     componentDidMount() {
-      const id = queryParameters.get('id');
-      const email = queryParameters.get('email');
+      const splitPath = path.split('/');
+      const diff = splitPath[splitPath.length - 1] ? 1 : 2;
+      const email = splitPath[splitPath.length - diff];
+      const id = splitPath[splitPath.length - diff - 1];
       axios.post(
         `https://api.sh4pesdevelopment.com/api/user/checkResetPasswordSession?id=${id}&email=${email}`,
         {
