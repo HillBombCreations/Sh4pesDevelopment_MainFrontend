@@ -15,14 +15,11 @@ export default class ResetPasswordPage extends Component {
     };
   }
 
-  handleWindowSizeChange() {
-    this.setState({ width: window.innerWidth });
-  }
 
   componentDidMount() {
-    window.addEventListener('resize', this.handleWindowSizeChange);
+    window.addEventListener('resize', () => this.setState({ width: window.innerWidth }));
     return () => {
-      window.removeEventListener('resize', this.handleWindowSizeChange);
+      window.removeEventListener('resize', () => this.setState({ width: window.innerWidth }));
     }
   }
   render() {
