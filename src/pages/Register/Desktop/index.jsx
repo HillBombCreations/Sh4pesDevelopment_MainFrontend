@@ -27,7 +27,7 @@ export default class Register extends Component {
       password: '',
       copyPassword: '',
       loading: false,
-      passwordRegex: /^(?=.*[a-z])(?=.*[A-Z])[a-zA-Z\d@$!%*#?&]{8,}$/,
+      passwordRegex: /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/,
       validPassword: false,
       passwordColor: '#d32f2f'
     };
@@ -35,8 +35,6 @@ export default class Register extends Component {
   openInNewTab = () => {
     window.open('/register', '_blank', 'noreferrer');
   };
-  // ^(?=.*[a-z])(?=.*[A-Z])[a-zA-Z\d@$!%*#?&]{8,}$
-  // 'https://api.sh4pesdevelopment.com/api/user/login',
   validatePassword = (event) => {
     const pass = event.target.value;
     this.setState({ password: pass });

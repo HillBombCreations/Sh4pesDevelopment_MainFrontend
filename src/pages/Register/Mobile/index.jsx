@@ -25,7 +25,7 @@ export default class Register extends Component {
       password: '',
       copyPassword: '',
       loading: false,
-      passwordRegex: /^(?=.*[a-z])(?=.*[A-Z])[a-zA-Z\d@$!%*#?&]{8,}$/,
+      passwordRegex: /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/,
       validPassword: false,
       passwordColor: '#FA3913'
     };
