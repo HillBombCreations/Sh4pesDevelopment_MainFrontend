@@ -8,6 +8,7 @@ import {
   FormControl,
   InputLabel,
   OutlinedInput,
+  Card,
   Tooltip,
 } from "@mui/material";
 import {
@@ -90,11 +91,12 @@ export default class Register extends Component {
     return (
       <div style={{ display: 'flex', flexDirection: 'row', marginTop: '5vh', justifyContent: 'center' }}>
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
+          <Card raised sx={{ bgcolor: '#fffff', width: '90vw' }}>
             <div style={{ paddingLeft: '2vw', paddingRight: '2vw', paddingTop: '2vh' }}>
               <img src="/assets/sh4pes_blue-bg_with-logo.png" alt="Sh4pes" style={{ width: '300px' }} />
               <h2 style={{ width: '300px', fontSize: '24px'}}>Create Account</h2>
             </div>
-            <Box component="form" sx={{  display: 'flex', flexDirection: 'column', width: '100%' }} noValidate autoComplete="off">
+            <Box component="form" sx={{  display: 'flex', flexDirection: 'column', width: '80vw', marginLeft: '5vw' }} noValidate autoComplete="off">
               <TextField
                     required
                     label="Name"
@@ -219,6 +221,7 @@ export default class Register extends Component {
                   <a href="/login">Already have an account?</a>
                 </div>
             </Box>
+          </Card>
         </div>
         <div style={{ position: 'absolute', bottom: '0' }}>
           <div style={{ display: 'flex', justifyContent: 'center' }}>
