@@ -31,7 +31,7 @@ export default class Register extends Component {
     };
   }
   openInNewTab = () => {
-    window.open('https://www.sh4pesdevelopment.com/register', '_blank', 'noreferrer');
+    window.open('/register', '_blank', 'noreferrer');
   };
   validatePassword = (event) => {
     const pass = event.target.value;

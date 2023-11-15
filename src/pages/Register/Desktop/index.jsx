@@ -29,11 +29,11 @@ export default class Register extends Component {
       loading: false,
       passwordRegex: /^(?=.*[a-z])(?=.*[A-Z])[a-zA-Z\d@$!%*#?&]{8,}$/,
       validPassword: false,
-      passwordColor: '#FA3913'
+      passwordColor: '#d32f2f'
     };
   }
   openInNewTab = () => {
-    window.open('https://www.sh4pesdevelopment.com/register', '_blank', 'noreferrer');
+    window.open('/register', '_blank', 'noreferrer');
   };
   // ^(?=.*[a-z])(?=.*[A-Z])[a-zA-Z\d@$!%*#?&]{8,}$
   // 'https://api.sh4pesdevelopment.com/api/user/login',
@@ -46,7 +46,7 @@ export default class Register extends Component {
     } 
     else if (this.state.passwordRegex) {
       this.setState({ validPassword: false});
-      this.setState({ passwordColor: '#FA3913'});
+      this.setState({ passwordColor: '#d32f2f'});
     }
   };
   onSubmit = (event) => {
@@ -106,7 +106,7 @@ export default class Register extends Component {
                   onChange={(e) =>  this.setState({ email: e.target.value })}
               />
               <FormControl sx={{ width: '100%', marginBottom: '2vh' }} variant="outlined">
-                  <InputLabel htmlFor="outlined-adornment-password" sx={{ color: this.state.passwordColor }}>Password *</InputLabel>
+                  <InputLabel htmlFor="outlined-adornment-password" sx={{ color: `${this.state.passwordColor}!important` }}>Password *</InputLabel>
                   <OutlinedInput
                     id="outlined-adornment-password"
                     sx={{ width: '100%'}}
@@ -141,7 +141,7 @@ export default class Register extends Component {
                   />
               </FormControl>
               <FormControl sx={{ width: '100%', marginBottom: '2vh' }} variant="outlined">
-                  <InputLabel htmlFor="outlined-adornment-password" sx={{ color: this.state.passwordColor }}>Verify Password *</InputLabel>
+                  <InputLabel htmlFor="outlined-adornment-password" sx={{ color: `${this.state.passwordColor}!important` }}>Verify Password *</InputLabel>
                   <OutlinedInput
                     id="outlined-adornment-password"
                     sx={{ width: '100%'}}
