@@ -11,16 +11,19 @@ export default class Login extends Component {
     return (
       <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'center' }}>
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
-          <h2 style={{ width: '240px', fontSize: '128px', color: '#3780FF'}}>404</h2>
-          <p style={{ width: '240px', fontSize: '20px', marginTop: '-10vh'}}>Yikes!</p>
-          <p style={{ width: '240px', fontSize: '20px', marginTop: '-1vh'}}>Looks like you wandered away a little too far, make you way back by clicking the button</p>
-          <Button
-                variant="contained"
-                onClick={() => window.location.replace('/')}
-                sx={{ width: '100%', bgcolor: '#3780FF' }}
-          >
-              Back To Home
-          </Button>
+          <h2 style={{ width: '280px', fontSize: '128px', color: '#3780FF', marginTop: '0', marginBottom: '0'}}>404</h2>
+          <p style={{ width: '280px', fontSize: '20px', marginBottom: '0' }}>Yikes!</p>
+          <p style={{ width: '280px', fontSize: '20px'}}>Looks like you wandered away a little too far, make you way back by clicking the button</p>
+          <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', marginRight: '4vw'}}>
+            <img src="/assets/duck.png" alt="Sh4pes" style={{ width: '210px' }} />
+            <Button
+                  variant="contained"
+                  onClick={() => window.location.replace('/')}
+                  sx={{ width: '10vw', height: '7vh', bgcolor: '#3780FF' }}
+            >
+                Home
+            </Button>
+          </div>
         </div>
         <div style={{ position: 'absolute', bottom: '0' }}>
           <div style={{ display: 'flex', justifyContent: 'center' }}>

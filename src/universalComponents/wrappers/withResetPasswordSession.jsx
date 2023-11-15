@@ -13,6 +13,7 @@ export default function withPasswordResetSession(ComponentToProtect, path) {
       this.state = {
         loading: true,
         redirectBool: false,
+        email: '',
       };
     }
     componentDidMount() {
@@ -27,7 +28,7 @@ export default function withPasswordResetSession(ComponentToProtect, path) {
         }
       ).then(res => {
           if (res.status === 200) {
-            this.setState({ loading: false });
+            this.setState({ loading: false, email });
           } else {
             const error = new Error(res.error);
             throw error;
@@ -47,7 +48,7 @@ export default function withPasswordResetSession(ComponentToProtect, path) {
         window.location.replace('/404');
         return <CircularProgress />;
       }
-      return <ComponentToProtect />;
+      return <ComponentToProtect email={this.state.email} />;
     }
   }
 }
