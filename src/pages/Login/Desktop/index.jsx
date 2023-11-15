@@ -67,13 +67,14 @@ export default class Login extends Component {
 
   render() {
     return (
-      <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', paddingRight: '15vw', paddingLeft: '15vw' }}>
-        <div style={{ display: 'flex', flexDirection: 'column', marginTop: '30vh', alignItems: 'center', paddingRight: '5vw'}}>
-          <img src="/assets/sh4pes_blue-bg_with-logo.png" alt="Sh4pes" style={{ width: '480px' }} />
-          <p style={{ width: '480px', fontSize: '24px'}}>Empower your online presence and streamline finances effortlessly on Sh4pes Development</p>
-        </div>
-          <Box component="form" sx={{  display: 'flex', flexDirection: 'row', marginTop: '30vh' }} noValidate autoComplete="off">
-            <Card raised sx={{ bgcolor: '#fffff', paddingTop: '4vh', paddingBottom: '4vh', width: '30vw'}}>
+      <div>
+        <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', paddingRight: '15vw', paddingLeft: '15vw' }}>
+          <div style={{ display: 'flex', flexDirection: 'column', marginTop: '30vh', alignItems: 'center', paddingRight: '5vw'}}>
+            <img src="/assets/sh4pes_blue-bg_with-logo.png" alt="Sh4pes" style={{ width: '480px' }} />
+            <p style={{ width: '480px', fontSize: '24px'}}>Empower your online presence and streamline finances effortlessly on Sh4pes Development</p>
+          </div>
+            <Box component="form" sx={{  display: 'flex', flexDirection: 'row', marginTop: '30vh' }} noValidate autoComplete="off">
+              <Card raised sx={{ bgcolor: '#fffff', paddingTop: '4vh', paddingBottom: '4vh', width: '30vw'}}>
               { this.state.accountError === '400' ? 
                   <Alert severity="warning" sx={{ marginX: '2.6vw', marginBottom: '2vh' }}>
                     Please verify email to login
@@ -93,72 +94,75 @@ export default class Login extends Component {
 
               }
               <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
-                <TextField
-                    required
-                    label="Email"
-                    sx={{ marginBottom: '2vh', width: '25vw' }}
-                    value={ this.state.email }
-                    onChange={(e) =>  this.setState({ email: e.target.value })}
-                />
-                <FormControl sx={{ m: 1, width: '25vw', marginBottom: '2vh' }} variant="outlined">
-                    <InputLabel htmlFor="outlined-adornment-password">Password *</InputLabel>
-                    <OutlinedInput
-                      id="outlined-adornment-password"
-                      type={this.state.showPassword ? 'text' : 'password'}
-                      sx={{ width: '25vw'}}
-                      endAdornment={
-                        <InputAdornment position="end">
-                          <IconButton
-                            aria-label="toggle password visibility"
-                            onClick={() => this.setState({ showPassword: !this.state.showPassword })}
-                            edge="end"
-                          >
-                            {this.state.showPassword ? <VisibilityOff /> : <Visibility />}
-                          </IconButton>
-                        </InputAdornment>
-                      }
-                      onChange={(e) =>  this.setState({ password: e.target.value })}
-                      label="Password *"
-                    />
-                  </FormControl>
-                  {
-                    !this.state.loading ?
-                    <>
-                        <Button
-                          variant="contained"
-                          onClick={this.onSubmit}
-                          sx={{ marginBottom: '2vh', width: '25vw' }}
-                          >
-                            Login
-                        </Button>
-                    </>
-                    :
-                    <>
-                        <LinearProgress
-                            sx={{
-                              color: '#3780FF',
-                              marginX: '2.5vw',
-                          }}
+                  <TextField
+                      required
+                      label="Email"
+                      sx={{ marginBottom: '2vh', width: '25vw' }}
+                      value={ this.state.email }
+                      onChange={(e) =>  this.setState({ email: e.target.value })}
+                  />
+                  <FormControl sx={{ m: 1, width: '25vw', marginBottom: '2vh' }} variant="outlined">
+                      <InputLabel htmlFor="outlined-adornment-password">Password *</InputLabel>
+                      <OutlinedInput
+                        id="outlined-adornment-password"
+                        type={this.state.showPassword ? 'text' : 'password'}
+                        sx={{ width: '25vw'}}
+                        endAdornment={
+                          <InputAdornment position="end">
+                            <IconButton
+                              aria-label="toggle password visibility"
+                              onClick={() => this.setState({ showPassword: !this.state.showPassword })}
+                              edge="end"
+                            >
+                              {this.state.showPassword ? <VisibilityOff /> : <Visibility />}
+                            </IconButton>
+                          </InputAdornment>
+                        }
+                        onChange={(e) =>  this.setState({ password: e.target.value })}
+                        label="Password *"
                       />
-                  </>
-                }
+                    </FormControl>
+                    {
+                      !this.state.loading ?
+                      <>
+                          <Button
+                            variant="contained"
+                            onClick={this.onSubmit}
+                            sx={{ marginBottom: '2vh', width: '25vw' }}
+                            >
+                              Login
+                          </Button>
+                      </>
+                      :
+                      <>
+                          <LinearProgress
+                              sx={{
+                                color: '#3780FF',
+                                marginX: '2.5vw',
+                            }}
+                        />
+                    </>
+                  }
               </div>
-              <div style={{ display: 'flex', flexDirection: 'row', marginBottom: '2vh', justifyContent: 'center' }}>
-                <a href="/forgotpassword">Forgot Password?</a>
-              </div>
-              <Divider style={{ background: "#e8f0ff", marginRight: '1vw', marginLeft: '1vw', marginBottom: '2vh'}} />
-              <Button
-                variant="contained"
-                onClick={this.openInNewTab}
-                sx={{ width: '50%', bgcolor: '#38B137' }}
-              >
-                  Create Account
-              </Button>
-          </Card>
-        </Box>
-        <div style={{ position: 'absolute', bottom: '0', left: '40vw' }}>
+                <div style={{ display: 'flex', flexDirection: 'row', marginBottom: '2vh', justifyContent: 'center' }}>
+                  <a href="/forgotpassword">Forgot Password?</a>
+                </div>
+                <Divider style={{ background: "#e8f0ff", marginRight: '1vw', marginLeft: '1vw', marginBottom: '2vh'}} />
+                <Button
+                  variant="contained"
+                  onClick={this.openInNewTab}
+                  sx={{ width: '50%', bgcolor: '#38B137' }}
+                >
+                    Create Account
+                </Button>
+            </Card>
+          </Box>
+        </div>
+        <div style={{ position: 'absolute', bottom: '0', width: '100%' }}>
+          <div style={{ display: 'flex', justifyContent: 'center' }}>
             <span style={{ marginRight: '10px', fontSize: '14px', color: '#333333' }}>© 2023 Hill Bomb Creations</span>
             <span id="contact"><a style={{ color: '#333333' }} href="mailto:hello@hbcreations.io">hello@hbcreations.io</a></span>
+          </div>
         </div>
       </div>
     );
