@@ -23,7 +23,7 @@ export default class SuccessfulRegistrationPage extends Component {
         <Card raised sx={{ bgcolor: '#fffff', paddingTop: '25px', paddingBottom: '25px' }}>
           <div style={{ display: 'flex', flexDirection: 'column', width: this.state.mobile ? '85vw' : '30vw', alignItems: 'center', paddingRight: '15px', paddingLeft: '15px' }}>
             <img src="/assets/sh4pes_blue-bg_with-logo.png" alt="Sh4pes" style={{ width: this.state.mobile ? '75vw' : '20vw', marginBottom: '15px' }} />
-            <strong>You need to register your email!</strong>
+            <strong>You need to verify your email!</strong>
             <span>Congratulations on successfully registering your account with us! We're thrilled to have you on board.</span>
             <span style={{ marginTop: '15px' }}>
               To ensure the security of your account and keep you informed about our latest updates, we need you to verify your email address.
