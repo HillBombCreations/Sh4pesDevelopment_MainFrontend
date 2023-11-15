@@ -102,7 +102,7 @@ export default class ForgotPassword extends Component {
               </>
             }
             { this.state.alertMessage ? 
-              <Alert severity={this.state.alertCode === 201 ? 'success' : 'error'} sx={{ marginTop: '15px', width: '20vw' }}>
+              <Alert severity={this.state.alertCode === 201 ? 'success' : 'error'} sx={{ marginTop: '15px', width: '73vw' }}>
                 { this.state.alertMessage }
               </Alert> 
               : null
