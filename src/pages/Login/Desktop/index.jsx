@@ -10,6 +10,7 @@ import {
   IconButton,
   FormControl,
   InputLabel,
+  Alert,
   OutlinedInput,
 } from "@mui/material";
 import {
@@ -26,6 +27,7 @@ export default class Login extends Component {
       password: '',
       loading: false,
       showPassword: false,
+      accountError: '',
     };
   }
   openInNewTab = () => {
@@ -49,75 +51,98 @@ export default class Login extends Component {
         window.location.replace('/');
       } else {
         this.setState({ loading: false });
+        this.setState({ accountError: res.status.toString()});
         const error = new Error(res.error);
         throw error;
       }
     })
     .catch(err => {
       console.error(err);
+      if (err.response.status === 400 && err.response.data.error === 'Not verified') this.setState({ accountError: '400'});
+      else if (err.response.status === 400 && err.response.data.error !== 'Not verified')  this.setState({ accountError: '402'});
+      else this.setState({ accountError: err.response.status.toString()});
       this.setState({ loading: false });
-      alert('Error logging in please try again');
     });
   }
 
   render() {
     return (
       <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', paddingRight: '15vw', paddingLeft: '15vw' }}>
-        <div style={{ display: 'flex', flexDirection: 'column', marginTop: '40vh', alignItems: 'center', paddingRight: '5vw'}}>
+        <div style={{ display: 'flex', flexDirection: 'column', marginTop: '30vh', alignItems: 'center', paddingRight: '5vw'}}>
           <img src="/assets/sh4pes_blue-bg_with-logo.png" alt="Sh4pes" style={{ width: '480px' }} />
           <p style={{ width: '480px', fontSize: '24px'}}>Empower your online presence and streamline finances effortlessly on Sh4pes Development</p>
         </div>
-          <Box component="form" sx={{  display: 'flex', flexDirection: 'row', marginTop: '35vh' }} noValidate autoComplete="off">
-            <Card raised sx={{ bgcolor: '#fffff', paddingTop: '4vh', paddingBottom: '4vh'}}>
+          <Box component="form" sx={{  display: 'flex', flexDirection: 'row', marginTop: '30vh' }} noValidate autoComplete="off">
+            <Card raised sx={{ bgcolor: '#fffff', paddingTop: '4vh', paddingBottom: '4vh', width: '30vw'}}>
+              { this.state.accountError === '400' ? 
+                  <Alert severity="warning" sx={{ marginX: '2.6vw', marginBottom: '2vh' }}>
+                    Please verify email to login
+                  </Alert> 
+                :
+                this.state.accountError === '401' ?
+                  <Alert severity="error" sx={{ marginX: '2.6vw', marginBottom: '2vh' }}>
+                    We cannot find an account associated with that email
+                  </Alert>
+                  :
+                  this.state.accountError === '402' ?
+                  <Alert severity="error" sx={{ marginX: '2.6vw', marginBottom: '2vh' }}>
+                    Please enter all fields
+                  </Alert> 
+                  :
+                  null
+
+              }
+              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
                 <TextField
                     required
                     label="Email"
-                    sx={{ marginBottom: '2vh', width: '80%' }}
+                    sx={{ marginBottom: '2vh', width: '25vw' }}
                     value={ this.state.email }
                     onChange={(e) =>  this.setState({ email: e.target.value })}
                 />
-              <FormControl sx={{ m: 1, width: '80%', marginBottom: '2vh' }} variant="outlined">
-                  <InputLabel htmlFor="outlined-adornment-password">Password *</InputLabel>
-                  <OutlinedInput
-                    id="outlined-adornment-password"
-                    type={this.state.showPassword ? 'text' : 'password'}
-                    sx={{ width: '100%'}}
-                    endAdornment={
-                      <InputAdornment position="end">
-                        <IconButton
-                          aria-label="toggle password visibility"
-                          onClick={() => this.setState({ showPassword: !this.state.showPassword })}
-                          edge="end"
-                        >
-                          {this.state.showPassword ? <VisibilityOff /> : <Visibility />}
-                        </IconButton>
-                      </InputAdornment>
-                    }
-                    onChange={(e) =>  this.setState({ password: e.target.value })}
-                    label="Password *"
-                  />
-                </FormControl>
-                {
-                  !this.state.loading ?
-                  <>
-                      <Button
-                        variant="contained"
-                        onClick={this.onSubmit}
-                        sx={{ marginBottom: '2vh', width: '80%' }}
-                        >
-                          Login
-                      </Button>
-                  </>
-                  :
-                  <>
-                      <LinearProgress
-                          sx={{
-                            color: '#3780FF',
-                            marginX: '2.5vw',
-                        }}
+                <FormControl sx={{ m: 1, width: '25vw', marginBottom: '2vh' }} variant="outlined">
+                    <InputLabel htmlFor="outlined-adornment-password">Password *</InputLabel>
+                    <OutlinedInput
+                      id="outlined-adornment-password"
+                      type={this.state.showPassword ? 'text' : 'password'}
+                      sx={{ width: '25vw'}}
+                      endAdornment={
+                        <InputAdornment position="end">
+                          <IconButton
+                            aria-label="toggle password visibility"
+                            onClick={() => this.setState({ showPassword: !this.state.showPassword })}
+                            edge="end"
+                          >
+                            {this.state.showPassword ? <VisibilityOff /> : <Visibility />}
+                          </IconButton>
+                        </InputAdornment>
+                      }
+                      onChange={(e) =>  this.setState({ password: e.target.value })}
+                      label="Password *"
                     />
-                </>
-              }
+                  </FormControl>
+                  {
+                    !this.state.loading ?
+                    <>
+                        <Button
+                          variant="contained"
+                          onClick={this.onSubmit}
+                          sx={{ marginBottom: '2vh', width: '25vw' }}
+                          >
+                            Login
+                        </Button>
+                    </>
+                    :
+                    <>
+                        <LinearProgress
+                            sx={{
+                              color: '#3780FF',
+                              marginX: '2.5vw',
+                          }}
+                      />
+                  </>
+                }
+              </div>
               <div style={{ display: 'flex', flexDirection: 'row', marginBottom: '2vh', justifyContent: 'center' }}>
                 <a href="/forgotpassword">Forgot Password?</a>
               </div>

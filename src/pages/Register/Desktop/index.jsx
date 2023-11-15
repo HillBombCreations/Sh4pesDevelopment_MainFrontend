@@ -28,12 +28,24 @@ export default class Register extends Component {
       copyPassword: '',
       loading: false,
       passwordRegex: /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/,
+      emailRegex: /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/,
       validPassword: false,
+      validEmail: false,
       passwordColor: '#d32f2f'
     };
   }
   openInNewTab = () => {
     window.open('/register', '_blank', 'noreferrer');
+  };
+  validateEmail = (event) => {
+    const email = event.target.value;
+    this.setState({ email: email });
+    if (this.state.emailRegex.test(email)) {
+      this.setState({ validEmail: true});
+    } 
+    else if (this.state.email) {
+      this.setState({ validEmail: false});
+    }
   };
   validatePassword = (event) => {
     const pass = event.target.value;
@@ -94,14 +106,30 @@ export default class Register extends Component {
                     sx={{ marginBottom: '2vh', width: '100%' }}
                     value={ this.state.name }
                     onChange={(e) =>  this.setState({ name: e.target.value })}
+                    InputProps={{
+                      endAdornment: <InputAdornment position="end">{
+                        this.state.name ?
+                        <CheckCircle style={{color: '#38B137'}} />
+                        :
+                          null
+                      }</InputAdornment>,
+                    }}
               />
               <TextField
                   required
                   label="Email"
-                  error={!this.state.email}
+                  error={!this.state.validEmail}
                   sx={{ marginBottom: '2vh', width: '100%' }}
                   value={ this.state.email }
-                  onChange={(e) =>  this.setState({ email: e.target.value })}
+                  onChange={(e) =>  this.validateEmail(e)}
+                  InputProps={{
+                    endAdornment: <InputAdornment position="end">{
+                      this.state.validEmail ?
+                      <CheckCircle style={{color: '#38B137'}} />
+                      :
+                        null
+                    }</InputAdornment>,
+                  }}
               />
               <FormControl sx={{ width: '100%', marginBottom: '2vh' }} variant="outlined">
                   <InputLabel htmlFor="outlined-adornment-password" sx={{ color: `${this.state.passwordColor}!important` }}>Password *</InputLabel>
@@ -113,15 +141,15 @@ export default class Register extends Component {
                       <InputAdornment position="end">
                         <Tooltip title={
                           <div>
-                            <span style={{ fontSize: '16px'}}>Password Must Contain: </span>
+                            <span style={{ fontSize: '16px'}}>Password Must: </span>
                             <br />
-                            <span style={{ fontSize: '16px'}}>• 8 characters long</span>
+                            <span style={{ fontSize: '16px'}}>• be at least 8 characters</span>
                             <br />
-                            <span style={{ fontSize: '16px'}}>• a lowercase letter</span>
+                            <span style={{ fontSize: '16px'}}>• contain a lowercase letter</span>
                             <br />
-                            <span style={{ fontSize: '16px'}}>• an uppercase letter</span>
+                            <span style={{ fontSize: '16px'}}>• contain an uppercase letter</span>
                             <br />
-                            <span style={{ fontSize: '16px'}}>• a special character</span>
+                            <span style={{ fontSize: '16px'}}>• contain a special character</span>
                           </div>
                         }>
                           {
@@ -139,7 +167,11 @@ export default class Register extends Component {
                   />
               </FormControl>
               <FormControl sx={{ width: '100%', marginBottom: '2vh' }} variant="outlined">
-                  <InputLabel htmlFor="outlined-adornment-password" sx={{ color: `${this.state.passwordColor}!important` }}>Verify Password *</InputLabel>
+                  <InputLabel htmlFor="outlined-adornment-password" 
+                    sx={{ 
+                      color: (this.state.copyPassword !== this.state.password) || !this.state.validPassword || !this.state.copyPassword ? '#d32f2f !important' : '' }}>
+                        Verify Password *
+                  </InputLabel>
                   <OutlinedInput
                     id="outlined-adornment-password"
                     sx={{ width: '100%'}}
