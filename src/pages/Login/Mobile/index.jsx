@@ -71,7 +71,7 @@ export default class Login extends Component {
   render() {
     return (
       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '2vh 2vw 2vh 2vw' }}>
-        <img src="/assets/sh4pes_blue-bg_with-logo.png" alt="Sh4pes" style={{ width: '240px', marginTop: '10vh' }} />
+        <img src="/assets/sh4pes_blue-bg_with-logo.png" alt="Sh4pes" style={{ width: '300px', marginTop: '10vh' }} />
         <Box component="form" sx={{  display: 'flex', flexDirection: 'row', marginTop: '2vh' }} noValidate autoComplete="off">
         <div style={{ flexDirection: 'columm', width: '100%', paddingRight: '2vw', paddingLeft: '2vw' }}>
           <Card raised sx={{ bgcolor: '#fffff', paddingTop: '4vh', paddingBottom: '4vh'}}>

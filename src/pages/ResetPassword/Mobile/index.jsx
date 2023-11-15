@@ -1,9 +1,9 @@
 import { Component } from 'react';
 import {
   Box,
-  TextField,
   Button,
   LinearProgress,
+  Card,
   InputAdornment,
   FormControl,
   InputLabel,
@@ -14,36 +14,28 @@ import {
   Info,
   CheckCircle
 } from '@mui/icons-material';
+import PropTypes from 'prop-types';
 import axios from 'axios';
 
 export default class Register extends Component {
+  static propTypes = {
+    email: PropTypes.any,
+  };
   constructor(props) {
     super(props)
     this.state = {
-      name: '',
-      email : '',
+      id : '',
+      email: this.props.email,
       password: '',
       copyPassword: '',
       loading: false,
       passwordRegex: /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/,
-      emailRegex: /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/,
       validPassword: false,
-      validEmail: false,
       passwordColor: '#d32f2f'
     };
   }
   openInNewTab = () => {
     window.open('/register', '_blank', 'noreferrer');
-  };
-  validateEmail = (event) => {
-    const email = event.target.value;
-    this.setState({ email: email });
-    if (this.state.emailRegex.test(email)) {
-      this.setState({ validEmail: true});
-    } 
-    else if (this.state.email) {
-      this.setState({ validEmail: false});
-    }
   };
   validatePassword = (event) => {
     const pass = event.target.value;
@@ -62,8 +54,7 @@ export default class Register extends Component {
     event.preventDefault();
     this.setState({ loading: true });
     axios.post(
-      'https://api.sh4pesdevelopment.com/api/user',
-      JSON.stringify({ name: this.state.name, email: this.state.email, password: this.state.password}),
+      `https://api.sh4pesdevelopment.com/api/user/resetPassword?email=${this.state.email}&password=${this.state.password}`,
       {
         headers: {
         'Content-Type': 'application/json'
@@ -86,47 +77,20 @@ export default class Register extends Component {
     });
   }
 
+  componentDidMount () {
+    const { email } = this.props;
+    this.setState({ email });
+  }
   render() {
     return (
-      <div style={{ display: 'flex', flexDirection: 'row', marginTop: '5vh', justifyContent: 'center' }}>
-        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
+      <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'center' }}>
+        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginTop: '12vh'}}>
+          <Card raised sx={{ bgcolor: '#fffff', width: '90vw' }}>
             <div style={{ paddingLeft: '2vw', paddingRight: '2vw', paddingTop: '2vh' }}>
               <img src="/assets/sh4pes_blue-bg_with-logo.png" alt="Sh4pes" style={{ width: '300px' }} />
-              <h2 style={{ width: '300px', fontSize: '24px'}}>Create Account</h2>
+              <h2 style={{ width: '300px', fontSize: '24px'}}>Reset Password</h2>
             </div>
-            <Box component="form" sx={{  display: 'flex', flexDirection: 'column', width: '100%' }} noValidate autoComplete="off">
-              <TextField
-                    required
-                    label="Name"
-                    error={!this.state.name}
-                    sx={{ marginBottom: '2vh', width: '100%' }}
-                    value={ this.state.name }
-                    onChange={(e) =>  this.setState({ name: e.target.value })}
-                    InputProps={{
-                      endAdornment: <InputAdornment position="end">{
-                        this.state.name ?
-                        <CheckCircle style={{color: '#38B137'}} />
-                        :
-                          null
-                      }</InputAdornment>,
-                    }}
-              />
-              <TextField
-                  required
-                  label="Email"
-                  error={!this.state.validEmail}
-                  sx={{ marginBottom: '2vh', width: '100%' }}
-                  value={ this.state.email }
-                  onChange={(e) =>  this.validateEmail(e)}
-                  InputProps={{
-                    endAdornment: <InputAdornment position="end">{
-                      this.state.validEmail ?
-                      <CheckCircle style={{color: '#38B137'}} />
-                      :
-                        null
-                    }</InputAdornment>,
-                  }}
-              />
+            <Box component="form" sx={{  display: 'flex', flexDirection: 'column', paddingX: '4vw', paddingY:'4vh' }} noValidate autoComplete="off">
               <FormControl sx={{ width: '100%', marginBottom: '2vh' }} variant="outlined">
                   <InputLabel htmlFor="outlined-adornment-password" sx={{ color: `${this.state.passwordColor}!important` }}>Password *</InputLabel>
                   <OutlinedInput
@@ -135,7 +99,7 @@ export default class Register extends Component {
                     error={!this.state.validPassword}
                     endAdornment={
                       <InputAdornment position="end">
-                        <Tooltip enterTouchDelay={0} title={
+                        <Tooltip title={
                           <div>
                             <span style={{ fontSize: '16px'}}>Password Must: </span>
                             <br />
@@ -171,10 +135,10 @@ export default class Register extends Component {
                   <OutlinedInput
                     id="outlined-adornment-password"
                     sx={{ width: '100%'}}
-                    error={ (this.state.copyPassword !== this.state.password) || !this.state.validPassword || !this.state.copyPassword }
+                    error={ (this.state.copyPassword !== this.state.password) && this.state.validPassword || !this.state.copyPassword }
                     endAdornment={
                       <InputAdornment position="end">
-                        <Tooltip enterTouchDelay={0} title={
+                        <Tooltip title={
                           <div>
                             <span style={{ fontSize: '16px'}}>Passwords must match</span>
                           </div>
@@ -199,10 +163,10 @@ export default class Register extends Component {
                       <Button
                         variant="contained"
                         onClick={this.onSubmit}
-                        disabled={!(this.state.validPassword && (this.state.copyPassword === this.state.password)) || !this.state.name || !this.state.validEmail}
+                        disabled={!(this.state.validPassword && (this.state.copyPassword === this.state.password))}
                         sx={{ width: '100%', bgcolor: '#3780FF' }}
                       >
-                          Create Account
+                          Reset Password
                       </Button>
                   </>
                   :
@@ -215,10 +179,8 @@ export default class Register extends Component {
                           />
                   </>
                 }
-                <div style={{ display: 'flex', flexDirection: 'row', marginBottom: '2vh', marginTop: '2vh', justifyContent: 'center' }}>
-                  <a href="/login">Already have an account?</a>
-                </div>
             </Box>
+        </Card>
         </div>
         <div style={{ position: 'absolute', bottom: '0' }}>
           <div style={{ display: 'flex', justifyContent: 'center' }}>
