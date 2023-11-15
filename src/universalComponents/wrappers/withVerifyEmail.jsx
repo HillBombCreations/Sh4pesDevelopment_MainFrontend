@@ -38,7 +38,7 @@ export default function withVerifyEmail(ComponentToProtect, path) {
         return null;
       }
       if (redirectBool) {
-        // window.location.replace('/404');
+        window.location.replace('/404');
         return <CircularProgress />;
       }
       return <ComponentToProtect />;

@@ -53,7 +53,6 @@ export default class Register extends Component {
     console.log(event);
     event.preventDefault();
     this.setState({ loading: true });
-    // 'https://api.sh4pesdevelopment.com/api/user'
     axios.post(
       'https://api.sh4pesdevelopment.com/api/user',
       JSON.stringify({ name: this.state.name, email: this.state.email, password: this.state.password}),
@@ -64,8 +63,8 @@ export default class Register extends Component {
       }
     ).then(res => {
       if (res.status === 201) {
-        console.log('SUCCESSFULLY CReATED USER');
-        // window.location.replace('/');
+        this.setState({ loading: false });
+        window.location.replace('/successfulregistration');
       } else {
         this.setState({ loading: false });
         const error = new Error(res.error);

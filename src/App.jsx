@@ -12,9 +12,11 @@ import ResetPassword from './pages/ResetPassword/index';
 import VerifyEmail from './pages/VerifyEmail/index';
 import Login from './pages/Login/index';
 import Register from './pages/Register/index';
+import SuccessfulRegistration from './pages/SuccessfulRegistration/index';
 import ForgotPassword from './pages/ForgotPassword/index';
 import PageNotFound from './pages/PageNotFound/index';
 import './App.css';
+
 function App() {
     const { pathname, hash, key } = useLocation();
 
@@ -43,6 +45,7 @@ function App() {
                 <Route path="/forgotpassword" element={<ForgotPassword />} />
                 <Route path="/login" element={<Login />} />
                 <Route path="/register" element={<Register />} />
+                <Route path="/successfulregistration" element={<SuccessfulRegistration />} />
                 <Route path='*' element={<PageNotFound />} />
             </Routes>
         </div>

@@ -59,8 +59,8 @@ export default class Register extends Component {
       }
     ).then(res => {
       if (res.status === 201) {
-        console.log('SUCCESSFULLY CReATED USER');
-        // window.location.replace('/');
+        this.setState({ loading: false });
+        window.location.replace('/successfulregistration');
       } else {
         this.setState({ loading: false });
         const error = new Error(res.error);

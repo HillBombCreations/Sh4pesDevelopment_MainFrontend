@@ -1,6 +1,6 @@
 import { Component } from 'react';
 
-export default class VerifyEmailPage extends Component {
+export default class SuccessfulRegistrationPage extends Component {
   constructor(props) {
     super(props)
     this.state = {};
@@ -9,7 +9,7 @@ export default class VerifyEmailPage extends Component {
   render() {
     return (
       <div id="page-container">
-        Thank you for verifying! You may now log in
+        Congrats! Please check your email for a verification link before you log in
       </div>
     );
   }
