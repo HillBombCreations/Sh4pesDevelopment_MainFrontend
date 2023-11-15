@@ -3,13 +3,15 @@ import PropTypes from 'prop-types';
 import DesktopView from './Desktop'
 import MobileView from './Mobile'
 
-export default class Login extends Component {
+export default class PageNotFound extends Component {
   static propTypes = {
     pathname: PropTypes.any,
   };
   constructor(props) {
     super(props)
     this.state = {
+      email : '',
+      password: '',
       width: window.innerWidth,
     };
   }

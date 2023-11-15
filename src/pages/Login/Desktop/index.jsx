@@ -29,9 +29,10 @@ export default class Login extends Component {
     };
   }
   openInNewTab = () => {
-    window.open('https://www.sh4pesdevelopment.com/register', '_blank', 'noreferrer');
+    window.open('https://sh4pesdevelopment.com/register', '_blank', 'noreferrer');
   };
   onSubmit = (event) => {
+    console.log(event);
     event.preventDefault();
     this.setState({ loading: true });
     axios.post(
@@ -66,50 +67,51 @@ export default class Login extends Component {
           <img src="/assets/sh4pes_blue-bg_with-logo.png" alt="Sh4pes" style={{ width: '480px' }} />
           <p style={{ width: '480px', fontSize: '24px'}}>Empower your online presence and streamline finances effortlessly on Sh4pes Development</p>
         </div>
-        <Box component="form" sx={{  display: 'flex', flexDirection: 'row', marginTop: '35vh' }} noValidate autoComplete="off">
-          <Card raised sx={{ bgcolor: '#fffff', paddingTop: '4vh', paddingBottom: '4vh'}}>
-              <TextField
-                  required
-                  label="Email"
-                  sx={{ marginBottom: '2vh', width: '80%' }}
-                  value={ this.state.email }
-                  onChange={(e) =>  this.setState({ email: e.target.value })}
-              />
-              <FormControl sx={{ m: 1, width: '80%' }} variant="outlined">
-                <InputLabel htmlFor="outlined-adornment-password">Password *</InputLabel>
-                <OutlinedInput
-                  id="outlined-adornment-password"
-                  type={this.state.showPassword ? 'text' : 'password'}
-                  endAdornment={
-                    <InputAdornment position="end">
-                      <IconButton
-                        aria-label="toggle password visibility"
-                        onClick={() => this.setState({ showPassword: !this.state.showPassword })}
-                        edge="end"
-                      >
-                        {this.state.showPassword ? <VisibilityOff /> : <Visibility />}
-                      </IconButton>
-                    </InputAdornment>
-                  }
-                  onChange={(e) =>  this.setState({ password: e.target.value })}
-                  label="Password *"
+          <Box component="form" sx={{  display: 'flex', flexDirection: 'row', marginTop: '35vh' }} noValidate autoComplete="off">
+            <Card raised sx={{ bgcolor: '#fffff', paddingTop: '4vh', paddingBottom: '4vh'}}>
+                <TextField
+                    required
+                    label="Email"
+                    sx={{ marginBottom: '2vh', width: '80%' }}
+                    value={ this.state.email }
+                    onChange={(e) =>  this.setState({ email: e.target.value })}
                 />
-              </FormControl>
-              {
-              !this.state.loading ?
-                <>
-                    <Button
-                      variant="contained"
-                      onClick={this.onSubmit}
-                      sx={{ marginBottom: '2vh', width: '80%' }}
-                    >
-                        Login
-                    </Button>
-                </>
-                :
-                <>
-                    <LinearProgress
-                        sx={{
+              <FormControl sx={{ m: 1, width: '80%', marginBottom: '2vh' }} variant="outlined">
+                  <InputLabel htmlFor="outlined-adornment-password">Password *</InputLabel>
+                  <OutlinedInput
+                    id="outlined-adornment-password"
+                    type={this.state.showPassword ? 'text' : 'password'}
+                    sx={{ width: '100%'}}
+                    endAdornment={
+                      <InputAdornment position="end">
+                        <IconButton
+                          aria-label="toggle password visibility"
+                          onClick={() => this.setState({ showPassword: !this.state.showPassword })}
+                          edge="end"
+                        >
+                          {this.state.showPassword ? <VisibilityOff /> : <Visibility />}
+                        </IconButton>
+                      </InputAdornment>
+                    }
+                    onChange={(e) =>  this.setState({ password: e.target.value })}
+                    label="Password *"
+                  />
+                </FormControl>
+                {
+                  !this.state.loading ?
+                  <>
+                      <Button
+                        variant="contained"
+                        onClick={this.onSubmit}
+                        sx={{ marginBottom: '2vh', width: '80%' }}
+                        >
+                          Login
+                      </Button>
+                  </>
+                  :
+                  <>
+                      <LinearProgress
+                          sx={{
                             color: '#3780FF',
                             marginX: '2.5vw',
                         }}
