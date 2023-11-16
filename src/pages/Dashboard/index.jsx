@@ -23,7 +23,7 @@ export default class LandingPage extends Component {
   render() {
     const { pathname } = this.props;
     return (
-      <div id="page-container">
+      <div>
         {
           this.state.width <= 768 ? 
           <MobileView pathname={pathname} />
