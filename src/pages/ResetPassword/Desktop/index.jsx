@@ -18,6 +18,7 @@ import {
 } from '@mui/icons-material';
 import PropTypes from 'prop-types';
 import axios from 'axios';
+import cookieFns from '../../../utils/cookieFns';
 
 export default class Register extends Component {
   static propTypes = {
@@ -33,7 +34,8 @@ export default class Register extends Component {
       loading: false,
       passwordRegex: /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/,
       validPassword: false,
-      passwordColor: '#d32f2f'
+      passwordColor: '#d32f2f',
+      eatCookie: null,
     };
   }
   openInNewTab = () => {
@@ -65,6 +67,8 @@ export default class Register extends Component {
     ).then(res => {
       if (res.status === 200) {
         this.setState({ loading: false });
+        const { eatCookie } = cookieFns();
+        eatCookie();
         window.location.replace('/login');
       } else {
         this.setState({ loading: false, accountError: 'error' });
