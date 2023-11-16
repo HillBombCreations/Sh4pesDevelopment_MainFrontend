@@ -17,6 +17,7 @@ import {
 } from '@mui/icons-material';
 import PropTypes from 'prop-types';
 import axios from 'axios';
+import cookieFns from '../../../utils/cookieFns';
 
 export default class Register extends Component {
   static propTypes = {
@@ -64,7 +65,8 @@ export default class Register extends Component {
     ).then(res => {
       if (res.status === 200) {
         this.setState({ loading: false });
-        window.location.replace('/login');
+        const { eatCookie } = cookieFns();
+        eatCookie();
       } else {
         this.setState({ loading: false, accountError: 'error' });
         const error = new Error(res.error);
