@@ -1,7 +1,10 @@
-import Tabs from '../../../universalComponents/Tabs/Desktop';
 import PropTypes from 'prop-types';
+import { Button } from "@mui/material";
+import Tabs from '../../../universalComponents/Tabs/Desktop';
+import cookieFns from '../../../utils/cookieFns';
 
 function DesktopLanding({ pathname }) {
+  const { eatCookie } = cookieFns();
   return (
     <div id="page-container">
       <div id="content-wrap" style={{ padding: '10px 20vw 10px 20vw' }}>
@@ -10,6 +13,13 @@ function DesktopLanding({ pathname }) {
           <Tabs pathname={pathname} />
         </header>
         <div>Welcome</div>
+        <Button
+          variant="contained"
+          onClick={eatCookie}
+          sx={{ marginBottom: '2vh', width: '25vw' }}
+        >
+          Log out
+        </Button>
         <footer id="footer">
           <div style={{ color: '#333333' }} id="footer-content">
             <span style={{ marginRight: '10px' }}>© 2023 Sh4pes Development</span>
