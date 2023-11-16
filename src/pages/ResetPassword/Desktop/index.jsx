@@ -9,6 +9,7 @@ import {
   InputLabel,
   OutlinedInput,
   Tooltip,
+  Alert,
   Divider,
 } from "@mui/material";
 import {
@@ -62,19 +63,18 @@ export default class Register extends Component {
         }
       }
     ).then(res => {
-      if (res.status === 201) {
+      if (res.status === 200) {
         this.setState({ loading: false });
-        window.location.replace('/successfulregistration');
+        window.location.replace('/login');
       } else {
-        this.setState({ loading: false });
+        this.setState({ loading: false, accountError: 'error' });
         const error = new Error(res.error);
         throw error;
       }
     })
     .catch(err => {
       console.error(err);
-      this.setState({ loading: false });
-      alert('Error logging in please try again');
+      this.setState({ loading: false, accountError: 'error' });
     });
   }
 
@@ -92,6 +92,14 @@ export default class Register extends Component {
               <h2 style={{ width: '480px', fontSize: '24px'}}>Reset Password</h2>
             </div>
             <Divider style={{ background: "#e8f0ff", marginBottom: '2vh'}} />
+              { this.state.accountError === 'error' ? 
+                  <Alert severity="error"  sx={{ width: '20vw', marginBottom: '2vh' }}>
+                    An error has occured please try again
+                  </Alert> 
+                :
+                null
+
+              }
             <Box component="form" sx={{  display: 'flex', flexDirection: 'column', paddingX: '4vw', paddingY:'4vh' }} noValidate autoComplete="off">
               <FormControl sx={{ width: '100%', marginBottom: '2vh' }} variant="outlined">
                   <InputLabel htmlFor="outlined-adornment-password" sx={{ color: `${this.state.passwordColor}!important` }}>Password *</InputLabel>
