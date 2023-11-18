@@ -5,22 +5,33 @@ import {
   ListItemText, Divider, Container
 } from "@mui/material";
 import {
-  Inbox, AttachMoney, Logout, Support, Dashboard
+  AttachMoney, Logout, Support, Dashboard
 } from '@mui/icons-material';
+import { useState } from 'react'
 import cookieFns from '../../../utils/cookieFns';
-
+import DashboardPage from './Dashboard';
+import BillingPage from './Billing';
+import SupportPage from './Support';
+import AccountPage from './Account';
 const drawerWidth = 240;
 
-function DesktopLanding() {
+function DesktopLanding() { 
+  const [pageType, setPageType] = useState('dashboard');
   const { eatCookie } = cookieFns();
+  const Component = () => {
+    if (pageType === 'billing') return <BillingPage />;
+    if (pageType === 'dashboard') return <DashboardPage />;
+    if (pageType === 'account') return <AccountPage />;
+    if (pageType === 'support') return <SupportPage />;
+  };
   return (
     <div>
       <Box sx={{ display: 'flex' }}>
         <CssBaseline />
-        <AppBar elevation={0} position="fixed" sx={{ backgroundColor: 'transparent', zIndex: (theme) => theme.zIndex.drawer + 1 }}>
+        <AppBar elevation={0} position="fixed" sx={{ backgroundColor: '#3780FF', zIndex: (theme) => theme.zIndex.drawer + 1 }}>
           <Container maxWidth="100%">
             <Toolbar disableGutters>
-              <img src="/assets/sh4pes_blue-bg_with-logo.png" alt="Sh4pes Banner" style={{ width: '150px', height: 'auto', marginLeft: '20px', marginTop: '30px' }} />
+              <img src="/assets/sh4pes_blue-bg_with-logo.png" alt="Sh4pes Banner" style={{ width: '150px', height: 'auto' }} />
             </Toolbar>
           </Container>
         </AppBar>
@@ -36,7 +47,7 @@ function DesktopLanding() {
           <Box sx={{ overflow: 'auto', paddingX: '15px', marginTop: '50px' }}>
             <List>
               <ListItem key='dashboard' disablePadding>
-                <ListItemButton>
+                <ListItemButton onClick={() => setPageType('dashboard')}>
                   <ListItemIcon>
                     <Dashboard />
                   </ListItemIcon>
@@ -44,7 +55,7 @@ function DesktopLanding() {
                 </ListItemButton>
               </ListItem>
               <ListItem key='billing' disablePadding>
-                <ListItemButton>
+                <ListItemButton onClick={() => setPageType('billing')}>
                   <ListItemIcon>
                     <AttachMoney />
                   </ListItemIcon>
@@ -54,7 +65,7 @@ function DesktopLanding() {
             </List>
             <Divider sx={{ backgroundColor: '#d9d8d8bf', width: '90%', marginX: 'auto' }} />
             <ListItem key='support' disablePadding>
-              <ListItemButton>
+              <ListItemButton onClick={() =>  setPageType('support')}>
                 <ListItemIcon>
                   <Support />
                 </ListItemIcon>
@@ -73,6 +84,9 @@ function DesktopLanding() {
         </Drawer>
         <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
           <Toolbar />
+          {
+            <Component />
+          }
         </Box>
       </Box>
       <div style={{ position: 'absolute', bottom: '0', width: '100%' }}>
