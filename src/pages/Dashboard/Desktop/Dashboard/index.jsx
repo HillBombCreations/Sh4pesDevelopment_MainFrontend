@@ -52,7 +52,7 @@ function DashboardPage({ email }) {
 			.catch((err) => {
 				console.error(err);
 			});
-	});
+	}, []);
 
 	const sendInquiryEmail = () => {
 		setLoading(true);
