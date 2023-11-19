@@ -6,7 +6,7 @@ import {
 } from "@mui/material";
 import {
   AttachMoney, Logout, Support, Dashboard, Menu,
-  ChevronLeft,
+  ChevronLeft, AccountCircle
 } from '@mui/icons-material';
 import { useState } from 'react'
 import cookieFns from '../../../utils/cookieFns';
@@ -16,10 +16,11 @@ import SupportPage from './Support';
 import AccountPage from './Account';
 const drawerWidth = 240;
 
-function DesktopLanding() { 
+function DesktopLanding() {
   const [pageType, setPageType] = useState('dashboard');
   const [open, setOpen] = useState(true);
-  const { eatCookie } = cookieFns();
+  const { eatCookie, serveCookie } = cookieFns();
+  const email = serveCookie('email');
 
   const Component = () => {
     if (pageType === 'billing') return <BillingPage />;
@@ -81,7 +82,7 @@ function DesktopLanding() {
             </IconButton>
           </div>
           <Toolbar />
-          <Box sx={{ flexDirection: 'column', display: 'flex' }}>
+          <Box sx={{ flexDirection: 'column', display: 'flex', height: '80%'}}>
             <List>
               <ListItem key='dashboard' disablePadding sx={{ color: pageType === 'dashboard' ? '#3780FF' : ''  }}>
                 <ListItemButton
@@ -115,38 +116,48 @@ function DesktopLanding() {
               </ListItem>
             </List>
             <Divider sx={{ backgroundColor: '#d9d8d8bf', width: open ? '90%' : '100%' }} />
-            <ListItem key='support' disablePadding sx={{ color: pageType === 'support' ? '#3780FF' : ''  }}>
-              <ListItemButton
-                onClick={() =>  setPageType('support')}
-                sx={{ minHeight: 48 }}
-              >
-                <ListItemIcon>
-                  <Support sx={{ color: pageType === 'support' ? '#3780FF' : '' }}/>
-                </ListItemIcon>
-                {
-                  open ?
-                  <ListItemText primary='Support' /> :
-                  null
-                }
-              </ListItemButton>
-            </ListItem>
-            <ListItem key='logout' disablePadding>
-              <ListItemButton
-                onClick={() => eatCookie}
-                sx={{
-                  minHeight: 48,
-                }}
-              >
-                <ListItemIcon>
-                  <Logout />
-                </ListItemIcon>
-                {
-                  open ?
-                  <ListItemText primary='Log out' /> :
-                  null
-                }
-              </ListItemButton>
-            </ListItem>
+            <List style={{ marginBottom: 'auto' }}>
+              <ListItem key='support' disablePadding sx={{ color: pageType === 'support' ? '#3780FF' : ''  }}>
+                <ListItemButton
+                  onClick={() =>  setPageType('support')}
+                  sx={{ minHeight: 48 }}
+                >
+                  <ListItemIcon>
+                    <Support sx={{ color: pageType === 'support' ? '#3780FF' : '' }}/>
+                  </ListItemIcon>
+                  {
+                    open ?
+                    <ListItemText primary='Support' /> :
+                    null
+                  }
+                </ListItemButton>
+              </ListItem>
+              <ListItem key='logout' disablePadding>
+                <ListItemButton onClick={eatCookie} sx={{ minHeight: 48 }}>
+                  <ListItemIcon>
+                    <Logout />
+                  </ListItemIcon>
+                  {
+                    open ?
+                    <ListItemText primary='Log out' /> :
+                    null
+                  }
+                </ListItemButton>
+              </ListItem>
+            </List>
+            <List style={{ marginBottom: '3vh' }}>
+              <ListItem key='account' disablePadding sx={{ color: pageType === 'account' ? '#3780FF' : '' }}>
+                <ListItemButton
+                  onClick={() =>  setPageType('account')}
+                  sx={{ minHeight: 48, display: open ? 'flex' : null, flexDirection: open ? 'column' : null, alignItems: open ? 'center': null }}
+                >
+                  <ListItemIcon>
+                    <AccountCircle sx={{ color: pageType === 'account' ? '#3780FF' : '', fontSize: open ? '60px' : null }}/>
+                  </ListItemIcon>
+                  { open ? <ListItemText sx={{ marginTop: '10px' }} secondary={email} /> : null }
+                </ListItemButton>
+              </ListItem>
+            </List>
           </Box>
         </Drawer>
         <Box sx={{ height: '100vh' }}>
