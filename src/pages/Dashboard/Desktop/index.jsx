@@ -30,7 +30,7 @@ function DesktopLanding() {
   }, []);
 
   const Component = () => {
-    if (pageType === 'billing') return <BillingPage />;
+    if (pageType === 'billing') return <BillingPage user={user} />;
     if (pageType === 'dashboard') return <DashboardPage />;
     if (pageType === 'account') return <AccountPage user={user} />;
     if (pageType === 'support') return <SupportPage />;
