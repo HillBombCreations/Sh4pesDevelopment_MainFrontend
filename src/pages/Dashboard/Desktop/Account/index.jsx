@@ -61,7 +61,7 @@ export default class AccountPage extends Component {
                               onClick={resetPasswordRequest}
                               sx={{ marginTop: '2vh', bgcolor: '#3780FF' }}
                             >
-                                Forgot Password
+                                Request Password Reset
                             </Button>
                           </>
                           :
