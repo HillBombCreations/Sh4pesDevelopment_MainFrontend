@@ -9,8 +9,10 @@ function cookieFns() {
                 headers: { 'Content-Type': 'application/json' },
                 withCredentials: true,
             }
-        ).then(() => window.location.replace('/'))
-        .catch(err => console.error(err));
+        ).then(() => {
+            document.cookie = 'user=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+            window.location.replace('/');
+        }).catch(err => console.error(err));
     }
     const serveCookie = (cname) => {
         let name = cname + '=';
