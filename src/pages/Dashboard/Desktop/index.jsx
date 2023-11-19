@@ -8,7 +8,7 @@ import {
   AttachMoney, Logout, Support, Dashboard, Menu,
   ChevronLeft, AccountCircle
 } from '@mui/icons-material';
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import cookieFns from '../../../utils/cookieFns';
 import DashboardPage from './Dashboard';
 import BillingPage from './Billing';
@@ -17,10 +17,17 @@ import AccountPage from './Account';
 const drawerWidth = 240;
 
 function DesktopLanding() {
+  const { eatCookie } = cookieFns();
+
   const [pageType, setPageType] = useState('dashboard');
   const [open, setOpen] = useState(true);
-  const { eatCookie, serveCookie } = cookieFns();
-  const email = serveCookie('email');
+  const [user, setUser] = useState(true);
+
+  useEffect(() => {
+    const { serveCookie } = cookieFns();
+    const userObj = serveCookie('user');
+    setUser(JSON.parse(userObj));
+  }, []);
 
   const Component = () => {
     if (pageType === 'billing') return <BillingPage />;
@@ -154,7 +161,8 @@ function DesktopLanding() {
                   <ListItemIcon>
                     <AccountCircle sx={{ color: pageType === 'account' ? '#3780FF' : '', fontSize: open ? '60px' : null }}/>
                   </ListItemIcon>
-                  { open ? <ListItemText sx={{ marginTop: '10px' }} secondary={email} /> : null }
+                  { open && user?.name ? <ListItemText sx={{ marginTop: '10px' }} primary={user?.name} /> : null }
+                  { open ? <ListItemText secondary={user?.email} /> : null }
                 </ListItemButton>
               </ListItem>
             </List>

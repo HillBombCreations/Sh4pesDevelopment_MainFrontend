@@ -49,7 +49,7 @@ export default class Login extends Component {
       }
     ).then(res => {
       if (res.status === 200) {
-        document.cookie = `email=${this.state.email}`;
+        document.cookie = `user=${JSON.stringify(res.data)}`;
         window.location.replace('/');
       } else {
         this.setState({ loading: false });
