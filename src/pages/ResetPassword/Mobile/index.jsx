@@ -55,7 +55,7 @@ export default class Register extends Component {
     event.preventDefault();
     this.setState({ loading: true });
     axios.post(
-      `http://localhost:5000/api/user/resetPassword?email=${this.state.email}&password=${this.state.password}`,
+      `https://api.sh4pesdevelopment.com/api/user/resetPassword?email=${this.state.email}&password=${this.state.password}`,
       {
         headers: {
         'Content-Type': 'application/json'
