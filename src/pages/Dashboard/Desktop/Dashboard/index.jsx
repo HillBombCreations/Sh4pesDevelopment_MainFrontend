@@ -23,15 +23,17 @@ import { socket } from '../../../../socket';
 function DashboardPage({ email }) {
 	const [message, setMessage] = useState('');
 	const [loading, setLoading] = useState(false);
-	const [projects, setProjects] = useState(false);
+	const [projects, setProjects] = useState([]);
 	const [accountError, setAccountError] = useState('');
 	const [open, setOpen] = useState(false);
 
 	useEffect(() => {
 		socket.on('new-project', (newProject) => {
-			const tempProjects = projects;
-			tempProjects.push(newProject);
-			if (newProject.to === email) setProjects(tempProjects);
+			if (newProject.to === email) {
+				const tempProjects = projects;
+				tempProjects.push(newProject);
+				setProjects(tempProjects);
+			}
 		});
 
 		axios
