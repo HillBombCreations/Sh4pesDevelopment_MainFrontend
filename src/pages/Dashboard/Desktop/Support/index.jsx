@@ -7,40 +7,33 @@ import {
   Alert,
 } from "@mui/material";
 import axios from 'axios';
-import { useState } from 'react'
-function SupportPage() {
+import PropTypes from 'prop-types';
+import { useState, memo } from 'react'
+const SupportPage = memo(function SupportPage({ email }) {
   const [message, setMessage] = useState('');
   const [loading, setLoading] = useState(false);
   const [accountError, setAccountError] = useState('');
   const sendSupportEmail = () => {
     setLoading(true);
     axios.post(
-      'http://localhost:5000/api/user/login',
-      JSON.stringify({ email: this.state.email, password: this.state.password}),
-      {
-        headers: {
-        'Content-Type': 'application/json'
-        },
-        withCredentials: true,
-      }
+      'https://api.sh4pesdevelopment.com/api/sendSupportEmail',
+      { to: email, message }
     ).then(res => {
-      if (res.status === 200) {
-        setAccountError('200');
-        document.cookie = `email=${this.state.email}`;
-        window.location.replace('/');
+      if (res.status === 201) {
+        setLoading(false);
+        setAccountError('success');
+        setMessage('');
       } else {
-        this.setState({ loading: false });
-        this.setState({ accountError: res.status.toString()});
+        setLoading(false);
+        setAccountError('error');
         const error = new Error(res.error);
         throw error;
       }
     })
     .catch(err => {
       console.error(err);
-      if (err.response.status === 400 && err.response.data.error === 'Not verified') this.setState({ accountError: '400'});
-      else if (err.response.status === 400 && err.response.data.error !== 'Not verified')  this.setState({ accountError: '402'});
-      else this.setState({ accountError: err.response.status.toString()});
-      this.setState({ loading: false });
+      setAccountError('error');
+      setLoading(false);
     });
   };
     return (
@@ -51,20 +44,15 @@ function SupportPage() {
         <Box component="form" sx={{  display: 'flex', flexDirection: 'row', marginTop: '30vh' }} noValidate autoComplete="off">
           <Card raised sx={{ bgcolor: '#fffff', paddingY: '4vh', paddingX: '2vw', width: '30vw'}}>
             {     
-                accountError === '200' ? 
-                  <Alert severity="warning" sx={{ marginX: '2.6vw', marginBottom: '2vh' }}>
-                    Please verify email to login
+                accountError === 'success' ? 
+                  <Alert severity="success" sx={{ marginX: '2.6vw', marginBottom: '2vh' }}>
+                    Support request successfully sent
                   </Alert> 
                 :
-                accountError === '401' ?
+                accountError === 'error' ?
                 <Alert severity="error" sx={{ marginX: '2.6vw', marginBottom: '2vh' }}>
-                  We cannot find an account associated with that email
+                  There was a problem submiting support, please reachout directly at support@hbcreations.io
                 </Alert>
-                :
-                  accountError === '402' ?
-                <Alert severity="error" sx={{ marginX: '2.6vw', marginBottom: '2vh' }}>
-                  Please enter all fields
-                </Alert> 
                 :
                 null
 
@@ -100,6 +88,9 @@ function SupportPage() {
         </Box>
       </div>
     );
+})
+SupportPage.propTypes = {
+  email: PropTypes.string.isRequired,
 }
 
 

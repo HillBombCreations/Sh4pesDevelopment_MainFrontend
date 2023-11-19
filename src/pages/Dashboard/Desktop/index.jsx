@@ -15,26 +15,16 @@ import BillingPage from './Billing';
 import SupportPage from './Support';
 import AccountPage from './Account';
 const drawerWidth = 240;
-
 function DesktopLanding() {
   const { eatCookie } = cookieFns();
-
   const [pageType, setPageType] = useState('dashboard');
   const [open, setOpen] = useState(true);
   const [user, setUser] = useState(true);
-
   useEffect(() => {
     const { serveCookie } = cookieFns();
     const userObj = serveCookie('user');
     setUser(JSON.parse(userObj));
   }, []);
-
-  const Component = () => {
-    if (pageType === 'billing') return <BillingPage />;
-    if (pageType === 'dashboard') return <DashboardPage />;
-    if (pageType === 'account') return <AccountPage />;
-    if (pageType === 'support') return <SupportPage />;
-  };
 
   return (
     <div>
@@ -171,7 +161,19 @@ function DesktopLanding() {
         <Box sx={{ height: '100vh' }}>
           <Toolbar />
           {
-            <Component />
+            pageType === 'dashboard' ?
+            <DashboardPage />
+            :
+            pageType === 'billing' ?
+            <BillingPage />
+            :
+            pageType === 'support' ?
+            <SupportPage email={user.email} />
+            :
+            pageType === 'account' ?
+            <AccountPage />
+            :
+            null
           }
         </Box>
       </Box>

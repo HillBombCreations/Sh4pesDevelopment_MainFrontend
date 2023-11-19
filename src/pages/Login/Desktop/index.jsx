@@ -37,9 +37,8 @@ export default class Login extends Component {
     console.log(event);
     event.preventDefault();
     this.setState({ loading: true });
-    // https://api.sh4pesdevelopment.com/api/user/login
     axios.post(
-      'http://localhost:5000/api/user/login',
+      'https://api.sh4pesdevelopment.com/api/user/login',
       JSON.stringify({ email: this.state.email, password: this.state.password}),
       {
         headers: {
