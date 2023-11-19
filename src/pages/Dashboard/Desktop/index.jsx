@@ -162,23 +162,25 @@ function DesktopLanding() {
             </List>
           </Box>
         </Drawer>
-        <Box sx={{ height: '100vh' }}>
+        <Box sx={{ height: '100vh', width: '100%' }}>
           <Toolbar />
-          {
-            pageType === 'dashboard' ?
-            <DashboardPage />
-            :
-            pageType === 'billing' ?
-            <BillingPage user={user} />
-            :
-            pageType === 'support' ?
-            <SupportPage email={user.email} />
-            :
-            pageType === 'account' ?
-            <AccountPage user={user} />
-            :
-            null
-          }
+          <div>
+            {
+              pageType === 'dashboard' ?
+              <DashboardPage />
+              :
+              pageType === 'billing' ?
+              <BillingPage user={user} />
+              :
+              pageType === 'support' ?
+              <SupportPage email={user.email} />
+              :
+              pageType === 'account' ?
+              <AccountPage user={user} />
+              :
+              null
+            }
+          </div>
         </Box>
       </Box>
       <div style={{ position: 'absolute', bottom: '0', width: '100%' }}>

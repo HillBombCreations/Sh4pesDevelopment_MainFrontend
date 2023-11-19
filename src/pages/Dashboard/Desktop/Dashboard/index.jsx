@@ -1,7 +1,7 @@
 function DashboardPage() {
     return (
-      <div id="page-container">
-            <div>DASHBOARD</div>
+      <div style={{ display: 'flex', justifyContent: 'center' }}>
+        <div>DASHBOARD</div>
       </div>
     );
 }

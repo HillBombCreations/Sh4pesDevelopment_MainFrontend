@@ -40,7 +40,7 @@ export default class AccountPage extends Component {
             });
         }
         return (
-            <div id="page-container" style={{ display: 'flex', justifyContent: 'center' }}>
+            <div style={{ display: 'flex', justifyContent: 'center' }}>
                 <div>
                     <Card variant='outlined' sx={{ marginTop: '5vh', width: '40vw', backgroundColor: 'rgba(0,0,0,0.1)', padding: '10px 20px 10px 20px' }}>
                         <ListItemText style={{ textAlign: 'left' }} primary={user?.name} />
