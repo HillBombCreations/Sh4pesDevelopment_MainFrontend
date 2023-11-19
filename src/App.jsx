@@ -39,7 +39,7 @@ function App() {
     return (
         <div className="App">
             <Routes>
-                <Route path="/" Component={withAuth(Dashboard, pathname)} />
+                <Route path="/" Component={withAuth(Dashboard, pathname)}  />
                 <Route exact path="/verifyemail/:id" Component={withVerifyEmail(VerifyEmail, pathname)} />
                 <Route path="/resetpassword/:id/:email" Component={withResetPasswordSession(ResetPassword, pathname)} />
                 <Route path="/forgotpassword" element={<ForgotPassword />} />
