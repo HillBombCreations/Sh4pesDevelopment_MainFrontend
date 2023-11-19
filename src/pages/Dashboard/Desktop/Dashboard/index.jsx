@@ -29,7 +29,6 @@ function DashboardPage({ email }) {
 
 	useEffect(() => {
     socket.on('new-project', (newProject) => {
-		console.log(newProject);
       if (newProject.to === email) setProjects([...projects, newProject]);
     });
 
