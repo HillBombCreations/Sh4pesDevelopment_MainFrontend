@@ -3,7 +3,7 @@ import { Routes, Route, useLocation } from "react-router-dom"
 import { useEffect } from "react";
 import './App.css';
 
-// import withAuth from "./universalComponents/wrappers/withAuth";
+import withAuth from "./universalComponents/wrappers/withAuth";
 import withResetPasswordSession from "./universalComponents/wrappers/withResetPasswordSession";
 import withVerifyEmail from "./universalComponents/wrappers/withVerifyEmail";
 
@@ -38,9 +38,8 @@ function App() {
     }, [pathname, hash, key]);
     return (
         <div className="App">
-          {/* Component={withAuth(Dashboard, pathname)} */}
             <Routes>
-                <Route path="/" element={<Dashboard />}  />
+                <Route path="/" Component={withAuth(Dashboard, pathname)}  />
                 <Route exact path="/verifyemail/:id" Component={withVerifyEmail(VerifyEmail, pathname)} />
                 <Route path="/resetpassword/:id/:email" Component={withResetPasswordSession(ResetPassword, pathname)} />
                 <Route path="/forgotpassword" element={<ForgotPassword />} />

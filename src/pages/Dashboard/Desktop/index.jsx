@@ -10,11 +10,14 @@ import {
 } from '@mui/icons-material';
 import { useEffect, useState } from 'react'
 import cookieFns from '../../../utils/cookieFns';
+import FooterComponent from '../../../universalComponents/footer';
 import DashboardPage from './Dashboard';
 import BillingPage from './Billing';
 import SupportPage from './Support';
 import AccountPage from './Account';
+
 const drawerWidth = 240;
+
 function DesktopLanding() {
   const { eatCookie } = cookieFns();
   const [pageType, setPageType] = useState('dashboard');
@@ -166,23 +169,20 @@ function DesktopLanding() {
             <DashboardPage email={user.email} />
             :
             pageType === 'billing' ?
-            <BillingPage />
+            <BillingPage user={user} />
             :
             pageType === 'support' ?
             <SupportPage email={user.email} />
             :
             pageType === 'account' ?
-            <AccountPage />
+            <AccountPage user={user} />
             :
             null
           }
         </Box>
       </Box>
       <div style={{ position: 'absolute', bottom: '0', width: '100%' }}>
-        <div style={{ display: 'flex', justifyContent: 'center' }}>
-          <span style={{ marginRight: '10px', fontSize: '14px', color: '#333333' }}>© 2023 Hill Bomb Creations</span>
-          <span id="contact"><a style={{ color: '#333333' }} href="mailto:hello@hbcreations.io">hello@hbcreations.io</a></span>
-        </div>
+        <FooterComponent />
       </div>
     </div>
   );

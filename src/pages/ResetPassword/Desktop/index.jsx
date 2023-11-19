@@ -19,6 +19,7 @@ import {
 import PropTypes from 'prop-types';
 import axios from 'axios';
 import cookieFns from '../../../utils/cookieFns';
+import FooterComponent from '../../../universalComponents/footer';
 
 export default class Register extends Component {
   static propTypes = {
@@ -196,10 +197,7 @@ export default class Register extends Component {
         </Card>
         </div>
         <div style={{ position: 'absolute', bottom: '0' }}>
-          <div style={{ display: 'flex', justifyContent: 'center' }}>
-            <span style={{ marginRight: '10px', fontSize: '14px', color: '#333333' }}>© 2023 Hill Bomb Creations</span>
-            <span id="contact"><a style={{ color: '#333333' }} href="mailto:hello@hbcreations.io">hello@hbcreations.io</a></span>
-          </div>
+          <FooterComponent />
         </div>
       </div>
     );
