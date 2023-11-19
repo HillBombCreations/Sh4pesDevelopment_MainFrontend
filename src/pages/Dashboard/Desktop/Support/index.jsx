@@ -23,6 +23,9 @@ function SupportPage({ email }) {
         setLoading(false);
         setAccountError('success');
         setMessage('');
+        setTimeout(() => {
+          setAccountError('')
+        }, 5000);
       } else {
         setLoading(false);
         setAccountError('error');
@@ -37,7 +40,7 @@ function SupportPage({ email }) {
     });
   };
     return (
-      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', alignContent: 'center', paddingRight: '15vw', paddingLeft: '15vw'}}>
+      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', alignContent: 'center' }}>
         <h2 style={{ width: '480px', fontSize: '24px', color: '#3780FF', marginBottom: '15vh'}}>Contact Support</h2>
         <div style={{ display: 'flex', flexDirection: 'row'}}>
           <img src="/assets/supportImage.png" alt="Sh4pes" style={{ width: '380px', marginRight: '10vw' }} />

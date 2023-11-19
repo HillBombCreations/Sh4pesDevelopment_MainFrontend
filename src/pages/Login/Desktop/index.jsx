@@ -35,11 +35,11 @@ export default class Login extends Component {
     window.open('/register', '_blank', 'noreferrer');
   };
   onSubmit = (event) => {
-    console.log(event);
     event.preventDefault();
     this.setState({ loading: true });
     axios.post(
-      'https://api.sh4pesdevelopment.com/api/user/login',
+      // https://api.sh4pesdevelopment.com/api/user/login
+      'http://localhost:5000/api/user/login',
       JSON.stringify({ email: this.state.email, password: this.state.password}),
       {
         headers: {

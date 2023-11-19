@@ -23,7 +23,6 @@ function DesktopLanding() {
   const [pageType, setPageType] = useState('dashboard');
   const [open, setOpen] = useState(true);
   const [user, setUser] = useState(null);
-
   useEffect(() => {
     const { serveCookie } = cookieFns();
     const userObj = serveCookie('user');
@@ -45,7 +44,6 @@ function DesktopLanding() {
         }}>
             <Toolbar>
               <IconButton
-                color="#fffff"
                 aria-label="open drawer"
                 onClick={() => setOpen(true)}
                 edge="start"
@@ -54,7 +52,7 @@ function DesktopLanding() {
                   ...(open && { display: 'none' }),
                 }}
               >
-                <Menu />
+                <Menu sx={{ color: '#FFFFFF'}} />
               </IconButton>
               <img src="/assets/sh4pes_blue-bg_with-logo.png" alt="Sh4pes Banner" style={{ width: '150px', height: 'auto' }} />
             </Toolbar>
@@ -79,7 +77,7 @@ function DesktopLanding() {
         >
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-end', overflowX: 'hidden'}}>
             <IconButton onClick={() => setOpen(false)} sx={{ marginTop: '1vh', marginRight: '1vw', marginBottom: 0, backgroundColor: '#3780FF' }}>
-              <ChevronLeft />
+              <ChevronLeft sx={{ color: '#FFFFFF'}} />
             </IconButton>
           </div>
           <Toolbar />
@@ -162,23 +160,25 @@ function DesktopLanding() {
             </List>
           </Box>
         </Drawer>
-        <Box sx={{ height: '100vh' }}>
+        <Box sx={{ height: '100vh', width: '100%' }}>
           <Toolbar />
-          {
-            pageType === 'dashboard' ?
-            <DashboardPage email={user.email} />
-            :
-            pageType === 'billing' ?
-            <BillingPage user={user} />
-            :
-            pageType === 'support' ?
-            <SupportPage email={user.email} />
-            :
-            pageType === 'account' ?
-            <AccountPage user={user} />
-            :
-            null
-          }
+          <div>
+            {
+              pageType === 'dashboard' ?
+              <DashboardPage email={user?.email || ''} />
+              :
+              pageType === 'billing' ?
+              <BillingPage user={user} />
+              :
+              pageType === 'support' ?
+              <SupportPage email={user?.email} />
+              :
+              pageType === 'account' ?
+              <AccountPage user={user} />
+              :
+              null
+            }
+          </div>
         </Box>
       </Box>
       <div style={{ position: 'absolute', bottom: '0', width: '100%' }}>
