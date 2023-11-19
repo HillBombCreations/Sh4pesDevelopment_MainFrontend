@@ -21,7 +21,7 @@ function DesktopLanding() {
 
   const [pageType, setPageType] = useState('dashboard');
   const [open, setOpen] = useState(true);
-  const [user, setUser] = useState(true);
+  const [user, setUser] = useState(null);
 
   useEffect(() => {
     const { serveCookie } = cookieFns();
@@ -32,7 +32,7 @@ function DesktopLanding() {
   const Component = () => {
     if (pageType === 'billing') return <BillingPage />;
     if (pageType === 'dashboard') return <DashboardPage />;
-    if (pageType === 'account') return <AccountPage />;
+    if (pageType === 'account') return <AccountPage user={user} />;
     if (pageType === 'support') return <SupportPage />;
   };
 
@@ -164,9 +164,7 @@ function DesktopLanding() {
         </Drawer>
         <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
           <Toolbar />
-          {
-            <Component />
-          }
+          <Component />
         </Box>
       </Box>
       <div style={{ position: 'absolute', bottom: '0', width: '100%' }}>

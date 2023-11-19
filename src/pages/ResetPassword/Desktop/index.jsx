@@ -54,7 +54,6 @@ export default class Register extends Component {
     }
   };
   onSubmit = (event) => {
-    console.log(event);
     event.preventDefault();
     this.setState({ loading: true });
     axios.post(
