@@ -34,7 +34,7 @@ function DashboardPage({ email }) {
     });
 
 		axios
-			.get('http://localhost:5000/api/user/projects', {
+			.get('https://api.sh4pesdevelopment.com/api/user/projects', {
 				withCredentials: true,
 			})
 			.then((res) => {
@@ -54,7 +54,7 @@ function DashboardPage({ email }) {
 	const sendInquiryEmail = () => {
 		setLoading(true);
 		axios
-			.post('http://localhost:5000/api/sendInquiryEmail', { email, message })
+			.post('https://api.sh4pesdevelopment.com/api/sendInquiryEmail', { email, message })
 			.then((res) => {
 				if (res.status === 201) {
 					setLoading(false);

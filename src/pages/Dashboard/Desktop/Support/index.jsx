@@ -16,7 +16,7 @@ function SupportPage({ email }) {
   const sendSupportEmail = () => {
     setLoading(true);
     axios.post(
-      'http://localhost:5000/api/sendSupportEmail',
+      'https://api.sh4pesdevelopment.com/api/sendSupportEmail',
       { to: email, message }
     ).then(res => {
       if (res.status === 201) {
