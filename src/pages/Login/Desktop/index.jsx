@@ -38,7 +38,7 @@ export default class Login extends Component {
     event.preventDefault();
     this.setState({ loading: true });
     axios.post(
-      'https://api.sh4pesdevelopment.com/api/user/login',
+      'http://localhost:5000/api/user/login',
       JSON.stringify({ email: this.state.email, password: this.state.password}),
       {
         headers: {
@@ -48,7 +48,7 @@ export default class Login extends Component {
       }
     ).then(res => {
       if (res.status === 200) {
-        document.cookie = `user=${JSON.stringify(res.data)}`;
+        document.cookie = `user=${JSON.stringify(res.data)}; path=/`;
         window.location.replace('/');
       } else {
         this.setState({ loading: false });

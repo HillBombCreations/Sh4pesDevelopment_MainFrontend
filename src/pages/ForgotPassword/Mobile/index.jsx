@@ -43,7 +43,7 @@ export default class ForgotPassword extends Component {
   onSubmit = (event) => {
     event.preventDefault();
     this.setState({ loading: true });
-    fetch(`https://api.sh4pesdevelopment.com/api/user/forgotPassword?email=${this.state.email}`, {
+    fetch(`http://localhost:5000/api/user/forgotPassword?email=${this.state.email}`, {
       method: 'POST'
     })
     .then(res => {

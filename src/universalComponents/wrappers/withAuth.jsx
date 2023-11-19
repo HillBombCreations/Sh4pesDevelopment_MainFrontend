@@ -13,7 +13,7 @@ export default function withAuth(ComponentToProtect, pathname) {
     }
     componentDidMount() {
       axios.get(
-        'https://api.sh4pesdevelopment.com/api/user/checkToken',
+        'http://localhost:5000/api/user/checkToken',
         {
           withCredentials: true,
         }
