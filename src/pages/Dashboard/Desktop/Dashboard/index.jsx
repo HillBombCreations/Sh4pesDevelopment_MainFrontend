@@ -52,7 +52,7 @@ function DashboardPage({ email }) {
   };
   useEffect(() => {
     // https://api.sh4pesdevelopment.com
-    axios.get('http://localhost:5000/api/user/projects',
+    axios.get('https://api.sh4pesdevelopment.com/api/user/projects',
     {
       withCredentials: true,
     }
