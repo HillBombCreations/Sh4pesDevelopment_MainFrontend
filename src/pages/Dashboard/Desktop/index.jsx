@@ -15,10 +15,8 @@ import BillingPage from './Billing';
 import SupportPage from './Support';
 import AccountPage from './Account';
 const drawerWidth = 240;
-
 function DesktopLanding() {
   const { eatCookie } = cookieFns();
-
   const [pageType, setPageType] = useState('dashboard');
   const [open, setOpen] = useState(true);
   const [user, setUser] = useState(null);
@@ -29,16 +27,9 @@ function DesktopLanding() {
     setUser(JSON.parse(userObj));
   }, []);
 
-  const Component = () => {
-    if (pageType === 'billing') return <BillingPage user={user} />;
-    if (pageType === 'dashboard') return <DashboardPage />;
-    if (pageType === 'account') return <AccountPage user={user} />;
-    if (pageType === 'support') return <SupportPage />;
-  };
-
   return (
     <div>
-      <Box sx={{ display: 'flex' }}>
+      <Box sx={{ display: 'flex', backgroundColor: '#e8f0ff', width: '100vw' }}>
         <CssBaseline />
         <AppBar
         elevation={0}
@@ -69,12 +60,18 @@ function DesktopLanding() {
           variant="permanent"
           open={open}
           sx={{
-            width: open ? drawerWidth : '4vw',
+            width: open ? drawerWidth : '3.5vw',
             flexShrink: 0,
             whiteSpace: 'nowrap',
             boxSizing: 'border-box',
             overflowX: 'hidden',
-            [`& .MuiDrawer-paper`]: { width: open ? drawerWidth : '4vw', boxSizing: 'border-box', whiteSpace: 'nowrap', overflowX: 'hidden' },
+            [`& .MuiDrawer-paper`]: {
+                width: open ? drawerWidth : '3.5vw',
+                boxSizing: 'border-box',
+                whiteSpace: 'nowrap',
+                overflowX: 'hidden',
+                backgroundColor: '#e8f0ff'
+              },
           }}
         >
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-end', overflowX: 'hidden'}}>
@@ -83,7 +80,7 @@ function DesktopLanding() {
             </IconButton>
           </div>
           <Toolbar />
-          <Box sx={{ flexDirection: 'column', display: 'flex', alignContent: 'center', justifyContent: 'center', height: '85%' }}>
+          <Box sx={{ flexDirection: 'column', display: 'flex', height: '80%'}}>
             <List>
               <ListItem key='dashboard' disablePadding sx={{ color: pageType === 'dashboard' ? '#3780FF' : ''  }}>
                 <ListItemButton
@@ -162,9 +159,23 @@ function DesktopLanding() {
             </List>
           </Box>
         </Drawer>
-        <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
+        <Box sx={{ height: '100vh' }}>
           <Toolbar />
-          <Component />
+          {
+            pageType === 'dashboard' ?
+            <DashboardPage />
+            :
+            pageType === 'billing' ?
+            <BillingPage user={user} />
+            :
+            pageType === 'support' ?
+            <SupportPage email={user.email} />
+            :
+            pageType === 'account' ?
+            <AccountPage user={user} />
+            :
+            null
+          }
         </Box>
       </Box>
       <div style={{ position: 'absolute', bottom: '0', width: '100%' }}>
