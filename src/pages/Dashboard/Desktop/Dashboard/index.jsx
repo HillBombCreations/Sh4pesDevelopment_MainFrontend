@@ -50,7 +50,7 @@ function DashboardPage({ email }) {
 			.catch((err) => {
 				console.error(err);
 			});
-	}, []);
+	}, [email, projects]);
 
 	const sendInquiryEmail = () => {
 		setLoading(true);
