@@ -8,8 +8,8 @@ import {
 } from "@mui/material";
 import axios from 'axios';
 import PropTypes from 'prop-types';
-import { useState, memo } from 'react'
-const SupportPage = memo(function SupportPage({ email }) {
+import { useState } from 'react'
+function SupportPage({ email }) {
   const [message, setMessage] = useState('');
   const [loading, setLoading] = useState(false);
   const [accountError, setAccountError] = useState('');
@@ -51,7 +51,7 @@ const SupportPage = memo(function SupportPage({ email }) {
                   :
                   accountError === 'error' ?
                   <Alert severity="error" sx={{ marginX: '2.6vw', marginBottom: '2vh' }}>
-                    There was a problem submiting support, please reachout directly at support@hbcreations.io
+                    There was a problem submiting support, please reachout directly to support@hbcreations.io
                   </Alert>
                   :
                   null
@@ -90,7 +90,7 @@ const SupportPage = memo(function SupportPage({ email }) {
         </div>
       </div>
     );
-})
+}
 SupportPage.propTypes = {
   email: PropTypes.string.isRequired,
 }

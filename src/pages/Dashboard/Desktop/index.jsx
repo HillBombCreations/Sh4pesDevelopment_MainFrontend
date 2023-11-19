@@ -163,7 +163,7 @@ function DesktopLanding() {
           <Toolbar />
           {
             pageType === 'dashboard' ?
-            <DashboardPage />
+            <DashboardPage email={user.email} />
             :
             pageType === 'billing' ?
             <BillingPage />
