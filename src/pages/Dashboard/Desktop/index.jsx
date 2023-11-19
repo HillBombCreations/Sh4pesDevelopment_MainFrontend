@@ -164,19 +164,17 @@ function DesktopLanding() {
           <Toolbar />
           <div>
             {
-              pageType === 'dashboard' ?
-              <DashboardPage email={user?.email || ''} />
-              :
-              pageType === 'billing' ?
-              <BillingPage user={user} />
-              :
-              pageType === 'support' ?
-              <SupportPage email={user?.email} />
-              :
-              pageType === 'account' ?
-              <AccountPage user={user} />
-              :
-              null
+              user ?
+                pageType === 'dashboard' ?
+                <DashboardPage email={user?.email || ''} />
+                : pageType === 'billing' ?
+                <BillingPage user={user} />
+                : pageType === 'support' ?
+                <SupportPage email={user?.email} />
+                : pageType === 'account' ?
+                <AccountPage user={user} />
+                : null
+              : null
             }
           </div>
         </Box>

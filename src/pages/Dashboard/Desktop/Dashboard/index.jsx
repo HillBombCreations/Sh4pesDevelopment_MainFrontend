@@ -28,9 +28,11 @@ function DashboardPage({ email }) {
 	const [open, setOpen] = useState(false);
 
 	useEffect(() => {
-    socket.on('new-project', (newProject) => {
-      if (newProject.to === email) setProjects([...projects, newProject]);
-    });
+		socket.on('new-project', (newProject) => {
+			const tempProjects = projects;
+			tempProjects.push(newProject);
+			if (newProject.to === email) setProjects(tempProjects);
+		});
 
 		axios
 			.get('https://api.sh4pesdevelopment.com/api/user/projects', {
@@ -53,7 +55,10 @@ function DashboardPage({ email }) {
 	const sendInquiryEmail = () => {
 		setLoading(true);
 		axios
-			.post('https://api.sh4pesdevelopment.com/api/sendInquiryEmail', { email, message })
+			.post('https://api.sh4pesdevelopment.com/api/sendInquiryEmail', {
+				email,
+				message,
+			})
 			.then((res) => {
 				if (res.status === 201) {
 					setLoading(false);
