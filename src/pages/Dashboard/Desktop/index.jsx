@@ -19,7 +19,8 @@ function DesktopLanding() {
   const { eatCookie } = cookieFns();
   const [pageType, setPageType] = useState('dashboard');
   const [open, setOpen] = useState(true);
-  const [user, setUser] = useState(true);
+  const [user, setUser] = useState(null);
+
   useEffect(() => {
     const { serveCookie } = cookieFns();
     const userObj = serveCookie('user');
