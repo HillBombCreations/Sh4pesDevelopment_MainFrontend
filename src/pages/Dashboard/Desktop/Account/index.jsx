@@ -22,7 +22,7 @@ export default class AccountPage extends Component {
         const resetPasswordRequest = (event) => {
             event.preventDefault();
             this.setState({ loading: true });
-            fetch(`https://api.sh4pesdevelopment.com/api/user/forgotPassword?email=${user.email}`, {
+            fetch(`http://localhost:5000/api/user/forgotPassword?email=${user.email}`, {
               method: 'POST'
             })
             .then(res => {

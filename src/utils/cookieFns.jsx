@@ -4,7 +4,7 @@ function cookieFns() {
     const eatCookie = () => {
         // mmm yum yum yum
         axios.post(
-            'https://api.sh4pesdevelopment.com/api/user/logout', {},
+            'http://localhost:5000/api/user/logout', {},
             {
                 headers: { 'Content-Type': 'application/json' },
                 withCredentials: true,

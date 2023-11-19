@@ -22,7 +22,7 @@ export default function withPasswordResetSession(ComponentToProtect, path) {
       const email = splitPath[splitPath.length - diff];
       const id = splitPath[splitPath.length - diff - 1];
       axios.post(
-        `https://api.sh4pesdevelopment.com/api/user/checkResetPasswordSession?id=${id}&email=${email}`,
+        `http://localhost:5000/api/user/checkResetPasswordSession?id=${id}&email=${email}`,
         {
           withCredentials: true,
         }
