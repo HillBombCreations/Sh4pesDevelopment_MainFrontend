@@ -185,9 +185,9 @@ export default class Login extends Component {
                           edge="end"
                         >
                           {this.state.showPassword ? (
-                            <VisibilityOff />
-                          ) : (
                             <Visibility />
+                          ) : (
+                            <VisibilityOff />
                           )}
                         </IconButton>
                       </InputAdornment>
