@@ -40,44 +40,45 @@ export default class AccountPage extends Component {
             });
         }
         return (
-            <div style={{ display: 'flex', justifyContent: 'center' }}>
+            <div style={{ display: 'flex', justifyContent: 'center', marginTop: '5vh' }}>
                 <div>
-                    <Card variant='outlined' sx={{ marginTop: '5vh', width: '40vw', backgroundColor: 'rgba(0,0,0,0.1)', padding: '10px 20px 10px 20px' }}>
-                        <ListItemText style={{ textAlign: 'left' }} primary={user?.name} />
-                        <ListItemText style={{ textAlign: 'left' }} secondary='Account Holder' />
-                    </Card>
-                    <Card variant='outlined' sx={{ marginTop: '2vh', width: '40vw', padding: '10px 20px 10px 20px' }}>
-                        <ListItemText style={{ textAlign: 'left' }} primary='Contact Details' />
-                        <ListItemText style={{ marginTop: '2vh', textAlign: 'left' }} primary={user.email} />
-                        <ListItemText style={{ textAlign: 'left' }} secondary='Email' />
-                    </Card>
-                    <Card variant='outlined' sx={{ marginTop: '2vh', width: '40vw', padding: '10px 20px 10px 20px', textAlign: 'left' }}>
-                        <ListItemText style={{ textAlign: 'left' }} primary='Password' />
-                        {
-                          !this.state.loading ?
-                          <>
-                            <Button
-                              variant="contained"
-                              onClick={resetPasswordRequest}
-                              sx={{ marginTop: '2vh', bgcolor: '#3780FF' }}
-                            >
-                                Request Password Reset
-                            </Button>
-                          </>
-                          :
-                          <>
-                              <LinearProgress sx={{ color: '#3780FF' }} />
-                          </>
-                        }
-                        { this.state.alertMessage ? 
-                          <Alert severity={this.state.alertCode === 201 ? 'success' : 'error'} sx={{ marginTop: '15px' }}>
-                            { this.state.alertMessage }
-                          </Alert> 
-                          : null
-                        }
-                    </Card>
+                  <h2 style={{ fontSize: '24px', color: '#3780FF' }}>Account</h2>
+                  <Card variant='outlined' sx={{ marginTop: '5vh', width: '80vw', backgroundColor: 'rgba(0,0,0,0.1)', padding: '10px 20px 10px 20px' }}>
+                      <ListItemText style={{ textAlign: 'left' }} primary={user?.name} />
+                      <ListItemText style={{ textAlign: 'left' }} secondary='Account Holder' />
+                  </Card>
+                  <Card variant='outlined' sx={{ marginTop: '2vh', width: '80vw', padding: '10px 20px 10px 20px' }}>
+                      <ListItemText style={{ textAlign: 'left' }} primary='Contact Details' />
+                      <ListItemText style={{ marginTop: '2vh', textAlign: 'left' }} primary={user.email || '--'} />
+                      <ListItemText style={{ textAlign: 'left' }} secondary='Email' />
+                  </Card>
+                  <Card variant='outlined' sx={{ marginTop: '2vh', width: '80vw', padding: '10px 20px 10px 20px', textAlign: 'left' }}>
+                      <ListItemText style={{ textAlign: 'left' }} primary='Password' />
+                      {
+                        !this.state.loading ?
+                        <>
+                          <Button
+                            variant="contained"
+                            onClick={resetPasswordRequest}
+                            sx={{ marginTop: '2vh', bgcolor: '#3780FF' }}
+                          >
+                              Request Password Reset
+                          </Button>
+                        </>
+                        :
+                        <>
+                            <LinearProgress sx={{ color: '#3780FF' }} />
+                        </>
+                      }
+                      { this.state.alertMessage ? 
+                        <Alert severity={this.state.alertCode === 201 ? 'success' : 'error'} sx={{ marginTop: '15px' }}>
+                          { this.state.alertMessage }
+                        </Alert> 
+                        : null
+                      }
+                  </Card>
                 </div>
             </div>
         );
     }
-};
+}

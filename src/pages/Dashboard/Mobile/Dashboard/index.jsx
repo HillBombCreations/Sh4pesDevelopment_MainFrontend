@@ -90,6 +90,7 @@ function DashboardPage({ email }) {
 				display: 'flex',
 				flexDirection: 'column',
 				alignItems: 'center',
+				marginTop: '5vh'
 			}}
 		>
 			<h2
@@ -102,7 +103,7 @@ function DashboardPage({ email }) {
 			</h2>
 			<Box
 				component="form"
-				sx={{ display: 'flex', flexDirection: 'row' }}
+				sx={{ display: 'flex', flexDirection: 'row', marginTop: '5vh' }}
 				noValidate
 				autoComplete="off"
 			>
