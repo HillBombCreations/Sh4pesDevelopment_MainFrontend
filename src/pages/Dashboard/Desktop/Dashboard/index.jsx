@@ -37,7 +37,7 @@ function DashboardPage({ email }) {
 		});
 
 		axios
-			.get('https://api.sh4pesdevelopment.com/api/user/projects', {
+			.get('https://sh4pesdevelopment.com/api/user/projects', {
 				withCredentials: true,
 			})
 			.then((res) => {
@@ -57,7 +57,7 @@ function DashboardPage({ email }) {
 	const sendInquiryEmail = () => {
 		setLoading(true);
 		axios
-			.post('https://api.sh4pesdevelopment.com/api/sendInquiryEmail', {
+			.post('https://sh4pesdevelopment.com/api/sendInquiryEmail', {
 				email,
 				message,
 			})

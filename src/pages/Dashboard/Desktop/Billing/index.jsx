@@ -16,7 +16,7 @@ export default class Billing extends Component {
     componentDidMount() {
         const { user } = this.props;
         axios.get(
-            `https://api.sh4pesdevelopment.com/api/user/createCustomerPortalSession?sID=${user.sID}`,
+            `https://sh4pesdevelopment.com/api/user/createCustomerPortalSession?sID=${user.sID}`,
             { withCredentials: true }
         ).then(res => {
             if (res.status === 200) {

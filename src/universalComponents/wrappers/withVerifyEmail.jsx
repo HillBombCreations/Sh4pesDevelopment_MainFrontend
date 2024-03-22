@@ -19,7 +19,7 @@ export default function withVerifyEmail(ComponentToProtect, path) {
       const splitPath = path.split('/');
       const diff = splitPath[splitPath.length - 1] ? 1 : 2;
       const id = splitPath[splitPath.length - diff];
-      axios.post(`https://api.sh4pesdevelopment.com/api/user/verifyEmail?id=${id}`).then(res => {
+      axios.post(`https://sh4pesdevelopment.com/api/user/verifyEmail?id=${id}`).then(res => {
         if (res.status === 200) {
           this.setState({ loading: false });
         } else {
