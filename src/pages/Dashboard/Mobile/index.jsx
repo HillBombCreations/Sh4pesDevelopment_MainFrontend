@@ -98,7 +98,7 @@ function DesktopLanding() {
               </IconButton>
           </div>
           <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-            <img src="/assets/sh4pes.png" alt="Sh4pes" style={{ width: '300px' }} />
+            <img src="/assets/hill.png" alt="hill" style={{ width: '300px' }} />
             <MenuItem sx={{ color: pageType === 'dashboard' ? 'rgba(255, 255, 255, 1)': 'rgba(255, 255, 255, .7)', marginTop: '5vh', marginBottom: '10%', fontSize: '24px'}} onClick={() => goToPage('dashboard')}>
               <ListItemIcon>
                   <Dashboard sx={{ color: pageType === 'dashboard' ? 'rgba(255, 255, 255, 1)': 'rgba(255, 255, 255, .7)' }} />

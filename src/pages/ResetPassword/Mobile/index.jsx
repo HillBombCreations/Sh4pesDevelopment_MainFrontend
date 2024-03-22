@@ -89,7 +89,7 @@ export default class Register extends Component {
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginTop: '12vh'}}>
           <Card raised sx={{ bgcolor: '#fffff', width: '90vw' }}>
             <div style={{ paddingLeft: '2vw', paddingRight: '2vw', paddingTop: '2vh' }}>
-              <img src="/assets/sh4pes_blue-bg_with-logo.png" alt="Sh4pes" style={{ width: '300px' }} />
+              <img src="/assets/hillbombcreations-logo.png" alt="hb logo" style={{ width: '300px' }} />
               <h2 style={{ width: '300px', fontSize: '24px'}}>Reset Password</h2>
             </div>
             { this.state.accountError === 'error' ? 

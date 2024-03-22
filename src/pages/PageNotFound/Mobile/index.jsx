@@ -16,7 +16,7 @@ export default class Login extends Component {
           <p style={{ width: '280px', fontSize: '20px', marginBottom: '0' }}>Yikes!</p>
           <p style={{ width: '280px', fontSize: '20px'}}>Looks like you wandered away a little too far, make your way back by clicking the button</p>
           <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', marginRight: '4vw'}}>
-            <img src="/assets/duck.png" alt="Sh4pes" style={{ width: '210px' }} />
+            <img src="/assets/duck.png" alt="duck" style={{ width: '210px' }} />
             <Button
                   variant="contained"
                   onClick={() => window.location.replace('/')}

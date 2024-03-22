@@ -92,7 +92,7 @@ export default class Register extends Component {
         <div style={{ display: 'flex', flexDirection: 'column', marginTop: '8vh', alignItems: 'center'}}>
           <Card raised sx={{ bgcolor: '#fffff'}}>
             <div style={{ paddingLeft: '2vw', paddingRight: '2vw', paddingTop: '2vh' }}>
-              <img src="/assets/sh4pes_blue-bg_with-logo.png" alt="Sh4pes" style={{ width: '480px' }} />
+              <img src="/assets/hillbombcreations-logo.png" alt="hb logo" style={{ width: '480px' }} />
               <h2 style={{ width: '480px', fontSize: '24px'}}>Reset Password</h2>
             </div>
             <Divider style={{ background: "#e8f0ff", marginBottom: '2vh'}} />

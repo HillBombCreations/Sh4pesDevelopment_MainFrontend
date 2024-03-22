@@ -54,7 +54,7 @@ function DesktopLanding() {
               >
                 <Menu sx={{ color: '#FFFFFF'}} />
               </IconButton>
-              <img src="/assets/sh4pes_blue-bg_with-logo.png" alt="Sh4pes Banner" style={{ width: '150px', height: 'auto' }} />
+              <img src="/assets/hillbombcreations-logo.png" alt="HB Banner" style={{ width: '150px', height: 'auto' }} />
             </Toolbar>
         </AppBar>
         <Drawer

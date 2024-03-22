@@ -94,7 +94,7 @@ export default class Register extends Component {
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
           <Card raised sx={{ bgcolor: '#fffff', width: '90vw' }}>
             <div style={{ paddingLeft: '2vw', paddingRight: '2vw', paddingTop: '2vh' }}>
-              <img src="/assets/sh4pes_blue-bg_with-logo.png" alt="Sh4pes" style={{ width: '300px' }} />
+              <img src="/assets/hillbombcreations-logo.png" alt="hb logo" style={{ width: '300px' }} />
               <h2 style={{ width: '300px', fontSize: '24px'}}>Create Account</h2>
             </div>
             <Box component="form" sx={{  display: 'flex', flexDirection: 'column', width: '80vw', marginLeft: '5vw' }} noValidate autoComplete="off">

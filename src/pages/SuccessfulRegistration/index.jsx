@@ -23,7 +23,7 @@ export default class SuccessfulRegistrationPage extends Component {
       <div id="page-container" style={{ display: 'flex', justifyContent: 'center', alignItems: 'start', marginTop: '5vh' }}>
         <Card raised sx={{ bgcolor: '#fffff', paddingTop: '25px', paddingBottom: '25px' }}>
           <div style={{ display: 'flex', flexDirection: 'column', width: this.state.mobile ? '85vw' : '30vw', alignItems: 'center', paddingRight: '15px', paddingLeft: '15px' }}>
-            <img src="/assets/sh4pes_blue-bg_with-logo.png" alt="Sh4pes" style={{ width: this.state.mobile ? '75vw' : '20vw', marginBottom: '15px' }} />
+            <img src="/assets/hillbombcreations-logo.png" alt="hb logo" style={{ width: this.state.mobile ? '75vw' : '20vw', marginBottom: '15px' }} />
             <strong>You need to verify your email!</strong>
             <span>Congratulations on successfully registering your account with us! We're thrilled to have you on board.</span>
             <span style={{ marginTop: '15px' }}>

@@ -101,13 +101,13 @@ export default class Login extends Component {
             }}
           >
             <img
-              src="/assets/sh4pes_blue-bg_with-logo.png"
-              alt="Sh4pes"
-              style={{ width: "480px" }}
+              src="/assets/hillbombcreations-logo.png"
+              alt="hill bomb creations"
+              style={{ width: "380px" }}
             />
             <p style={{ width: "480px", fontSize: "24px" }}>
               Empower your online presence and streamline finances effortlessly
-              on Sh4pes Development
+              on Hill Bomb Creations
             </p>
           </div>
           <Box

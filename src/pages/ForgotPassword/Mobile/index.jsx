@@ -67,7 +67,7 @@ export default class ForgotPassword extends Component {
       <div style={{ display: 'flex', justifyContent: 'center' }}>
         <Card raised sx={{ bgcolor: '#fffff', marginTop: '5vh' }}>
           <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', paddingLeft: '2vw', paddingRight: '2vw', paddingTop: '2vh' }}>
-            <img src="/assets/sh4pes_blue-bg_with-logo.png" alt="Sh4pes" style={{ width: this.state.mobile ? '75vw' : '20vw' }} />
+            <img src="/assets/hillbombcreations-logo.png" alt="hb logo" style={{ width: this.state.mobile ? '75vw' : '20vw' }} />
             <h2 style={{ width: this.state.mobile ? '75vw' : '20vw', fontSize: '24px'}}>Request Password Change</h2>
           </div>
           <Box component="form" sx={{  display: 'flex', flexDirection: 'column', paddingX: '4vw', paddingY:'4vh', alignItems: 'center' }} noValidate autoComplete="off">

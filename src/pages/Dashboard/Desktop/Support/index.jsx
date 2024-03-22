@@ -43,7 +43,7 @@ function SupportPage({ email }) {
       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', alignContent: 'center' }}>
         <h2 style={{ width: '480px', fontSize: '24px', color: '#3780FF', marginBottom: '15vh'}}>Contact Support</h2>
         <div style={{ display: 'flex', flexDirection: 'row'}}>
-          <img src="/assets/supportImage.png" alt="Sh4pes" style={{ width: '380px', marginRight: '10vw' }} />
+          <img src="/assets/supportImage.png" alt="support" style={{ width: '380px', marginRight: '10vw' }} />
           <Box component="form" sx={{  display: 'flex', flexDirection: 'row' }} noValidate autoComplete="off">
             <Card raised sx={{ bgcolor: '#fffff', paddingY: '4vh', paddingX: '2vw', width: '30vw'}}>
               {     
