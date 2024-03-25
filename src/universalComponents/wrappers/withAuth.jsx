@@ -14,7 +14,7 @@ export default function withAuth(ComponentToProtect, pathname) {
     componentDidMount() {
       console.log('DOCUMENT', document.cookie);
       axios.get(
-        'https://api.hbcreations.io//api/user/checkToken',
+        'https://api.hbcreations.io/api/user/checkToken',
         {
           withCredentials: true,
         }

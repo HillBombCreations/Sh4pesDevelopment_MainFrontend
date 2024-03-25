@@ -36,7 +36,7 @@ export default class Login extends Component {
     this.setState({ loading: true });
     axios
       .post(
-        "https://api.hbcreations.io//api/user/login",
+        "https://api.hbcreations.io/api/user/login",
         JSON.stringify({
           email: this.state.email,
           password: this.state.password,
