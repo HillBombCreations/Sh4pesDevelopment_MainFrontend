@@ -54,7 +54,7 @@ function DesktopLanding() {
               >
                 <Menu sx={{ color: '#FFFFFF'}} />
               </IconButton>
-              <img src="/assets/hillbombcreations-logo.png" alt="HB Banner" style={{ width: '150px', height: 'auto' }} />
+              <img src="/assets/hillbombcreations-logo.png" alt="HB Banner" style={{ width: '120px', height: 'auto' }} />
             </Toolbar>
         </AppBar>
         <Drawer

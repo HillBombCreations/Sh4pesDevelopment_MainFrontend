@@ -22,7 +22,7 @@ export default class AccountPage extends Component {
         const resetPasswordRequest = (event) => {
             event.preventDefault();
             this.setState({ loading: true });
-            fetch(`https://sh4pesdevelopment.com/api/user/forgotPassword?email=${user.email}`, {
+            fetch(`https://api.hbcreations.io/api/user/forgotPassword?email=${user.email}`, {
               method: 'POST'
             })
             .then(res => {
@@ -80,4 +80,4 @@ export default class AccountPage extends Component {
             </div>
         );
     }
-};
+}

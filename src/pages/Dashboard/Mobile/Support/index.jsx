@@ -16,7 +16,7 @@ function SupportPage({ email }) {
   const sendSupportEmail = () => {
     setLoading(true);
     axios.post(
-      'https://sh4pesdevelopment.com/api/sendSupportEmail',
+      'https://api.hbcreations.io/api/sendSupportEmail',
       { to: email, message }
     ).then(res => {
       if (res.status === 201) {
