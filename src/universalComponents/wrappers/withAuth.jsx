@@ -19,17 +19,16 @@ export default function withAuth(ComponentToProtect, pathname) {
           withCredentials: true,
         }
       ).then(res => {
-          if (res.status === 200) {
-            this.setState({ loading: false });
-          } else {
-            const error = new Error(res.error);
-            throw error;
-          }
-        })
-        .catch(err => {
-          console.error(err);
-          this.setState({ loading: false, redirectBool: true });
-        });
+        if (res.status === 200) {
+          this.setState({ loading: false });
+        } else {
+          const error = new Error(res.error);
+          throw error;
+        }
+      }).catch(err => {
+        console.error(err);
+        this.setState({ loading: false, redirectBool: true });
+      });
     }
     render() {
       const { loading, redirectBool } = this.state;

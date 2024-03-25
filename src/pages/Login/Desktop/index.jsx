@@ -48,7 +48,7 @@ export default class Login extends Component {
       )
       .then((res) => {
         if (res.status === 200) {
-          // document.cookie = `user=${JSON.stringify(res.data)}; path=/`;
+          document.cookie = `user=${JSON.stringify(res.data)}; path=/`;
           window.location.replace("/");
         } else {
           this.setState({ loading: false });
