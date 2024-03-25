@@ -48,9 +48,8 @@ export default class Login extends Component {
       )
       .then((res) => {
         if (res.status === 200) {
-          console.log(document.cookie);
           // document.cookie = `user=${JSON.stringify(res.data)}; path=/`;
-          // window.location.replace("/");
+          window.location.replace("/");
         } else {
           this.setState({ loading: false });
           this.setState({ accountError: res.status.toString() });
