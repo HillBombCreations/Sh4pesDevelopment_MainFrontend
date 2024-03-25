@@ -18,7 +18,7 @@ import {
 	ListItemText,
 } from '@mui/material';
 import { Add } from '@mui/icons-material';
-import { socket } from '../../../../socket';
+// import { socket } from '../../../../socket';
 
 function DashboardPage({ email }) {
 	const [message, setMessage] = useState('');
@@ -28,13 +28,13 @@ function DashboardPage({ email }) {
 	const [open, setOpen] = useState(false);
 
 	useEffect(() => {
-		socket.on('new-project', (newProject) => {
-			if (newProject.to === email) {
-				const tempProjects = projects;
-				tempProjects.push(newProject);
-				setProjects(tempProjects);
-			}
-		});
+		// socket.on('new-project', (newProject) => {
+		// 	if (newProject.to === email) {
+		// 		const tempProjects = projects;
+		// 		tempProjects.push(newProject);
+		// 		setProjects(tempProjects);
+		// 	}
+		// });
 
 		axios
 			.get('https://sh4pesdevelopment.com/api/user/projects', {

@@ -12,6 +12,7 @@ export default function withAuth(ComponentToProtect, pathname) {
       };
     }
     componentDidMount() {
+
       axios.get(
         'https://sh4pesdevelopment.com/api/user/checkToken',
         {
@@ -36,7 +37,7 @@ export default function withAuth(ComponentToProtect, pathname) {
         return null;
       }
       if (redirectBool) {
-        window.location.replace('/login');
+        // window.location.replace('/login');
         return <CircularProgress />;
       }
       return <ComponentToProtect pathname={pathname} />;
