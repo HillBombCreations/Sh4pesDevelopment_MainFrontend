@@ -37,7 +37,7 @@ function DesktopLanding() {
         elevation={0}
         position="fixed"
         sx={{
-          backgroundColor: '#3780FF',
+          backgroundColor: '#9cbeff',
           zIndex: (theme) => theme.zIndex.drawer + 1,
           marginLeft: open ? drawerWidth : '',
           width: open ? `calc(100% - ${drawerWidth}px)` : '100%',
@@ -166,7 +166,7 @@ function DesktopLanding() {
             {
               user ?
                 pageType === 'dashboard' ?
-                <DashboardPage email={user?.email || ''} />
+                <DashboardPage user={user} />
                 : pageType === 'billing' ?
                 <BillingPage user={user} />
                 : pageType === 'support' ?

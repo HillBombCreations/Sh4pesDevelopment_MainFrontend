@@ -69,7 +69,7 @@ export default class Register extends Component {
         this.setState({ loading: false });
         const { eatCookie } = cookieFns();
         eatCookie();
-        window.location.replace('/login');
+        // UPDATE: window.location.replace('/login');
       } else {
         this.setState({ loading: false, accountError: 'error' });
         const error = new Error(res.error);
