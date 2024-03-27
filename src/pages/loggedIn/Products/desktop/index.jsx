@@ -22,6 +22,7 @@ export default class DesktopProductsPage extends Component {
         search: null,
         filters: [],
         sortVal: 'map decending',
+        done: false
       };
     }
 
@@ -52,7 +53,7 @@ export default class DesktopProductsPage extends Component {
           });
           this.setState({ products: uniqueArray, skip: Number(theSkipVal) + 1, loading: false });
         } else if (Number(theSkipVal) > 0) {
-          this.setState({ loading: false });
+          this.setState({ loading: false, done: true });
         } else {
           this.setState({ products: [], skip: 0, loading: false });
         }
@@ -61,7 +62,7 @@ export default class DesktopProductsPage extends Component {
       }
     }
     handleScroll = event => {
-      if (event.target.scrollHeight - event.target.scrollTop < 800 && !this.state.loading) {
+      if (event.target.scrollHeight - event.target.scrollTop < 800 && !this.state.loading && !this.state.done) {
         this.setState({ loading: true });
         this.grabProducts();
       }
@@ -137,9 +138,10 @@ export default class DesktopProductsPage extends Component {
                   display: 'flex',
                   justifyContent: 'center',
                   marginLeft: 'auto',
-                  marginRight: 'auto'
+                  marginRight: 'auto',
+                  marginTop: '15px'
                 }}>
-                  <CircularProgress size={75} />
+                  <CircularProgress size={25} />
                 </div>
                 : null
               }
