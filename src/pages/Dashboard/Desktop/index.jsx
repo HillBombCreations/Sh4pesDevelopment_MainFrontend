@@ -5,7 +5,7 @@ import {
   ListItemText, Divider, IconButton
 } from "@mui/material";
 import {
-  AttachMoney, Logout, Support, Dashboard, Menu,
+  AttachMoney, Logout, Support, Dashboard, Menu, Inventory,
   ChevronLeft, AccountCircle
 } from '@mui/icons-material';
 import { useEffect, useState } from 'react'
@@ -15,6 +15,7 @@ import DashboardPage from './Dashboard';
 import BillingPage from './Billing';
 import SupportPage from './Support';
 import AccountPage from './Account';
+import ProductsPage from './Products';
 
 const drawerWidth = 240;
 
@@ -98,6 +99,21 @@ function DesktopLanding() {
                   }
                 </ListItemButton>
               </ListItem>
+              <ListItem key='products' disablePadding sx={{ color: pageType === 'products' ? '#3780FF' : ''  }}>
+                <ListItemButton
+                  onClick={() => setPageType('products')}
+                  sx={{ minHeight: 48 }}
+                >
+                  <ListItemIcon>
+                    <Inventory sx={{ color: pageType === 'products' ? '#3780FF' : '' }}/>
+                  </ListItemIcon>
+                  {
+                    open ?
+                    <ListItemText primary='Products' /> :
+                    null
+                  }
+                </ListItemButton>
+              </ListItem>
               <ListItem key='billing' disablePadding sx={{ color: pageType === 'billing' ? '#3780FF' : ''  }}>
                 <ListItemButton
                   onClick={() => setPageType('billing')}
@@ -167,6 +183,8 @@ function DesktopLanding() {
               user ?
                 pageType === 'dashboard' ?
                 <DashboardPage user={user} />
+                : pageType === 'products' ?
+                <ProductsPage user={user} />
                 : pageType === 'billing' ?
                 <BillingPage user={user} />
                 : pageType === 'support' ?

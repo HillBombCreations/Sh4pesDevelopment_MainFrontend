@@ -4,7 +4,7 @@ import {
   Dialog, Slide, Paper, Box
 } from "@mui/material";
 import {
-  AttachMoney, Logout, Support, Dashboard,
+  AttachMoney, Logout, Support, Dashboard, Inventory,
   AccountCircle, Menu as MenuIcon, Close
 } from '@mui/icons-material';
 import { useEffect, useState, forwardRef } from 'react'
@@ -14,6 +14,7 @@ import DashboardPage from './Dashboard';
 import BillingPage from './Billing';
 import SupportPage from './Support';
 import AccountPage from './Account';
+import ProductsPage from './Products';
 
 const Transition = forwardRef(function Transition(props, ref) {
   return <Slide direction="left" ref={ref} {...props} />;
@@ -67,6 +68,8 @@ function DesktopLanding() {
             user ?
               pageType === 'dashboard' ?
               <DashboardPage email={user?.email || ''} />
+              : pageType === 'products' ?
+              <ProductsPage user={user} />
               : pageType === 'billing' ?
               <BillingPage user={user} />
               : pageType === 'support' ?
@@ -104,6 +107,12 @@ function DesktopLanding() {
                   <Dashboard sx={{ color: pageType === 'dashboard' ? 'rgba(255, 255, 255, 1)': 'rgba(255, 255, 255, .7)' }} />
               </ListItemIcon>
               Dashboard
+            </MenuItem>
+            <MenuItem sx={{ color: pageType === 'products' ? 'rgba(255, 255, 255, 1)': 'rgba(255, 255, 255, .7)', fontSize: '24px', marginBottom: '10%' }} onClick={() => goToPage('products')}>
+              <ListItemIcon>
+                  <Inventory sx={{ color: pageType === 'products' ? 'rgba(255, 255, 255, 1)': 'rgba(255, 255, 255, .7)' }} />
+              </ListItemIcon>
+              Products
             </MenuItem>
             <MenuItem sx={{ color: pageType === 'billing' ? 'rgba(255, 255, 255, 1)': 'rgba(255, 255, 255, .7)', fontSize: '24px', marginBottom: '10%' }} onClick={() => goToPage('billing')}>
               <ListItemIcon>
