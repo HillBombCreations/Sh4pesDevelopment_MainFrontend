@@ -41,7 +41,7 @@ export default class Products extends Component {
           })
         }
 
-        const { data } = await axios.get(url);
+        const { data } = await axios.get(url, { withCredentials: true });
         if (data.length > 0) {
           const uniqueArray = [...this.state.products, ...data].filter((value, index) => {
             const _value = JSON.stringify(value);
@@ -55,14 +55,6 @@ export default class Products extends Component {
         } else {
           this.setState({ products: [], skip: 0, loading: false });
         }
-      } catch (err) {
-        console.log(err);
-      }
-    }
-    grabDeals = async (token) => {
-      try {
-        const { data } = await axios.get(`${HB_API_URL}/deals?limit=100&skip=0&sort=dealID&direction=ascending&user=${token}`);
-        this.setState({ dealIDs: data });
       } catch (err) {
         console.log(err);
       }

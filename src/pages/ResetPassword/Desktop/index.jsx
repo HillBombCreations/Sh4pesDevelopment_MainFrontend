@@ -59,11 +59,7 @@ export default class Register extends Component {
     this.setState({ loading: true });
     axios.post(
       `https://api.hbcreations.io/api/user/resetPassword?email=${this.state.email}&password=${this.state.password}`,
-      {
-        headers: {
-        'Content-Type': 'application/json'
-        }
-      }
+      { headers: { 'Content-Type': 'application/json' } }
     ).then(res => {
       if (res.status === 200) {
         this.setState({ loading: false });
