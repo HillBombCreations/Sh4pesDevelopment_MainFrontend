@@ -1,6 +1,8 @@
 import { Component } from 'react';
 import { CircularProgress } from '@mui/material';
 import axios from 'axios';
+import MobileView from './navigation/mobile';
+import DesktopView from './navigation/desktop';
 
 export default function withAuth(ComponentToProtect, pathname) {
   return class WithAuth extends Component {
@@ -9,10 +11,12 @@ export default function withAuth(ComponentToProtect, pathname) {
       this.state = {
         loading: true,
         redirectBool: false,
+        width: window.innerWidth
       };
     }
+
     componentDidMount() {
-      console.log('DOCUMENT', document.cookie);
+      // check users token, and send that boi to login if they aint got it like that
       axios.get(
         'https://api.hbcreations.io/api/user/checkToken',
         {
@@ -27,19 +31,31 @@ export default function withAuth(ComponentToProtect, pathname) {
         }
       }).catch(err => {
         console.error(err);
-        this.setState({ loading: false, redirectBool: true });
+        // UPDATE: this.setState({ loading: false, redirectBool: true });
+        this.setState({ loading: false });
       });
+
+      // set event listener so we can resize responsively
+      window.addEventListener('resize', () => this.setState({ width: window.innerWidth }));
+      return () => {
+        window.removeEventListener('resize', () => this.setState({ width: window.innerWidth }));
+      }
     }
+
     render() {
       const { loading, redirectBool } = this.state;
       if (loading) {
         return null;
       }
       if (redirectBool) {
-        window.location.replace('/login');
+        // UPDATE: window.location.replace('/login');
         return <CircularProgress />;
       }
-      return <ComponentToProtect pathname={pathname} />;
+
+      return this.state.width <= 768 ? 
+        <MobileView pathname={pathname} ChildComponent={ComponentToProtect} />
+        :
+        <DesktopView pathname={pathname} ChildComponent={ComponentToProtect} />
     }
   }
 }
