@@ -79,10 +79,10 @@ function DesktopLanding({ pathname, ChildComponent }) {
           <Toolbar />
           <Box sx={{ flexDirection: 'column', display: 'flex', height: '80%'}}>
             <List>
-              <ListItem key='dashboard' disablePadding sx={{ color: pathname === '/' ? '#3780FF' : ''  }}>
+              <ListItem key='dashboard' disablePadding sx={{ color: pathname.includes('/') ? '#3780FF' : ''  }}>
                 <ListItemButton onClick={() => window.location = '/'} sx={{ minHeight: 48 }}>
                   <ListItemIcon>
-                    <Dashboard sx={{ color: pathname === '/' ? '#3780FF' : '' }}/>
+                    <Dashboard sx={{ color: pathname.includes('/') ? '#3780FF' : '' }}/>
                   </ListItemIcon>
                   {
                     open ?
@@ -91,10 +91,10 @@ function DesktopLanding({ pathname, ChildComponent }) {
                   }
                 </ListItemButton>
               </ListItem>
-              <ListItem key='products' disablePadding sx={{ color: pathname === '/products' ? '#3780FF' : ''  }}>
+              <ListItem key='products' disablePadding sx={{ color: pathname.includes('/products') ? '#3780FF' : ''  }}>
                 <ListItemButton onClick={() => window.location = '/products'} sx={{ minHeight: 48 }}>
                   <ListItemIcon>
-                    <Inventory sx={{ color: pathname === '/products' ? '#3780FF' : '' }}/>
+                    <Inventory sx={{ color: pathname.includes('/products') ? '#3780FF' : '' }}/>
                   </ListItemIcon>
                   {
                     open ?
@@ -103,13 +103,13 @@ function DesktopLanding({ pathname, ChildComponent }) {
                   }
                 </ListItemButton>
               </ListItem>
-              <ListItem key='billing' disablePadding sx={{ color: pathname === '/billing' ? '#3780FF' : ''  }}>
+              <ListItem key='billing' disablePadding sx={{ color: pathname.includes('/billing') ? '#3780FF' : ''  }}>
                 <ListItemButton
                   onClick={() => window.location = '/billing'}
                   sx={{ minHeight: 48 }}
                 >
                   <ListItemIcon>
-                    <AttachMoney sx={{ color: pathname === '/billing' ? '#3780FF' : '' }}/>
+                    <AttachMoney sx={{ color: pathname.includes('/billing') ? '#3780FF' : '' }}/>
                   </ListItemIcon>
                   {
                     open ?
@@ -121,10 +121,10 @@ function DesktopLanding({ pathname, ChildComponent }) {
             </List>
             <Divider sx={{ backgroundColor: '#d9d8d8bf', width: open ? '90%' : '100%' }} />
             <List style={{ marginBottom: 'auto' }}>
-              <ListItem key='support' disablePadding sx={{ color: pathname === '/support' ? '#3780FF' : ''  }}>
+              <ListItem key='support' disablePadding sx={{ color: pathname.includes('/support') ? '#3780FF' : ''  }}>
                 <ListItemButton onClick={() =>  window.location = '/support'} sx={{ minHeight: 48 }}>
                   <ListItemIcon>
-                    <Support sx={{ color: pathname === '/support' ? '#3780FF' : '' }}/>
+                    <Support sx={{ color: pathname.includes('/support') ? '#3780FF' : '' }}/>
                   </ListItemIcon>
                   {
                     open ?
@@ -147,13 +147,13 @@ function DesktopLanding({ pathname, ChildComponent }) {
               </ListItem>
             </List>
             <List style={{ marginBottom: '3vh' }}>
-              <ListItem key='account' disablePadding sx={{ color: pathname === '/account' ? '#3780FF' : '' }}>
+              <ListItem key='account' disablePadding sx={{ color: pathname.includes('/account') ? '#3780FF' : '' }}>
                 <ListItemButton
                   onClick={() =>  window.location = '/account'}
                   sx={{ minHeight: 48, display: open ? 'flex' : null, flexDirection: open ? 'column' : null, alignItems: open ? 'center': null }}
                 >
                   <ListItemIcon>
-                    <AccountCircle sx={{ color: pathname === '/account' ? '#3780FF' : '', fontSize: open ? '60px' : null }}/>
+                    <AccountCircle sx={{ color: pathname.includes('/account') ? '#3780FF' : '', fontSize: open ? '60px' : null }}/>
                   </ListItemIcon>
                   { open && user?.name ? <ListItemText sx={{ marginTop: '10px' }} primary={user?.name} /> : null }
                   { open ? <ListItemText secondary={user?.email} /> : null }

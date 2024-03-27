@@ -83,27 +83,27 @@ function DesktopLanding({ pathname, ChildComponent }) {
           </div>
           <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
             <img src="/assets/hill.png" alt="hill" style={{ width: '300px' }} />
-            <MenuItem sx={{ color: pathname === '/' ? 'rgba(255, 255, 255, 1)': 'rgba(255, 255, 255, .7)', marginTop: '5vh', marginBottom: '10%', fontSize: '24px'}} onClick={() => goToPage('/')}>
+            <MenuItem sx={{ color: pathname.includes('/') ? 'rgba(255, 255, 255, 1)': 'rgba(255, 255, 255, .7)', marginTop: '5vh', marginBottom: '10%', fontSize: '24px'}} onClick={() => goToPage('/')}>
               <ListItemIcon>
-                  <Dashboard sx={{ color: pathname === '/' ? 'rgba(255, 255, 255, 1)': 'rgba(255, 255, 255, .7)' }} />
+                  <Dashboard sx={{ color: pathname.includes('/') ? 'rgba(255, 255, 255, 1)': 'rgba(255, 255, 255, .7)' }} />
               </ListItemIcon>
               Dashboard
             </MenuItem>
-            <MenuItem sx={{ color: pathname === '/products' ? 'rgba(255, 255, 255, 1)': 'rgba(255, 255, 255, .7)', fontSize: '24px', marginBottom: '10%' }} onClick={() => goToPage('/products')}>
+            <MenuItem sx={{ color: pathname.includes('/products') ? 'rgba(255, 255, 255, 1)': 'rgba(255, 255, 255, .7)', fontSize: '24px', marginBottom: '10%' }} onClick={() => goToPage('/products')}>
               <ListItemIcon>
-                  <Inventory sx={{ color: pathname === '/products' ? 'rgba(255, 255, 255, 1)': 'rgba(255, 255, 255, .7)' }} />
+                  <Inventory sx={{ color: pathname.includes('/products') ? 'rgba(255, 255, 255, 1)': 'rgba(255, 255, 255, .7)' }} />
               </ListItemIcon>
               Products
             </MenuItem>
-            <MenuItem sx={{ color: pathname === '/billing' ? 'rgba(255, 255, 255, 1)': 'rgba(255, 255, 255, .7)', fontSize: '24px', marginBottom: '10%' }} onClick={() => goToPage('/billing')}>
+            <MenuItem sx={{ color: pathname.includes('/billing') ? 'rgba(255, 255, 255, 1)': 'rgba(255, 255, 255, .7)', fontSize: '24px', marginBottom: '10%' }} onClick={() => goToPage('/billing')}>
               <ListItemIcon>
-                  <AttachMoney sx={{ color: pathname === '/billing' ? 'rgba(255, 255, 255, 1)': 'rgba(255, 255, 255, .7)' }} />
+                  <AttachMoney sx={{ color: pathname.includes('/billing') ? 'rgba(255, 255, 255, 1)': 'rgba(255, 255, 255, .7)' }} />
               </ListItemIcon>
               Billing
             </MenuItem>
-            <MenuItem sx={{ color: pathname === '/support' ? 'rgba(255, 255, 255, 1)': 'rgba(255, 255, 255, .7)', fontSize: '24px', marginBottom: '10%' }} onClick={() => goToPage('/support')}>
+            <MenuItem sx={{ color: pathname.includes('/support') ? 'rgba(255, 255, 255, 1)': 'rgba(255, 255, 255, .7)', fontSize: '24px', marginBottom: '10%' }} onClick={() => goToPage('/support')}>
               <ListItemIcon>
-                  <Support sx={{ color: pathname === '/support' ? 'rgba(255, 255, 255, 1)': 'rgba(255, 255, 255, .7)' }} />
+                  <Support sx={{ color: pathname.includes('/support') ? 'rgba(255, 255, 255, 1)': 'rgba(255, 255, 255, .7)' }} />
               </ListItemIcon>
               Support
             </MenuItem>
@@ -113,9 +113,9 @@ function DesktopLanding({ pathname, ChildComponent }) {
               </ListItemIcon>
               Logout
             </MenuItem>
-            <MenuItem sx={{ color: pathname === '/account' ? 'rgba(255, 255, 255, 1)': 'rgba(255, 255, 255, .7)', fontSize: '24px', marginBottom: '10%' }} onClick={() => goToPage('/account')}>
+            <MenuItem sx={{ color: pathname.includes('/account') ? 'rgba(255, 255, 255, 1)': 'rgba(255, 255, 255, .7)', fontSize: '24px', marginBottom: '10%' }} onClick={() => goToPage('/account')}>
               <ListItemIcon>
-                  <AccountCircle sx={{ color: pathname === '/account' ? 'rgba(255, 255, 255, 1)': 'rgba(255, 255, 255, .7)' }} />
+                  <AccountCircle sx={{ color: pathname.includes('/account') ? 'rgba(255, 255, 255, 1)': 'rgba(255, 255, 255, .7)' }} />
               </ListItemIcon>
               { user?.name }
             </MenuItem>
