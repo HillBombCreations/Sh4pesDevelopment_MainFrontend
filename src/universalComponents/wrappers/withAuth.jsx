@@ -27,8 +27,7 @@ export default function withAuth(ComponentToProtect, pathname) {
         }
       }).catch(err => {
         console.error(err);
-        // UPDATE: this.setState({ loading: false, redirectBool: true });
-        this.setState({ loading: false });
+        this.setState({ loading: false, redirectBool: true });
       });
     }
     render() {
@@ -37,7 +36,7 @@ export default function withAuth(ComponentToProtect, pathname) {
         return null;
       }
       if (redirectBool) {
-        // UPDATE: window.location.replace('/login');
+        window.location.replace('/login');
         return <CircularProgress />;
       }
       return <ComponentToProtect pathname={pathname} />;
