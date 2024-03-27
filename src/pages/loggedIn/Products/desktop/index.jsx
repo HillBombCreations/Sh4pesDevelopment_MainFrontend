@@ -101,18 +101,7 @@ export default class DesktopProductsPage extends Component {
             </ImageListItem>
             <ImageList id='imageList' cols={1} gap={0} sx={{ '::-webkit-scrollbar': { display: 'none' }, height: '95%' }}>
               {
-                this.state.loading && !this.state.products.length ?
-                <div style={{
-                  color: '#90EE90',
-                  alignItems: 'center',
-                  display: 'flex',
-                  justifyContent: 'center',
-                  marginLeft: 'auto',
-                  marginRight: 'auto'
-                }}>
-                  <CircularProgress size={75} color='inherit' />
-                </div>
-                : this.state.products.length ?
+                this.state.products.length ?
                 this.state.products.map((product, pIdx) => (
                   <div key={`${product.productName}${pIdx}`}>
                     <ImageListItem style={{ padding: '10px', borderBottom: '1px solid rgba(0,0,0,0.1)' }}>
@@ -140,6 +129,19 @@ export default class DesktopProductsPage extends Component {
                 }}>
                   no products to display
                 </div>
+              }
+              {
+                this.state.loading ?
+                <div style={{
+                  alignItems: 'center',
+                  display: 'flex',
+                  justifyContent: 'center',
+                  marginLeft: 'auto',
+                  marginRight: 'auto'
+                }}>
+                  <CircularProgress size={75} />
+                </div>
+                : null
               }
             </ImageList>
           </div>
