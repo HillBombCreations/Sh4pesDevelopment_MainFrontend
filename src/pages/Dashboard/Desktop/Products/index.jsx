@@ -8,6 +8,7 @@ const HB_API_URL = 'https://api.hbcreations.io/api/tenant';
 export default class Products extends Component {
     static propTypes = {
       user: PropTypes.any,
+      contentWidth: PropTypes.any,
     };
     constructor() {
       super();
@@ -83,39 +84,65 @@ export default class Products extends Component {
     }
 
     render() {
+      const { contentWidth } = this.props;
       return (
-        <div>
-          <ImageList id='imageList' cols={1} gap={10} sx={{
-            marginTop: 0, '::-webkit-scrollbar': { display: 'none' }, width: (this.state.loading && !this.state.products.length) || '58vw', height: '95%'
-          }}>
-            {
-              this.state.loading && !this.state.products.length ?
-              <div style={{
-                color: '#90EE90',
-                alignItems: 'center',
-                display: 'flex',
-                justifyContent: 'center',
-                marginLeft: 'auto',
-                marginRight: 'auto'
-              }}>
-                <CircularProgress size={75} color='inherit' />
+        <div style={{ flex: '1 1 auto', display: 'flex', flexDirection: 'row', justifyContent: 'space-around', marginTop: '2vh', height: '85vh' }}>
+          <div style={{ marginLeft: '25px', marginRight: '25px' }}>
+            <ImageListItem style={{ display: 'flex', flexGrow: 1, padding: '10px', borderBottom: '1px solid rgba(0,0,0,0.1)' }}>
+              <div style={{ width: contentWidth, display: 'flex', textAlign: 'left' }}>
+                <div style={{ width: '30%' }}>Product Name</div>
+                <div style={{ width: '10%' }}>MAP</div>
+                <div style={{ width: '15%' }}>SKU</div>
+                <div style={{ width: '10%' }}>Brand</div>
+                <div style={{ width: '15%' }}>Product Type</div>
+                <div style={{ width: '10%' }}>Manage Stock</div>
+                <div style={{ width: '10%' }}>Status</div>
               </div>
-              : this.state.products.length ?
-              this.state.products.map((product, pIdx) => (
-                <div key={`${product.productName}${pIdx}`}>
-                  <ImageListItem style={{ border: '1px solid rgba(0,0,0,0.1)', padding: '10px', borderRadius: '10px' }}>
-                    <span>{JSON.stringify(product)}</span>
-                  </ImageListItem>
+            </ImageListItem>
+            <ImageList id='imageList' cols={1} gap={0} sx={{ '::-webkit-scrollbar': { display: 'none' }, height: '95%' }}>
+              {
+                this.state.loading && !this.state.products.length ?
+                <div style={{
+                  color: '#90EE90',
+                  alignItems: 'center',
+                  display: 'flex',
+                  justifyContent: 'center',
+                  marginLeft: 'auto',
+                  marginRight: 'auto'
+                }}>
+                  <CircularProgress size={75} color='inherit' />
                 </div>
-              ))
-              :
-              <div style={{ marginLeft: 'auto', marginRight: 'auto' }}>
-                <span style={{ fontSize: '14pt' }}>
-                  No Products to Display
-                </span>
-              </div>
-            }
-          </ImageList>
+                : this.state.products.length ?
+                this.state.products.map((product, pIdx) => (
+                  <div key={`${product.productName}${pIdx}`}>
+                    <ImageListItem style={{ display: 'flex', flexGrow: 1, padding: '10px', borderBottom: '1px solid rgba(0,0,0,0.1)' }}>
+                      <div style={{ width: contentWidth, display: 'flex', textAlign: 'left', fontSize: '11pt' }}>
+                        <div style={{ width: '30%' }}>{product.productName}</div>
+                        <div style={{ width: '10%' }}>${product.map}</div>
+                        <div style={{ width: '15%' }}>{product.sku || '-'}</div>
+                        <div style={{ width: '10%' }}>{product.brand || '-'}</div>
+                        <div style={{ width: '15%' }}>{product.productType || '-'}</div>
+                        <div style={{ width: '10%' }}>{product.manageStock ? 'Yes' : 'No'}</div>
+                        <div style={{ width: '10%' }}>{product.productStatus || '-'}</div>
+                      </div>
+                    </ImageListItem>
+                  </div>
+                ))
+                :
+                <div style={{
+                  marginLeft: 'auto',
+                  marginRight: 'auto',
+                  color: 'rgba(0,0,0,0.4)',
+                  alignItems: 'center',
+                  display: 'flex',
+                  justifyContent: 'center',
+                  fontSize: '12pt'
+                }}>
+                  no products to display
+                </div>
+              }
+            </ImageList>
+          </div>
         </div>
       );
     }

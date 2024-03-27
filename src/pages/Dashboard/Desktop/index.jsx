@@ -184,7 +184,7 @@ function DesktopLanding() {
                 pageType === 'dashboard' ?
                 <DashboardPage user={user} />
                 : pageType === 'products' ?
-                <ProductsPage user={user} />
+                <ProductsPage user={user} contentWidth={open ? '80vw' : '90vw'} />
                 : pageType === 'billing' ?
                 <BillingPage user={user} />
                 : pageType === 'support' ?
