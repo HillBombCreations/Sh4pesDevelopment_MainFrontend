@@ -63,7 +63,7 @@ export default class DesktopProductsPage extends Component {
     }
     handleScroll = event => {
       if (event.target.scrollHeight - event.target.scrollTop < 800 && !this.state.loading && !this.state.done) {
-        this.setState({ loading: true });
+        this.setState({ loading: true, done: false });
         this.grabProducts();
       }
     }
@@ -72,7 +72,7 @@ export default class DesktopProductsPage extends Component {
       const urlSearchParams = new URLSearchParams(window.location.search);
       const params = Object.fromEntries(urlSearchParams.entries());
       if (params.search) {
-        this.setState({ loading: true, search: params.search });
+        this.setState({ loading: true, search: params.search, done: false });
         this.grabProducts(null, params.search);
       } else this.grabProducts();
 
