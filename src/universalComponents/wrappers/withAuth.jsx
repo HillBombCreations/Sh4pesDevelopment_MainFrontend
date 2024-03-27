@@ -31,7 +31,8 @@ export default function withAuth(ComponentToProtect, pathname) {
         }
       }).catch(err => {
         console.error(err);
-        this.setState({ loading: false, redirectBool: true });
+        // UPDATE: this.setState({ loading: false, redirectBool: true });
+        this.setState({ loading: false });
       });
 
       // set event listener so we can resize responsively
@@ -47,7 +48,7 @@ export default function withAuth(ComponentToProtect, pathname) {
         return null;
       }
       if (redirectBool) {
-        window.location.replace('/login');
+        // UPDATE: window.location.replace('/login');
         return <CircularProgress />;
       }
 

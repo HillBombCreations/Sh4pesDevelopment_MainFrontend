@@ -2,7 +2,6 @@ import { Component } from 'react';
 import PropTypes from 'prop-types';
 import { CircularProgress, ImageList, ImageListItem } from '@mui/material';
 import axios from 'axios';
-import productsJson from '../products.json';
 
 const HB_API_URL = 'https://api.hbcreations.io/api/tenant';
 
@@ -19,7 +18,7 @@ export default class DesktopProductsPage extends Component {
         sort: 'map',
         direction: 'decending',
         loading: false,
-        products: productsJson,
+        products: [],
         search: null,
         filters: [],
         sortVal: 'map decending',
