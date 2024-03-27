@@ -83,9 +83,9 @@ function DesktopLanding({ pathname, ChildComponent }) {
           </div>
           <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
             <img src="/assets/hill.png" alt="hill" style={{ width: '300px' }} />
-            <MenuItem sx={{ color: pathname.includes('/') ? 'rgba(255, 255, 255, 1)': 'rgba(255, 255, 255, .7)', marginTop: '5vh', marginBottom: '10%', fontSize: '24px'}} onClick={() => goToPage('/')}>
+            <MenuItem sx={{ color: pathname === '/' ? 'rgba(255, 255, 255, 1)': 'rgba(255, 255, 255, .7)', marginTop: '5vh', marginBottom: '10%', fontSize: '24px'}} onClick={() => goToPage('/')}>
               <ListItemIcon>
-                  <Dashboard sx={{ color: pathname.includes('/') ? 'rgba(255, 255, 255, 1)': 'rgba(255, 255, 255, .7)' }} />
+                  <Dashboard sx={{ color: pathname === '/' ? 'rgba(255, 255, 255, 1)': 'rgba(255, 255, 255, .7)' }} />
               </ListItemIcon>
               Dashboard
             </MenuItem>

@@ -79,10 +79,10 @@ function DesktopLanding({ pathname, ChildComponent }) {
           <Toolbar />
           <Box sx={{ flexDirection: 'column', display: 'flex', height: '80%'}}>
             <List>
-              <ListItem key='dashboard' disablePadding sx={{ color: pathname.includes('/') ? '#3780FF' : ''  }}>
+              <ListItem key='dashboard' disablePadding sx={{ color: pathname === '/' ? '#3780FF' : ''  }}>
                 <ListItemButton onClick={() => window.location = '/'} sx={{ minHeight: 48 }}>
                   <ListItemIcon>
-                    <Dashboard sx={{ color: pathname.includes('/') ? '#3780FF' : '' }}/>
+                    <Dashboard sx={{ color: pathname === '/' ? '#3780FF' : '' }}/>
                   </ListItemIcon>
                   {
                     open ?
