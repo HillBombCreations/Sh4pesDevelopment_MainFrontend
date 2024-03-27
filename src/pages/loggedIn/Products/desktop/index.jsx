@@ -55,7 +55,7 @@ export default class DesktopProductsPage extends Component {
         } else if (Number(theSkipVal) > 0) {
           this.setState({ loading: false, done: true });
         } else {
-          this.setState({ products: [], skip: 0, loading: false });
+          this.setState({ products: [], skip: 0, loading: false, done: true });
         }
       } catch (err) {
         console.log(err);
