@@ -2,7 +2,6 @@ import { Routes, Route, useLocation } from 'react-router-dom'
 import './App.css';
 
 import withAuth from './universalComponents/wrappers/withAuth';
-import withResetPasswordSession from './universalComponents/wrappers/withResetPasswordSession';
 import withVerifyEmail from './universalComponents/wrappers/withVerifyEmail';
 
 // authed pages
@@ -34,7 +33,7 @@ function App() {
                 <Route path="/support" Component={withAuth(Support, pathname)} />
                 {/* non authed pages */}
                 <Route exact path="/verifyemail/:id" Component={withVerifyEmail(VerifyEmail, pathname)} />
-                <Route path="/resetpassword/:id/:email" Component={withResetPasswordSession(ResetPassword, pathname)} />
+                <Route path="/resetpassword" element={<ResetPassword />} />
                 <Route path="/forgotpassword" element={<ForgotPassword />} />
                 <Route path="/login" element={<Login />} />
                 <Route path="/register" element={<Register />} />

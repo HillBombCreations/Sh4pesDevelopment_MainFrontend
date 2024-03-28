@@ -9,16 +9,15 @@ import {
   Divider,
   Alert,
 } from "@mui/material";
-import { CheckCircle } from '@mui/icons-material';
+import axios from 'axios';
+import { CheckCircle, ErrorOutline } from '@mui/icons-material';
 import FooterComponent from '../../../../universalComponents/footer';
 
 export default class DesktopForgotPassword extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      email: '',
-      emailRegex: /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/,
-      validEmail: false,
+      username: '',
       loading: false,
       alertMessage: null,
       alertCode: null,
@@ -45,12 +44,16 @@ export default class DesktopForgotPassword extends Component {
   onSubmit = (event) => {
     event.preventDefault();
     this.setState({ loading: true });
-    fetch(`https://api.hbcreations.io/api/user/forgotPassword?email=${this.state.email}`, {
-      method: 'POST'
-    })
+    axios.post(`https://api.hbcreations.io/api/user/requestPasswordReset?username=${this.state.username}`)
     .then(res => {
-      if (res.status === 201) {
+      console.log(res);
+      if (res.status === 200) {
+        document.cookie = `user=${JSON.stringify(res.data)}; path=/`;
         this.setState({ loading: false, alertMessage: 'Successful Request! Please check your email for a link to reset your password.', alertCode: 201 });
+        setTimeout(() => {
+          // UPDATE
+          window.location.replace('http://localhost:5173/resetpassword');
+        }, 3000)
       } else {
         this.setState({ loading: false });
         const error = new Error(res.error);
@@ -68,24 +71,22 @@ export default class DesktopForgotPassword extends Component {
       <div style={{ display: 'flex', justifyContent: 'center' }}>
         <Card raised sx={{ bgcolor: '#fffff', marginTop: '5vh' }}>
           <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', paddingLeft: '2vw', paddingRight: '2vw', paddingTop: '2vh' }}>
-            <img src="/assets/hillbombcreations-logo.png" alt="hb logo" style={{ width: this.state.mobile ? '75vw' : '20vw' }} />
+            <img src="/assets/hillbombcreations-logo.png" alt="hb logo" style={{ width: this.state.mobile ? '75vw' : '260px' }} />
             <h2 style={{ width: this.state.mobile ? '75vw' : '20vw', fontSize: '24px'}}>Request Password Change</h2>
           </div>
           <Divider style={{ background: "#e8f0ff", marginBottom: '2vh'}} />
           <Box component="form" sx={{  display: 'flex', flexDirection: 'column', paddingX: '4vw', paddingY:'4vh', alignItems: 'center' }} noValidate autoComplete="off">
             <TextField
-              required
-              label="Enter email"
-              error={!this.state.validEmail}
+              label="Enter username"
               sx={{ marginBottom: '2vh', width: this.state.mobile ? '80vw' : '25vw' }}
-              value={ this.state.email }
-              onChange={this.validateEmail}
+              value={ this.state.username }
+              onChange={(e) =>  this.setState({ username: e.target.value })}
               InputProps={{
                 endAdornment: <InputAdornment position="end">
                   {
-                    this.state.validEmail ?
+                    this.state.username ?
                     <CheckCircle style={{color: '#38B137'}} />
-                    : null
+                    : <ErrorOutline style={{color: '#FA3913'}} />
                   }
                 </InputAdornment>,
               }}
@@ -93,7 +94,7 @@ export default class DesktopForgotPassword extends Component {
             {
               !this.state.loading ?
               <>
-                <Button variant="contained" onClick={this.onSubmit} disabled={!this.state.validEmail} sx={{ width: this.state.mobile ? '80vw' : '100%', bgcolor: '#3780FF' }}>
+                <Button variant="contained" onClick={this.onSubmit} disabled={!this.state.username} sx={{ width: this.state.mobile ? '80vw' : '100%', bgcolor: '#3780FF' }}>
                   Request Password Change
                 </Button>
               </>

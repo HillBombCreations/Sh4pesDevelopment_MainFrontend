@@ -14,7 +14,8 @@ import {
 } from "@mui/material";
 import {
   Info,
-  CheckCircle
+  CheckCircle,
+  ErrorOutline
 } from '@mui/icons-material';
 import axios from 'axios';
 import FooterComponent from '../../../../universalComponents/footer';
@@ -23,12 +24,14 @@ export default class DesktopRegister extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      name: '',
+      username: '',
+      firstName: '',
+      lastName: '',
       email : '',
       password: '',
       copyPassword: '',
       loading: false,
-      passwordRegex: /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/,
+      passwordRegex: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
       emailRegex: /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/,
       validPassword: false,
       validEmail: false,
@@ -66,7 +69,13 @@ export default class DesktopRegister extends Component {
     this.setState({ loading: true });
     axios.post(
       'https://api.hbcreations.io/api/user',
-      JSON.stringify({ name: this.state.name, email: this.state.email, password: this.state.password}),
+      JSON.stringify({ 
+          username: this.state.username,
+          firstName: this.state.firstName,
+          lastName: this.state.lastName,
+          email: this.state.email,
+          password: this.state.password
+      }),
       {
         headers: {
         'Content-Type': 'application/json'
@@ -76,6 +85,7 @@ export default class DesktopRegister extends Component {
       if (res.status === 201) {
         this.setState({ loading: false });
         window.location.replace('/successfulregistration');
+        document.cookie = `user=${JSON.stringify(res.data)}; path=/`;
       } else {
         this.setState({ loading: false });
         const error = new Error(res.error);
@@ -100,26 +110,22 @@ export default class DesktopRegister extends Component {
             </div>
             <Divider style={{ background: "#e8f0ff", marginBottom: '2vh'}} />
             <Box component="form" sx={{ display: 'flex', flexDirection: 'column', paddingX: '4vw', paddingY:'4vh' }} noValidate autoComplete="off">
-              <TextField
-                    required
-                    label="Name"
-                    error={!this.state.name}
-                    sx={{ marginBottom: '2vh', width: '100%' }}
-                    value={ this.state.name }
-                    onChange={(e) =>  this.setState({ name: e.target.value })}
-                    InputProps={{
-                      endAdornment: <InputAdornment position="end">{
-                        this.state.name ?
-                        <CheckCircle style={{color: '#38B137'}} />
-                        :
-                          null
-                      }</InputAdornment>,
-                    }}
+            <TextField
+                  label="Username"
+                  sx={{ marginBottom: '2vh', width: '100%' }}
+                  value={ this.state.username }
+                  onChange={(e) =>  this.setState({ username: e.target.value })}
+                  InputProps={{
+                    endAdornment: <InputAdornment position="end">{
+                      this.state.username.length > 8 ?
+                      <CheckCircle style={{color: '#38B137'}} />
+                      :
+                      <ErrorOutline style={{color: '#FA3913'}} />
+                    }</InputAdornment>,
+                  }}
               />
-              <TextField
-                  required
+            <TextField
                   label="Email"
-                  error={!this.state.validEmail}
                   sx={{ marginBottom: '2vh', width: '100%' }}
                   value={ this.state.email }
                   onChange={(e) =>  this.validateEmail(e)}
@@ -128,16 +134,44 @@ export default class DesktopRegister extends Component {
                       this.state.validEmail ?
                       <CheckCircle style={{color: '#38B137'}} />
                       :
-                        null
+                      <ErrorOutline style={{color: '#FA3913'}} />
                     }</InputAdornment>,
                   }}
               />
+              <TextField
+
+                    label="First name"
+                    sx={{ marginBottom: '2vh', width: '100%' }}
+                    value={ this.state.firstName }
+                    onChange={(e) =>  this.setState({ firstName: e.target.value })}
+                    InputProps={{
+                      endAdornment: <InputAdornment position="end">{
+                        this.state.firstName ?
+                        <CheckCircle style={{color: '#38B137'}} />
+                        :
+                        <ErrorOutline style={{color: '#FA3913'}} />
+                      }</InputAdornment>,
+                    }}
+              />
+              <TextField
+                    label="Last name"
+                    sx={{ marginBottom: '2vh', width: '100%' }}
+                    value={ this.state.lastName }
+                    onChange={(e) =>  this.setState({ lastName: e.target.value })}
+                    InputProps={{
+                      endAdornment: <InputAdornment position="end">{
+                        this.state.lastName ?
+                        <CheckCircle style={{color: '#38B137'}} />
+                        :
+                        <ErrorOutline style={{color: '#FA3913'}} />
+                      }</InputAdornment>,
+                    }}
+              />
               <FormControl sx={{ width: '100%', marginBottom: '2vh' }} variant="outlined">
-                  <InputLabel htmlFor="outlined-adornment-password" sx={{ color: `${this.state.passwordColor}!important` }}>Password *</InputLabel>
+                  <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
                   <OutlinedInput
                     id="outlined-adornment-password"
                     sx={{ width: '100%'}}
-                    error={!this.state.validPassword}
                     endAdornment={
                       <InputAdornment position="end">
                         <Tooltip title={
@@ -149,6 +183,8 @@ export default class DesktopRegister extends Component {
                             <span style={{ fontSize: '16px'}}>• contain a lowercase letter</span>
                             <br />
                             <span style={{ fontSize: '16px'}}>• contain an uppercase letter</span>
+                            <br />
+                            <span style={{ fontSize: '16px'}}>• contain a number</span>
                             <br />
                             <span style={{ fontSize: '16px'}}>• contain a special character</span>
                           </div>
@@ -164,19 +200,14 @@ export default class DesktopRegister extends Component {
                       </InputAdornment>
                     }
                     onChange={(e) =>  this.validatePassword(e)}
-                    label="Password *"
+                    label="Password"
                   />
               </FormControl>
               <FormControl sx={{ width: '100%', marginBottom: '2vh' }} variant="outlined">
-                  <InputLabel htmlFor="outlined-adornment-password" 
-                    sx={{ 
-                      color: (this.state.copyPassword !== this.state.password) || !this.state.validPassword || !this.state.copyPassword ? '#d32f2f !important' : '' }}>
-                        Verify Password *
-                  </InputLabel>
+                  <InputLabel htmlFor="outlined-adornment-password">Verify Password</InputLabel>
                   <OutlinedInput
                     id="outlined-adornment-password"
                     sx={{ width: '100%'}}
-                    error={ (this.state.copyPassword !== this.state.password) && this.state.validPassword || !this.state.copyPassword }
                     endAdornment={
                       <InputAdornment position="end">
                         <Tooltip title={
@@ -204,7 +235,7 @@ export default class DesktopRegister extends Component {
                       <Button
                         variant="contained"
                         onClick={this.onSubmit}
-                        disabled={!(this.state.validPassword && (this.state.copyPassword === this.state.password)) || !this.state.name || !this.state.email}
+                        disabled={!(this.state.validPassword && (this.state.copyPassword === this.state.password)) || !this.state.firstName || !this.state.lastName || !this.state.email}
                         sx={{ width: '100%', bgcolor: '#3780FF' }}
                       >
                           Create Account
