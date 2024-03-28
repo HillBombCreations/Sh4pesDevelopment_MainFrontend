@@ -51,8 +51,7 @@ export default class DesktopForgotPassword extends Component {
         document.cookie = `user=${JSON.stringify(res.data)}; path=/`;
         this.setState({ loading: false, alertMessage: 'Successful Request! Please check your email for a link to reset your password.', alertCode: 201 });
         setTimeout(() => {
-          // UPDATE
-          window.location.replace('http://localhost:5173/resetpassword');
+          window.location.replace('https://portal.hbcreations.io/resetpassword');
         }, 3000)
       } else {
         this.setState({ loading: false });
